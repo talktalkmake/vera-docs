@@ -1,0 +1,31 @@
+# VERA
+
+> VERA is a multi-tenant time-tracking, project-management, and financial-intelligence platform for small marketing and creative agencies ($1M–$5M revenue). Its primary surface is a fast web console where owners and managers run projects, allocations, financials, capacity, and reporting, and team members log and review their own time. A Slack bot remains a lightweight option for logging time, but the console is where the work happens.
+
+## What VERA does
+
+- Time tracking: structured, seconds-fast logging in the console (no rigid weekly grid); an optional Slack shortcut for teams that prefer chat
+- Project financials: live project margin, retainer burn, fixed-price percentage-of-completion, and over-budget alerts the day a project starts drifting — not at month-end
+- Capacity & allocations: per-person hour envelopes and a forward-looking capacity heatmap to answer "can we take this project?" with data
+- Reporting: a continuously up-to-date P&L by month, customer, and discipline, with CSV export — the board deck is no longer a Sunday-night project
+- Vendor liabilities: fixed-fee vendor commitments accrue cost and revenue on the same clock, so margin is correct from the first hour
+
+## Core concepts
+
+- Labor Efficiency Ratio (LER) — dollars of revenue per dollar of labor cost; VERA's central profitability metric
+- Revenue recognition — T&M bills hours × rate; Fixed Price recognises (internal hours + vendor implied hours) ÷ hours budget × contract value; Pro Bono and Internal recognise $0
+- Permission model — Owners and Admins see everything including dollar figures; Managers see percentages and their assigned projects; team members (Users) see only their own time. Financial figures are gated at the data layer, never just hidden in the UI
+- Pricing — by agency revenue, not per seat; everyone on the team is included
+
+## Who builds it
+
+VERA is built by Tom Hart of [Hart Ops](https://hartops.com), a profit advisor with 20 years operating marketing and creative agencies. Every rule in the product comes from a decision he had to make in the COO seat. An optional "VERA + Operating Partner" tier adds monthly operating sessions grounded in the agency's real VERA data.
+
+## Key links
+
+- Homepage: https://getvera.site/
+- Pricing: https://getvera.site/pricing.html
+- The Playbook (named console routines for owners, managers, and teams): https://getvera.site/playbook/
+- Documentation: https://getvera.site/guide/
+- Build log / blog: https://getvera.site/blog/
+- Hart Ops (the advisory practice behind VERA): https://hartops.com/
