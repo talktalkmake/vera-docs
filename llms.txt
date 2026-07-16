@@ -27,5 +27,4 @@ VERA is built by Tom Hart of [Hart Ops](https://hartops.com), a profit advisor w
 - Pricing: https://getvera.site/pricing.html
 - The Playbook (named console routines for owners, managers, and teams): https://getvera.site/playbook/
 - Documentation: https://getvera.site/guide/
-- Build log / blog: https://getvera.site/blog/
 - Hart Ops (the advisory practice behind VERA): https://hartops.com/
