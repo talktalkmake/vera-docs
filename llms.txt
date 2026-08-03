@@ -13,7 +13,7 @@
 ## Core concepts
 
 - Labor Efficiency Ratio (LER) — dollars of revenue per dollar of labor cost; VERA's central profitability metric
-- Revenue recognition — T&M bills hours × rate; Fixed Price recognises (internal hours + vendor implied hours) ÷ hours budget × contract value; Pro Bono and Internal recognise $0
+- Revenue recognition — T&M bills hours × rate; Fixed Price recognizes (internal hours + vendor implied hours) ÷ hours budget × contract value; Pro Bono and Internal recognize $0
 - Permission model — Owners and Admins see everything including dollar figures; Managers see percentages and their assigned projects; team members (Users) see only their own time. Financial figures are gated at the data layer, never just hidden in the UI
 - Pricing — by agency revenue, not per seat; everyone on the team is included
 
