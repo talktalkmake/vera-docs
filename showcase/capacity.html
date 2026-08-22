@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacity — VERA Console</title>
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Roboto+Condensed:wght@400&display=swap">
+<style>
+/* Inlined from public/tokens.css by scripts/build-showcase.js — do not edit by hand */
+/* GENERATED from docs/design/design-tokens.md — do not edit by hand. Run: node scripts/build-tokens.js */
+:root {
+  --vera-color-brand-hsl: 219, 87%, 33%;
+  --vera-color-brand: hsla(var(--vera-color-brand-hsl), 1);
+  --vera-color-brand-hover-hsl: 219, 88%, 25%;
+  --vera-color-brand-hover: hsla(var(--vera-color-brand-hover-hsl), 1);
+  --vera-color-brand-soft-hsl: 220, 43%, 93%;
+  --vera-color-brand-soft: hsla(var(--vera-color-brand-soft-hsl), 1);
+  --vera-color-on-brand-hsl: 0, 0%, 100%;
+  --vera-color-on-brand: hsla(var(--vera-color-on-brand-hsl), 1);
+  --vera-color-bg-hsl: 220, 23%, 97%;
+  --vera-color-bg: hsla(var(--vera-color-bg-hsl), 1);
+  --vera-color-surface-hsl: 0, 0%, 100%;
+  --vera-color-surface: hsla(var(--vera-color-surface-hsl), 1);
+  --vera-color-surface-alt-hsl: 0, 0%, 94%;
+  --vera-color-surface-alt: hsla(var(--vera-color-surface-alt-hsl), 1);
+  --vera-color-surface-warm-hsl: 49, 26%, 87%;
+  --vera-color-surface-warm: hsla(var(--vera-color-surface-warm-hsl), 1);
+  --vera-color-border-hsl: 0, 0%, 88%;
+  --vera-color-border: hsla(var(--vera-color-border-hsl), 1);
+  --vera-color-border-soft-hsl: 0, 0%, 94%;
+  --vera-color-border-soft: hsla(var(--vera-color-border-soft-hsl), 1);
+  --vera-color-text-hsl: 0, 0%, 10%;
+  --vera-color-text: hsla(var(--vera-color-text-hsl), 1);
+  --vera-color-text-2-hsl: 0, 0%, 33%;
+  --vera-color-text-2: hsla(var(--vera-color-text-2-hsl), 1);
+  --vera-color-text-muted-hsl: 0, 0%, 53%;
+  --vera-color-text-muted: hsla(var(--vera-color-text-muted-hsl), 1);
+  --vera-color-success-hsl: 142, 71%, 45%;
+  --vera-color-success: hsla(var(--vera-color-success-hsl), 1);
+  --vera-color-success-soft-hsl: 141, 84%, 93%;
+  --vera-color-success-soft: hsla(var(--vera-color-success-soft-hsl), 1);
+  --vera-color-success-text-hsl: 143, 64%, 24%;
+  --vera-color-success-text: hsla(var(--vera-color-success-text-hsl), 1);
+  --vera-color-warning-hsl: 38, 92%, 50%;
+  --vera-color-warning: hsla(var(--vera-color-warning-hsl), 1);
+  --vera-color-warning-soft-hsl: 46, 100%, 90%;
+  --vera-color-warning-soft: hsla(var(--vera-color-warning-soft-hsl), 1);
+  --vera-color-warning-text-hsl: 23, 83%, 31%;
+  --vera-color-warning-text: hsla(var(--vera-color-warning-text-hsl), 1);
+  --vera-color-danger-hsl: 6, 63%, 46%;
+  --vera-color-danger: hsla(var(--vera-color-danger-hsl), 1);
+  --vera-color-danger-hover-hsl: 5, 63%, 41%;
+  --vera-color-danger-hover: hsla(var(--vera-color-danger-hover-hsl), 1);
+  --vera-color-danger-soft-hsl: 0, 93%, 94%;
+  --vera-color-danger-soft: hsla(var(--vera-color-danger-soft-hsl), 1);
+  --vera-color-danger-text-hsl: 0, 74%, 42%;
+  --vera-color-danger-text: hsla(var(--vera-color-danger-text-hsl), 1);
+  --vera-color-info-soft-hsl: 189, 53%, 88%;
+  --vera-color-info-soft: hsla(var(--vera-color-info-soft-hsl), 1);
+  --vera-color-info-text-hsl: 189, 78%, 21%;
+  --vera-color-info-text: hsla(var(--vera-color-info-text-hsl), 1);
+  --vera-color-brand-50-hsl: 223, 58%, 95%;
+  --vera-color-brand-50: hsla(var(--vera-color-brand-50-hsl), 1);
+  --vera-color-brand-100-hsl: 221, 54%, 89%;
+  --vera-color-brand-100: hsla(var(--vera-color-brand-100-hsl), 1);
+  --vera-color-brand-200-hsl: 219, 55%, 78%;
+  --vera-color-brand-200: hsla(var(--vera-color-brand-200-hsl), 1);
+  --vera-color-brand-300-hsl: 220, 53%, 65%;
+  --vera-color-brand-300: hsla(var(--vera-color-brand-300-hsl), 1);
+  --vera-color-brand-400-hsl: 219, 51%, 51%;
+  --vera-color-brand-400: hsla(var(--vera-color-brand-400-hsl), 1);
+  --vera-color-brand-500-hsl: 218, 72%, 39%;
+  --vera-color-brand-500: hsla(var(--vera-color-brand-500-hsl), 1);
+  --vera-color-brand-600-hsl: 219, 87%, 33%;
+  --vera-color-brand-600: hsla(var(--vera-color-brand-600-hsl), 1);
+  --vera-color-brand-700-hsl: 219, 88%, 25%;
+  --vera-color-brand-700: hsla(var(--vera-color-brand-700-hsl), 1);
+  --vera-color-brand-800-hsl: 218, 82%, 21%;
+  --vera-color-brand-800: hsla(var(--vera-color-brand-800-hsl), 1);
+  --vera-color-brand-900-hsl: 217, 74%, 18%;
+  --vera-color-brand-900: hsla(var(--vera-color-brand-900-hsl), 1);
+  --vera-color-brand-950-hsl: 218, 74%, 11%;
+  --vera-color-brand-950: hsla(var(--vera-color-brand-950-hsl), 1);
+  --vera-color-neutral-50-hsl: 220, 23%, 97%;
+  --vera-color-neutral-50: hsla(var(--vera-color-neutral-50-hsl), 1);
+  --vera-color-neutral-100-hsl: 216, 17%, 94%;
+  --vera-color-neutral-100: hsla(var(--vera-color-neutral-100-hsl), 1);
+  --vera-color-neutral-200-hsl: 217, 15%, 90%;
+  --vera-color-neutral-200: hsla(var(--vera-color-neutral-200-hsl), 1);
+  --vera-color-neutral-300-hsl: 217, 15%, 83%;
+  --vera-color-neutral-300: hsla(var(--vera-color-neutral-300-hsl), 1);
+  --vera-color-neutral-400-hsl: 218, 10%, 64%;
+  --vera-color-neutral-400: hsla(var(--vera-color-neutral-400-hsl), 1);
+  --vera-color-neutral-500-hsl: 219, 8%, 48%;
+  --vera-color-neutral-500: hsla(var(--vera-color-neutral-500-hsl), 1);
+  --vera-color-neutral-600-hsl: 0, 0%, 33%;
+  --vera-color-neutral-600: hsla(var(--vera-color-neutral-600-hsl), 1);
+  --vera-color-neutral-700-hsl: 219, 10%, 27%;
+  --vera-color-neutral-700: hsla(var(--vera-color-neutral-700-hsl), 1);
+  --vera-color-neutral-800-hsl: 218, 12%, 18%;
+  --vera-color-neutral-800: hsla(var(--vera-color-neutral-800-hsl), 1);
+  --vera-color-neutral-900-hsl: 0, 0%, 10%;
+  --vera-color-neutral-900: hsla(var(--vera-color-neutral-900-hsl), 1);
+  --vera-color-neutral-950-hsl: 216, 16%, 6%;
+  --vera-color-neutral-950: hsla(var(--vera-color-neutral-950-hsl), 1);
+  --vera-color-success-50-hsl: 138, 76%, 97%;
+  --vera-color-success-50: hsla(var(--vera-color-success-50-hsl), 1);
+  --vera-color-success-100-hsl: 141, 84%, 93%;
+  --vera-color-success-100: hsla(var(--vera-color-success-100-hsl), 1);
+  --vera-color-success-200-hsl: 141, 79%, 85%;
+  --vera-color-success-200: hsla(var(--vera-color-success-200-hsl), 1);
+  --vera-color-success-300-hsl: 142, 77%, 73%;
+  --vera-color-success-300: hsla(var(--vera-color-success-300-hsl), 1);
+  --vera-color-success-400-hsl: 142, 69%, 58%;
+  --vera-color-success-400: hsla(var(--vera-color-success-400-hsl), 1);
+  --vera-color-success-500-hsl: 142, 71%, 45%;
+  --vera-color-success-500: hsla(var(--vera-color-success-500-hsl), 1);
+  --vera-color-success-600-hsl: 142, 76%, 36%;
+  --vera-color-success-600: hsla(var(--vera-color-success-600-hsl), 1);
+  --vera-color-success-700-hsl: 142, 72%, 29%;
+  --vera-color-success-700: hsla(var(--vera-color-success-700-hsl), 1);
+  --vera-color-success-800-hsl: 143, 64%, 24%;
+  --vera-color-success-800: hsla(var(--vera-color-success-800-hsl), 1);
+  --vera-color-success-900-hsl: 144, 61%, 20%;
+  --vera-color-success-900: hsla(var(--vera-color-success-900-hsl), 1);
+  --vera-color-success-950-hsl: 145, 80%, 10%;
+  --vera-color-success-950: hsla(var(--vera-color-success-950-hsl), 1);
+  --vera-color-warning-50-hsl: 48, 100%, 96%;
+  --vera-color-warning-50: hsla(var(--vera-color-warning-50-hsl), 1);
+  --vera-color-warning-100-hsl: 48, 96%, 89%;
+  --vera-color-warning-100: hsla(var(--vera-color-warning-100-hsl), 1);
+  --vera-color-warning-200-hsl: 48, 97%, 77%;
+  --vera-color-warning-200: hsla(var(--vera-color-warning-200-hsl), 1);
+  --vera-color-warning-300-hsl: 45, 96%, 64%;
+  --vera-color-warning-300: hsla(var(--vera-color-warning-300-hsl), 1);
+  --vera-color-warning-400-hsl: 41, 95%, 56%;
+  --vera-color-warning-400: hsla(var(--vera-color-warning-400-hsl), 1);
+  --vera-color-warning-500-hsl: 38, 92%, 50%;
+  --vera-color-warning-500: hsla(var(--vera-color-warning-500-hsl), 1);
+  --vera-color-warning-600-hsl: 37, 86%, 39%;
+  --vera-color-warning-600: hsla(var(--vera-color-warning-600-hsl), 1);
+  --vera-color-warning-700-hsl: 34, 83%, 35%;
+  --vera-color-warning-700: hsla(var(--vera-color-warning-700-hsl), 1);
+  --vera-color-warning-800-hsl: 23, 83%, 31%;
+  --vera-color-warning-800: hsla(var(--vera-color-warning-800-hsl), 1);
+  --vera-color-warning-900-hsl: 22, 78%, 26%;
+  --vera-color-warning-900: hsla(var(--vera-color-warning-900-hsl), 1);
+  --vera-color-warning-950-hsl: 24, 84%, 15%;
+  --vera-color-warning-950: hsla(var(--vera-color-warning-950-hsl), 1);
+  --vera-color-danger-50-hsl: 0, 86%, 97%;
+  --vera-color-danger-50: hsla(var(--vera-color-danger-50-hsl), 1);
+  --vera-color-danger-100-hsl: 0, 93%, 94%;
+  --vera-color-danger-100: hsla(var(--vera-color-danger-100-hsl), 1);
+  --vera-color-danger-200-hsl: 0, 96%, 89%;
+  --vera-color-danger-200: hsla(var(--vera-color-danger-200-hsl), 1);
+  --vera-color-danger-300-hsl: 0, 94%, 82%;
+  --vera-color-danger-300: hsla(var(--vera-color-danger-300-hsl), 1);
+  --vera-color-danger-400-hsl: 0, 91%, 71%;
+  --vera-color-danger-400: hsla(var(--vera-color-danger-400-hsl), 1);
+  --vera-color-danger-500-hsl: 0, 84%, 60%;
+  --vera-color-danger-500: hsla(var(--vera-color-danger-500-hsl), 1);
+  --vera-color-danger-600-hsl: 6, 63%, 46%;
+  --vera-color-danger-600: hsla(var(--vera-color-danger-600-hsl), 1);
+  --vera-color-danger-700-hsl: 0, 74%, 42%;
+  --vera-color-danger-700: hsla(var(--vera-color-danger-700-hsl), 1);
+  --vera-color-danger-800-hsl: 0, 70%, 35%;
+  --vera-color-danger-800: hsla(var(--vera-color-danger-800-hsl), 1);
+  --vera-color-danger-900-hsl: 0, 63%, 31%;
+  --vera-color-danger-900: hsla(var(--vera-color-danger-900-hsl), 1);
+  --vera-color-danger-950-hsl: 0, 75%, 15%;
+  --vera-color-danger-950: hsla(var(--vera-color-danger-950-hsl), 1);
+  --vera-color-accent-green-hsl: 110, 100%, 59%;
+  --vera-color-accent-green: hsla(var(--vera-color-accent-green-hsl), 1);
+  --vera-color-accent-lime-hsl: 62, 86%, 63%;
+  --vera-color-accent-lime: hsla(var(--vera-color-accent-lime-hsl), 1);
+  --vera-color-accent-yellow-hsl: 62, 100%, 50%;
+  --vera-color-accent-yellow: hsla(var(--vera-color-accent-yellow-hsl), 1);
+  --vera-color-accent-butter-hsl: 60, 96%, 79%;
+  --vera-color-accent-butter: hsla(var(--vera-color-accent-butter-hsl), 1);
+  --vera-color-accent-orange-hsl: 35, 100%, 50%;
+  --vera-color-accent-orange: hsla(var(--vera-color-accent-orange-hsl), 1);
+  --vera-color-accent-azure-hsl: 212, 100%, 51%;
+  --vera-color-accent-azure: hsla(var(--vera-color-accent-azure-hsl), 1);
+  --vera-color-accent-cobalt-hsl: 219, 87%, 33%;
+  --vera-color-accent-cobalt: hsla(var(--vera-color-accent-cobalt-hsl), 1);
+  --vera-color-accent-charcoal-hsl: 80, 4%, 17%;
+  --vera-color-accent-charcoal: hsla(var(--vera-color-accent-charcoal-hsl), 1);
+  --vera-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vera-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --vera-font-headline: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --vera-font-button: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --vera-font-size-2xs: 0.7rem;
+  --vera-font-size-xs: 0.8rem;
+  --vera-font-size-sm: 0.85rem;
+  --vera-font-size-base: 0.9rem;
+  --vera-font-size-md: 1rem;
+  --vera-font-size-lg: 1.1rem;
+  --vera-font-size-xl: 1.25rem;
+  --vera-font-size-2xl: 1.5rem;
+  --vera-font-weight-normal: 400;
+  --vera-font-weight-medium: 500;
+  --vera-font-weight-semibold: 600;
+  --vera-space-xs: 4px;
+  --vera-space-sm: 8px;
+  --vera-space-md: 12px;
+  --vera-space-lg: 16px;
+  --vera-space-xl: 24px;
+  --vera-space-2xl: 32px;
+  --vera-space-3xl: 48px;
+  --vera-radius-sm: 4px;
+  --vera-radius-md: 6px;
+  --vera-radius-lg: 8px;
+  --vera-radius-pill: 12px;
+  --vera-radius-full: 999px;
+  --vera-border-width-default: 1px;
+  --vera-border-width-emphasis: 2px;
+  --vera-border-width-accent: 3px;
+  --vera-icon-size: 16px;
+  --vera-shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+  --vera-shadow-modal: 0 8px 32px rgba(0,0,0,0.2);
+  --vera-shadow-toast: 0 2px 12px rgba(0,0,0,0.15);
+  --vera-z-nav: 1050;
+  --vera-z-toast: 1000;
+  --vera-z-modal: 1200;
+}
+
+
+* { box-sizing: border-box; }
+body { font-family: var(--vera-font-sans); margin: 0; padding: 0; background: var(--vera-color-bg); color: var(--vera-color-text); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--vera-font-sans); }
+main { padding: 1.5rem; max-width: 960px; margin: 0 auto; }
+.bar-marker-ping { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 2px solid var(--vera-color-accent-orange); background: transparent; opacity: 0; pointer-events: none; animation: barMarkerPing 3s ease-out infinite; }
+/* 3s cycle = a ~2s pulse (your keyframes, mapped into the first two-thirds) + a 1s
+   held-invisible pause before it repeats (CSS can't delay between iterations). */
+@keyframes barMarkerPing { 0% { width: 12px; height: 12px; margin: -6px 0 0 -6px; opacity: 0; } 16.7% { opacity: 0.6; } 46.7% { opacity: 0; } 66.7% { width: 64px; height: 64px; margin: -32px 0 0 -32px; opacity: 0; } 100% { width: 64px; height: 64px; margin: -32px 0 0 -32px; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .bar-marker-ping { animation: none; opacity: 0; } }
+table { width: 100%; border-collapse: collapse; background: var(--vera-color-surface); border-radius: var(--vera-radius-md); overflow: hidden; border: 1px solid var(--vera-color-border); }
+th { background: var(--vera-color-surface-alt); text-align: left; padding: 0.6rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--vera-color-text-2); border-bottom: 1px solid var(--vera-color-border); }
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--vera-color-text); }
+.sort-caret { font-size: 0.7rem; }
+.chart-zoom-frame { position: relative; }
+.chart-zoom-controls { display: flex; gap: 0.35rem; justify-content: flex-end; margin-bottom: 0.35rem; }
+.chart-zoom-btn { padding: 0.15rem 0.55rem; line-height: 1.4; font-size: 0.85rem; }
+/* Shared "pressed" look (issue #1992) — a real click and the wheel-triggered
+   flash (data-zoom-active) render identically, so there is exactly one
+   pressed appearance, not a bespoke second one invented for the flash. */
+.chart-zoom-btn:active, .chart-zoom-btn[data-zoom-active="1"] { background: var(--vera-color-surface-alt); border-color: var(--vera-color-brand); }
+.chart-zoom-scroll { overflow: auto; max-width: 100%; max-height: 70vh; }
+/* max-height (issue #2000) is what actually makes vertical panning and
+   vertical zoom-anchoring work: without a height bound the scroller simply
+   grows to whatever height the zoomed SVG needs, so scrollHeight ===
+   clientHeight, there is never vertical overflow, and scrollTop is
+   permanently clamped to 0 no matter what the drag handler or anchorScroll
+   assign to it. max-width already did the equivalent job horizontally. A
+   chart at rest (level 1) is comfortably inside 70vh on any ordinary
+   screen; a very wide monitor can exceed it at level 1, in which case the
+   chart scrolls within its own frame instead of pushing the page down.
+   Drag-to-pan cursor affordance (issue #1998) — attributes, not classes,
+   since mini-dom has no classList. data-pannable is set whenever the
+   scroller actually overflows; data-panning is set only while a drag is
+   in progress. */
+.chart-zoom-scroll[data-pannable="1"] { cursor: grab; }
+.chart-zoom-scroll[data-panning="1"]  { cursor: grabbing; }
+td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--vera-color-border-soft); font-size: 0.9rem; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+td a { color: var(--vera-color-brand); text-decoration: none; }
+td a:hover { text-decoration: underline; }
+.card { background: var(--vera-color-surface); border-radius: var(--vera-radius-md); border: 1px solid var(--vera-color-border); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+.card h2 { margin: 0 0 1rem; font-size: 0.95rem; font-weight: 600; color: var(--vera-color-text); }
+.page-heading { font-size: 0.95rem; font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-text); margin-bottom: var(--vera-space-md); } /* 0.95rem: no token yet — pending type-scale pass */
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1.5rem; margin: 0; }
+dt { font-size: 0.85rem; color: #666; font-weight: 500; align-self: start; padding-top: 1px; }
+dd { margin: 0; font-size: 0.9rem; }
+:where(a) { color: var(--vera-color-brand); }
+:where(a):visited { color: var(--vera-color-brand); }
+:where(a):hover { text-decoration: underline; }
+.back { font-size: 0.85rem; color: var(--vera-color-brand); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+ul.task-list { margin: 0; padding: 0 0 0 1.2rem; font-size: 0.9rem; }
+ul.task-list li { margin-bottom: 0.2rem; }
+.task-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; }
+.task-pill { display: inline-flex; align-items: center; padding: 0.4rem 0.85rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-pill); background: var(--vera-color-surface); color: var(--vera-color-text); font-size: 0.85rem; line-height: 1.2; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: var(--vera-radius-pill); font-size: 0.75rem; font-weight: 500; }
+.pm-you { display: inline-block; margin-left: 0.4rem; padding: 1px 7px; border-radius: var(--vera-radius-pill); background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle; }
+.ler-pill { display: inline-block; padding: 1px 8px; border-radius: var(--vera-radius-pill); font-size: 0.8125rem; font-weight: 600; }
+.badge-active    { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); }
+.badge-cancelled { background: var(--vera-color-danger-soft); color: var(--vera-color-danger-text); }
+.badge-completed { background: var(--vera-color-info-soft); color: var(--vera-color-info-text); }
+.badge-default   { background: var(--vera-color-neutral-200); color: var(--vera-color-neutral-700); }
+.center-wrap { display: flex; align-items: center; justify-content: center; min-height: 70vh; }
+.box { background: var(--vera-color-surface); border-radius: var(--vera-radius-lg); box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 2.5rem 3rem; text-align: center; max-width: 420px; width: 100%; }
+.box h2 { margin: 0 0 1rem; }
+.box p { color: var(--vera-color-text-2); margin: 0 0 1.5rem; line-height: 1.6; }
+code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radius: 3px; font-family: var(--vera-font-mono); }
+@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; } }
+.banner { padding: 0.65rem 1rem; border-radius: 5px; margin-bottom: 1rem; font-size: 0.9rem; }
+.banner-success { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); border: 1px solid var(--vera-color-success-200); }
+.banner-warn    { background: var(--vera-color-warning-soft); color: var(--vera-color-warning-text); border: 1px solid var(--vera-color-warning-200); }
+.banner-error   { background: var(--vera-color-danger-soft); color: var(--vera-color-danger-text); border: 1px solid var(--vera-color-danger-200); }
+/* Success is a transient event — floats bottom-center, fades in/out, auto-dismisses (issue
+   #1884). Error and warning describe a persistent state and are never toasted — see
+   _noticeBanner. Bottom-center (not top): top overlaps the page heading, the "All projects"
+   back-link, and (on mobile) .nav-toggle; bottom-center overlaps none of that. z-index 1000
+   is deliberately below .console-sidebar.open (1050) and .nav-toggle (1100) — the mobile
+   menu, a modal-ish surface, should cover a toast, not the other way round — and below
+   .modal-overlay (1200), so an open modal always wins. --toast-slide is zeroed under
+   reduced motion so the toast still fades but never slides. */
+.banner-toast { position: fixed; bottom: 1.25rem; left: 50%; --toast-slide: 8px; transform: translate(-50%, 0); z-index: 1000; box-shadow: var(--vera-shadow-toast); max-width: 90vw; animation: vera-toast-in 200ms ease-out; }
+.banner-toast.toast-leaving { animation: vera-toast-out 300ms ease-in forwards; }
+@keyframes vera-toast-in  { from { opacity: 0; transform: translate(-50%, var(--toast-slide)); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes vera-toast-out { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, var(--toast-slide)); } }
+@media (prefers-reduced-motion: reduce) { .banner-toast { --toast-slide: 0px; } }
+.table-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+.pm-acc { border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); margin-bottom: 0.5rem; background: var(--vera-color-surface); overflow: hidden; }
+.pm-acc > summary { list-style: none; cursor: pointer; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.pm-acc > summary::-webkit-details-marker { display: none; }
+.pm-acc > summary:hover { background: var(--vera-color-surface-alt); }
+.pm-acc[open] > summary { border-bottom: 1px solid var(--vera-color-border); }
+.pm-acc .pm-detail { padding: 0.5rem 1rem 1rem; }
+.pm-acc .pm-col-r { text-align: right; }
+/* Fixed column geometry so every PM's detail table lines up for easy scanning. */
+.pm-detail table { table-layout: fixed; }
+/* A wrapped table renders at its natural (content) width and scrolls inside its
+   .table-scroll box, instead of compressing/wrapping/overlapping columns to fit. */
+.table-scroll > table { min-width: max-content; table-layout: auto; }
+.table-scroll th, .table-scroll td { white-space: nowrap; }
+/* Week-entry tables (time / person-time / activity) are the exception to the
+   two .table-scroll rules above: the Notes column is free text and must WRAP,
+   not stretch the table into a horizontal scroller. table-layout:fixed + the
+   shared <colgroup> keeps columns aligned across the stacked per-day tables. */
+.table-scroll > table.week-entries { min-width: 100%; table-layout: fixed; }
+.table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+@media (max-width: 767px) {
+  /* Phones: fixed % columns would crush — fall back to the #1608 scroll
+     pattern, but cap the notes column so one long note stays readable. */
+  .table-scroll > table.week-entries { min-width: max-content; table-layout: auto; }
+  .table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: nowrap; }
+  .table-scroll table.week-entries td.notes-cell { white-space: normal; overflow-wrap: anywhere; min-width: 14rem; max-width: 18rem; }
+}
+/* Wage-refresh proposals table: the Occupation, Current and Proposed columns
+   are wide (long occupation titles; five dollar amounts each). Let those cells
+   wrap so the table fits the viewport instead of scrolling the Proposed column
+   off-screen. Individual dollar amounts still never break mid-number — each is
+   wrapped in a nowrap span at render time. */
+.table-scroll > table.ladder-proposals { min-width: 0; }
+.table-scroll table.ladder-proposals td.wrap-cell { white-space: normal; }
+.table-scroll table.ladder-proposals td.ladder-cell { white-space: normal; max-width: 16rem; }
+.pm-detail td:first-child { overflow: hidden; text-overflow: ellipsis; }
+/* Shared chevron treatment (#1852) — one affordance, one style, used by both
+   the pm-acc panel accordion and the rate-acc inline accordion. Brand-colored
+   because this is a control, not chrome; each accordion still owns its own
+   rotate-on-open rule since they key off different open selectors. */
+.pm-chevron, .rate-acc-chevron { display: inline-block; color: var(--vera-color-brand); font-size: 0.85rem; transition: transform .15s ease; }
+.pm-acc[open] > summary .pm-chevron { transform: rotate(90deg); }
+.pm-total td { font-weight: 600; border-top: 2px solid var(--vera-color-border); }
+/* Rates tab per-person rate-history accordion (#1849) — a native <details>
+   nested inside the Person cell, not a second <tr>: the Rates table's sort
+   script reorders <tr> elements (a detail row would be torn from its parent
+   on the first sort) and the shared people filter selects tbody
+   tr[data-labor] (a second row would filter independently or be orphaned).
+   Row count never changes, so sorting/filtering need no changes. */
+.rate-acc > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; }
+.rate-acc > summary::-webkit-details-marker { display: none; }
+.rate-acc > summary:hover { color: var(--vera-color-brand); }
+.rate-acc[open] > summary .rate-acc-chevron { transform: rotate(90deg); }
+.rate-acc-detail { margin-top: 0.5rem; padding: 0.5rem 0.6rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); background: var(--vera-color-surface-alt); }
+.rate-acc-detail table { width: 100%; }
+.rate-acc-superseded { color: var(--vera-color-text-muted); font-size: 0.75rem; font-style: italic; margin-left: 0.35rem; }
+.day-cell { flex: 1; min-width: 80px; border: var(--vera-border-width-default) solid var(--vera-color-border); border-radius: var(--vera-radius-md); padding: 0.5rem; text-align: center; cursor: pointer; box-sizing: border-box; transition: box-shadow .1s, border-color .1s; }
+.day-cell:hover { border-color: var(--vera-color-brand); }
+/* Today = a brand ring with no fill (calendar convention); selected = filled.
+   When today is also selected, .selected (declared after) wins → filled style. */
+.day-cell.today { border-color: var(--vera-color-brand); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--vera-color-brand); } /* keeping 1px (width-default) to stay zero-visual-change; bumping to width-emphasis is a deliberate follow-up design tweak */
+.day-cell.selected { border-color: var(--vera-color-brand); background: var(--vera-color-brand-soft); box-shadow: inset 0 calc(-1 * var(--vera-border-width-accent)) 0 var(--vera-color-brand); }
+/* Day-cell state (issue #1939) — a holiday, a non-working day, a time-off
+   day, and a working day with nothing logged must be distinguishable to
+   someone who can't see color, so every state also carries the .day-state
+   text label built in _weekEntriesView; color here is a redundant cue, never
+   the only one. */
+.day-state { font-size: 0.68rem; font-weight: 600; margin-top: 0.15rem; line-height: 1.15; }
+.day-cell.day-holiday { background: var(--vera-color-warning-100); border-color: var(--vera-color-warning-400); }
+.day-cell.day-holiday .day-state { color: var(--vera-color-warning-800); }
+.day-cell.day-nonworking { opacity: 0.55; }
+.day-cell.day-off-pto, .day-cell.day-off-sick, .day-cell.day-off-leave { background: var(--vera-color-brand-soft); border-color: var(--vera-color-brand-300); }
+.day-cell.day-off-pto .day-state, .day-cell.day-off-sick .day-state, .day-cell.day-off-leave .day-state { color: var(--vera-color-brand-700); }
+.day-cell.day-off-partial .day-state { color: var(--vera-color-text-muted); font-weight: 500; font-style: italic; }
+.usage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.color-swatch-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem; }
+.color-swatch-option { display: inline-flex; }
+.color-swatch-option input { position: absolute; opacity: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; margin: -1px; }
+.color-swatch { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid var(--vera-color-border); box-sizing: border-box; font-size: 0.65rem; color: var(--vera-color-text-muted); background: var(--vera-color-neutral-200); }
+.color-swatch-option input:checked + .color-swatch { border-color: var(--vera-color-text); box-shadow: 0 0 0 2px var(--vera-color-brand); }
+.color-swatch-option input:focus-visible + .color-swatch { outline: 2px solid var(--vera-color-brand); outline-offset: 2px; }
+dd input[type="date"],
+dd input[type="number"],
+dd select { font-size: 0.9rem; padding: 3px 6px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); }
+dd textarea { font-size: 0.9rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); width: 100%; max-width: 480px; min-height: 60px; resize: vertical; }
+.save-btn { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); background: var(--vera-color-brand); color: var(--vera-color-on-brand); cursor: pointer; margin-top: 1rem; }
+.save-btn:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); }
+td .save-btn, td .btn-primary, td .btn-secondary, td .btn-secondary-danger, td button { margin-top: 0; padding: 0.25rem 0.7rem; line-height: 1.2; }
+.save-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-secondary:disabled:hover { border-color: var(--vera-color-border); }
+.section-head { font-size: 0.9rem; font-weight: 600; color: var(--vera-color-text); margin: 1.25rem 0 0.5rem; border-top: var(--vera-border-width-default) solid var(--vera-color-border-soft); padding-top: 1rem; }
+.form-stack { display: flex; flex-direction: column; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-group label { font-size: 0.85rem; font-weight: 500; color: #444; }
+.form-group input[type="text"], .form-group input[type="number"], .form-group input[type="date"], .form-group select, .form-group textarea { font-size: 0.9rem; padding: 5px 8px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); width: 100%; max-width: 480px; }
+.form-group textarea { min-height: 60px; resize: vertical; }
+/* Inside the time log card, inputs fill the card width so every field's right edge aligns. */
+.log-card .form-group input, .log-card .form-group select, .log-card .form-group textarea { max-width: none; }
+.form-actions { padding-top: 0.5rem; }
+/* A lone save button in a modal sits bottom-right. */
+.modal-box .form-actions { display: flex; justify-content: flex-end; }
+.btn-primary { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); background: var(--vera-color-brand); color: var(--vera-color-on-brand); cursor: pointer; }
+.btn-primary:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); }
+.btn-secondary { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-full); background: var(--vera-color-surface); color: var(--vera-color-brand); cursor: pointer; }
+.btn-secondary:hover { border-color: var(--vera-color-brand); }
+th .ladder-head { padding: 0; margin: 0; border: none; background: none; font: inherit; color: var(--vera-color-brand); cursor: pointer; text-align: left; text-transform: inherit; letter-spacing: inherit; }
+th .ladder-head:hover { text-decoration: underline; }
+.btn-secondary-danger { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-danger); border-radius: var(--vera-radius-full); background: var(--vera-color-surface); color: var(--vera-color-danger); cursor: pointer; }
+.btn-secondary-danger:hover { background: var(--vera-color-danger); color: var(--vera-color-on-brand); border-color: var(--vera-color-danger); }
+/* No underlines on anything that looks like a button (incl. link-buttons). */
+button, .btn-primary, .btn-secondary, .btn-secondary-danger, .save-btn, .cat-btn, .new-project-link, .oauth-btn { text-decoration: none; }
+button:hover, .btn-primary:hover, .btn-secondary:hover, .btn-secondary-danger:hover, .save-btn:hover, .cat-btn:hover, .new-project-link:hover, .oauth-btn:hover { text-decoration: none; }
+/* Buttons (#1227): Roboto Condensed, uppercase, regular weight, ~5% tracking.
+   Covers every <button> plus the <a>-styled button classes. text-indent matches
+   letter-spacing so the trailing space after the last letter is balanced by an
+   equal lead-in, keeping the label centered. Icon-only buttons reset below so
+   the glyphs stay centered. */
+button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); text-transform: uppercase; font-weight: var(--vera-font-weight-normal); letter-spacing: 0.05em; text-indent: 0.05em; }
+.nav-toggle, .modal-close { text-transform: none; letter-spacing: normal; text-indent: 0; }
+.optional-label { font-size: 0.8rem; color: var(--vera-color-text-muted); font-weight: 400; margin-left: 4px; }
+.required-mark { color: var(--vera-color-danger-500); font-weight: 700; margin-left: 2px; }
+.new-project-link { font-size: 0.8125rem; padding: 0.375rem 0.75rem; background: var(--vera-color-brand); color: var(--vera-color-on-brand); text-decoration: none; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); white-space: nowrap; display: inline-block; }
+.new-project-link:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); text-decoration: none; }
+.cat-btn { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: none; background: var(--vera-color-surface); color: var(--vera-color-brand); cursor: pointer; text-decoration: none; display: inline-block; }
+.cat-btn + .cat-btn { border-left: 1px solid var(--vera-color-brand); }
+.cat-btn.active { background: var(--vera-color-brand); color: var(--vera-color-on-brand); }
+.console-layout { display: flex; min-height: 100vh; }
+.console-sidebar { width: 200px; flex-shrink: 0; background: transparent; border-right: none; display: flex; flex-direction: column; padding: 0 0 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+/* padding-left aligns the wordmark with the nav links (#1236): nav links sit
+   at 1.25rem; the logo's baked-in clear zone already insets the glyphs ~12px at
+   the 45px height, so ~0.5rem makes up the difference. */
+.nav-brand { padding: 0 0 0 0.5rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
+.nav-brand:hover { color: var(--vera-color-brand); }
+/* Clear zone (#1225): the wordmark SVG carries a full-A transparent margin on
+   every side, so the visible letters are 1/3 of the box height. height/3 = the
+   wordmark cap height. 45px box → 15px wordmark (matches getvera.site nav, #1440). */
+.vera-logo { height: auto; width: auto; display: block; }
+.nav-brand .vera-logo { height: 45px; }
+.nav-console-label { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vera-color-text-2); line-height: 1.35; margin-bottom: 1.25rem; }
+.brand-lockup { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.brand-lockup .vera-logo { height: 60px; }
+.brand-lockup .brand-lockup-sub { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vera-color-text-2); }
+.nav-links { display: flex; flex-direction: column; }
+.nav-icon { width: var(--vera-icon-size); height: var(--vera-icon-size); flex-shrink: 0; }
+.nav-link { display: flex; align-items: center; gap: var(--vera-space-sm); padding: 0.7rem 1.25rem; color: var(--vera-color-text-2); text-decoration: none; font-size: 0.9rem; }
+.nav-link:hover { background: var(--vera-color-brand-50); }
+.nav-link[aria-current] { color: var(--vera-color-brand); border-left: 3px solid var(--vera-color-brand); padding-left: calc(1.25rem - 3px); font-weight: 700; }
+.nav-divider { height: 1px; background: var(--vera-color-border); margin: 0.5rem 1.25rem; }
+.nav-group-label { padding: 0 1.25rem; margin-bottom: 0.35rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vera-color-text-muted); }
+.nav-subitem { font-size: 0.85rem; }
+.nav-more { color: var(--vera-color-text-muted); font-style: italic; }
+.nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
+.nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
+.nav-workspace { font-weight: 600; color: var(--vera-color-text); margin-bottom: 0.75rem; }
+.nav-userline { margin-bottom: 0.75rem; }
+.nav-action { margin-bottom: 0.5rem; }
+.nav-status { display: inline-flex; align-items: center; white-space: nowrap; gap: 0.4rem; margin-bottom: 0.75rem; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; text-decoration: none; background: var(--vera-color-neutral-100); color: var(--vera-color-text-muted); }
+.nav-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vera-color-neutral-400); flex: 0 0 auto; }
+.nav-status[data-status="green"] { background: var(--vera-color-success-100); color: var(--vera-color-success-800); }
+.nav-status[data-status="green"] .nav-status-dot { background: var(--vera-color-success-600); }
+.nav-status[data-status="amber"] { background: var(--vera-color-warning-100); color: var(--vera-color-warning-800); }
+.nav-status[data-status="amber"] .nav-status-dot { background: var(--vera-color-warning-600); }
+.nav-status[data-status="red"] { background: var(--vera-color-danger-100); color: var(--vera-color-danger-700); }
+.nav-status[data-status="red"] .nav-status-dot { background: var(--vera-color-danger-500); }
+.console-content { flex: 1; min-width: 0; background: var(--vera-color-surface); border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-lg); box-shadow: var(--vera-shadow-card); margin: 0.75rem 0.75rem 0.75rem 0; }
+/* top padding matches the wordmark's clear-zone gap so page content lines up with the logo */
+.console-content main { padding: 1.25rem 1.5rem 1.5rem; max-width: 1400px; margin: 0; }
+.nav-toggle { display: none; }
+@media (max-width: 767px) {
+  .console-layout { display: block; }
+  .console-content main { padding: 1.25rem .75rem 1.5rem; }
+  .nav-toggle { display: block; position: fixed; top: 0.6rem; right: 0.8rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
+  .console-sidebar { display: none; }
+  .console-sidebar.open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 1050; background: var(--vera-color-bg); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+}
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1200; align-items:flex-start; justify-content:center; padding:4rem 1rem; overflow-y:auto; }
+.modal-overlay.open { display:flex; }
+.modal-box { background:var(--vera-color-surface); border-radius:var(--vera-radius-lg); max-width:520px; width:100%; box-shadow:var(--vera-shadow-modal); }
+.modal-head { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid #eee; }
+.modal-head h3 { margin:0; font-size:1rem; font-weight:600; }
+.modal-close { background:none; border:none; font-size:1.6rem; line-height:1; cursor:pointer; color:var(--vera-color-text-muted); padding:0 0.25rem; }
+.modal-close:hover { color:var(--vera-color-text); }
+.modal-body { padding:1.25rem; }
+.save-btn-danger { background:var(--vera-color-danger); border-color:var(--vera-color-danger); }
+.save-btn-danger:hover { background:var(--vera-color-danger-hover); border-color:var(--vera-color-danger-hover); }
+/* Edit-modal footer (#1230): primary Save on the left, destructive action on
+   the right, so a row never needs to show two buttons. */
+.modal-actions-split { display:flex; flex-direction:row-reverse; justify-content:space-between; align-items:center; gap:1rem; padding-top:0.75rem; }
+.modal-actions-split form { display:inline; margin:0; }
+.modal-status-action { margin-top:1rem; padding-top:0.75rem; border-top:1px solid #eee; }
+.modal-status-action form { margin:0; }
+/* Shared segmented magnitude cell (#1882) — small in-cell bars are ticked,
+   not solid, so a reader counts rather than estimates. Large progress bars
+   (envelope/liability/forecast) use a different device, a tick rail beside a
+   solid fill (#1885): their fill already carries its own color meaning and
+   isn't always scaled 0–100%, so segmenting the fill itself would fight that
+   color code. This bar has neither constraint, so chopping it is free.
+   Fixed small width so a filled column never forces a .table-scroll table
+   wider than its own text.
+   align-items:flex-end is load-bearing (#1930): the cell is inline-flex, so it
+   shrinks to its widest child — the nowrap value text, whose width varies per
+   row. Without it the fixed-width bar lands at the cell's LEFT edge, which is
+   (aligned right edge - this row's text width), and a column of bars comes out
+   ragged. Pinning the bar to the cell's right edge lines it up under the
+   right-aligned figures. Do not remove it as redundant. */
+.magnitude-cell { display: inline-flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+.magnitude-cell-value { white-space: nowrap; }
+.magnitude-cell-bar { display: flex; gap: 1px; width: 60px; }
+.magnitude-tick { flex: 1 1 0; height: 8px; min-width: 1px; border-radius: 1px; background: var(--vera-color-neutral-200); }
+/* Tick rail (#1885) — the sibling large-bar device to the magnitude cell
+   above: a countable scale sitting BESIDE the fill rather than segmenting
+   it, since these bars' fills already carry their own color meaning
+   (envelopes vs vendors vs overflow) and their domain isn't always 0-100%
+   (an over-budget bar rescales to the total committed). No new token —
+   reuses the existing border color at both mark heights, low emphasis by
+   design. Full (decile) and reduced (quarter) mark sets are both always
+   rendered; the media query below picks one, so no JS is needed. */
+.bar-scale { position: relative; height: 5px; margin-top: 1px; }
+.bar-scale-mark { position: absolute; top: 0; width: 1px; height: 3px; background: var(--vera-color-border); transform: translateX(-50%); }
+.bar-scale-mark-tall { height: 5px; }
+.bar-scale-reduced { display: none; }
+@media (max-width: 767px) {
+  /* Phones: ten decile marks on a short bar read as clutter — drop to
+     25/50/75/100 rather than hiding the rail outright (same phone
+     breakpoint as the week-entries table above). */
+  .bar-scale-full { display: none; }
+  .bar-scale-reduced { display: block; }
+}
+</style>
+</head>
+<body>
+<button class="nav-toggle" aria-label="Toggle menu" aria-controls="console-nav" onclick="document.getElementById('console-nav').classList.toggle('open')">&#9776;</button>
+<div class="console-layout">
+<nav class="console-sidebar" id="console-nav">
+  <a href="/console" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
+  <div class="nav-links"><a class="nav-link" href="/console/time"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /></svg><span>Projects</span></a><a class="nav-link" href="/console/clients"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span>Clients</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/envelopes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></svg><span>Envelopes</span></a><a class="nav-link" href="/console/liabilities"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg><span>Liabilities</span></a><strong class="nav-link" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4" /> <path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Capacity</span></strong><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/reports"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="M18 17V9" /> <path d="M13 17V5" /> <path d="M8 17v-3" /></svg><span>Reports</span></a><a class="nav-link" href="/console/contributions"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="m19 9-5 5-4-4-3 3" /></svg><span>Contributions</span></a><a class="nav-link" href="/console/pms"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4" /> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /></svg><span>Project Managers</span></a><a class="nav-link" href="/console/portfolio"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><span>Portfolio</span></a><a class="nav-link" href="/console/forecast"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6" /> <path d="m22 7-8.5 8.5-5-5L2 17" /></svg><span>Forecast</span></a><a class="nav-link" href="/console/proposals"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z" /></svg><span>Proposals</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/users"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg><span>Users</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/tasks"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344" /> <path d="m9 11 3 3L22 4" /></svg><span>Tasks</span></a><a class="nav-link" href="/console/disciplines"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" /> <rect x="3" y="14" width="7" height="7" rx="1" /> <circle cx="17.5" cy="17.5" r="3.5" /></svg><span>Disciplines</span></a><a class="nav-link" href="/console/settings"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></svg><span>Settings</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/messages"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Messages</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/time-off"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /></svg><span>Approvals</span></a><a class="nav-link" href="/console/unresolved"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></svg><span>Unresolved</span></a><a class="nav-link" href="/console/calendar"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
+  <div class="nav-footer">
+  <div class="nav-console-label">VERA<br>Console</div>
+  <div class="nav-workspace">Northline Studio</div>
+  <div class="nav-userline">Priya Natarajan &middot; owner</div>
+  
+  
+  <div class="nav-action"><a href="/console/logout">Sign out</a></div></div>
+</nav>
+<div class="console-content"><main>
+<div id="capacity-view" data-inplace-region>
+<div class="card" style="margin-bottom:1.5rem">
+<h2 style="font-size:1rem;font-weight:600;margin:0 0 0.25rem">By discipline — week of 15 Jun</h2>
+<p style="font-size:0.85rem;color:var(--vera-color-neutral-500);margin:0 0 1rem">Free = unbooked hours this week. "Fragmented" = a workday-plus of slack split across people with no single full day open. Hours only.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Discipline</th><th>People</th><th>Committed</th><th>Available</th><th>Free</th><th>Largest free block</th><th>Status</th></tr></thead>
+<tbody><tr>
+<td><span class="usage-dot" style="background:var(--vera-color-accent-cobalt)"></span>Strategy</td>
+<td>1</td>
+<td>20h</td>
+<td>40h</td>
+<td style="font-weight:600">20h</td>
+<td>20h</td>
+<td><span style="font-size:0.72rem;font-weight:600;color:var(--vera-color-success-700);background:var(--vera-color-success-100);padding:2px 8px;border-radius:999px">open</span></td>
+</tr>
+<tr>
+<td><span class="usage-dot" style="background:var(--vera-color-accent-azure)"></span>Design</td>
+<td>2</td>
+<td>70h</td>
+<td>80h</td>
+<td style="font-weight:600">10h</td>
+<td>10h</td>
+<td><span style="font-size:0.72rem;font-weight:600;color:var(--vera-color-success-700);background:var(--vera-color-success-100);padding:2px 8px;border-radius:999px">open</span></td>
+</tr>
+<tr>
+<td><span class="usage-dot" style="background:var(--vera-color-accent-orange)"></span>Project Management</td>
+<td>1</td>
+<td>42h</td>
+<td>40h</td>
+<td style="font-weight:600">0h</td>
+<td>0h</td>
+<td><span style="font-size:0.72rem;font-weight:600;color:var(--vera-color-text-muted);background:var(--vera-color-surface-alt);padding:2px 8px;border-radius:999px">full</span></td>
+</tr>
+<tr>
+<td>Unassigned</td>
+<td>1</td>
+<td>34h</td>
+<td>40h</td>
+<td style="font-weight:600">6h</td>
+<td>6h</td>
+<td><span style="font-size:0.72rem;font-weight:600;color:var(--vera-color-success-700);background:var(--vera-color-success-100);padding:2px 8px;border-radius:999px">open</span></td>
+</tr></tbody></table></div>
+</div>
+<div class="card">
+<h2 style="font-size:1rem;font-weight:600;margin:0 0 0.5rem">Team capacity — 6 weeks</h2>
+<p style="font-size:0.85rem;color:var(--vera-color-neutral-500);margin:0 0 1rem">Delivery resources only. Hover a cell for committed vs available hours.</p>
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
+  <a class="btn-secondary" data-inplace href="/console/capacity?start=2026-05-04&weeks=6">← Previous</a>
+  <strong>15 Jun – 26 Jul 2026</strong>
+  <a class="btn-secondary" data-inplace href="/console/capacity?start=2026-07-27&weeks=6">Next →</a>
+  
+</div>
+<div style="display:flex;gap:1rem;margin-bottom:1rem;font-size:0.8rem;align-items:center;flex-wrap:wrap">
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-danger-900);border:1px solid var(--vera-color-danger-950)"></span> Idle (0%)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-warning-300);border:1px solid var(--vera-color-warning-400)"></span> Under</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-success-600);border:1px solid var(--vera-color-success-700)"></span> Optimal (90–100%)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-warning-300);border:1px solid var(--vera-color-warning-400)"></span> Over</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-danger-900);border:1px solid var(--vera-color-danger-950)"></span> Overbooked (≥150%)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:12px;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border)"></span> No availability</span>
+</div>
+<style>.vera-heatmap-link{cursor:pointer;transition:background-color 0.1s ease}</style><div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font-size:0.85rem"><thead><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt)"></th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">15 Jun</th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">22 Jun</th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">29 Jun</th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">6 Jul</th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">13 Jul</th><th style="text-align:center;padding:6px 10px;border:1px solid var(--vera-color-border);background:var(--vera-color-surface-alt);white-space:nowrap">20 Jul</th></tr></thead><tbody><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);white-space:nowrap;font-weight:600">Priya Natarajan</th><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="34h committed / 40h available"><a href="/console/people/1?week=2026-06-15" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">85%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="38h committed / 40h available"><a href="/console/people/1?week=2026-06-22" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">95%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="42h committed / 40h available"><a href="/console/people/1?week=2026-06-29" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">105%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="30h committed / 40h available"><a href="/console/people/1?week=2026-07-06" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">75%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="20h committed / 40h available"><a href="/console/people/1?week=2026-07-13" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">50%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-800)'" onmouseout="this.style.background='var(--vera-color-warning-700)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-800);background:var(--vera-color-warning-700);color:#fff" title="10h committed / 40h available"><a href="/console/people/1?week=2026-07-20" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">25%</a></td></tr><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);white-space:nowrap;font-weight:600">Jordan Wells</th><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="42h committed / 40h available"><a href="/console/people/2?week=2026-06-15" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">105%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="44h committed / 40h available"><a href="/console/people/2?week=2026-06-22" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">110%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="40h committed / 40h available"><a href="/console/people/2?week=2026-06-29" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">100%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="38h committed / 40h available"><a href="/console/people/2?week=2026-07-06" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">95%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="32h committed / 40h available"><a href="/console/people/2?week=2026-07-13" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">80%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="18h committed / 40h available"><a href="/console/people/2?week=2026-07-20" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">45%</a></td></tr><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);white-space:nowrap;font-weight:600">Elena Cho</th><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="30h committed / 40h available"><a href="/console/people/3?week=2026-06-15" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">75%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="28h committed / 40h available"><a href="/console/people/3?week=2026-06-22" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">70%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="32h committed / 40h available"><a href="/console/people/3?week=2026-06-29" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">80%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="36h committed / 40h available"><a href="/console/people/3?week=2026-07-06" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">90%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="38h committed / 40h available"><a href="/console/people/3?week=2026-07-13" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">95%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="40h committed / 40h available"><a href="/console/people/3?week=2026-07-20" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">100%</a></td></tr><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);white-space:nowrap;font-weight:600">Marcus Ade</th><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="40h committed / 40h available"><a href="/console/people/4?week=2026-06-15" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">100%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="38h committed / 40h available"><a href="/console/people/4?week=2026-06-22" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">95%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-700)'" onmouseout="this.style.background='var(--vera-color-success-600)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-700);background:var(--vera-color-success-600);color:#fff" title="36h committed / 40h available"><a href="/console/people/4?week=2026-06-29" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">90%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="34h committed / 40h available"><a href="/console/people/4?week=2026-07-06" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">85%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="30h committed / 40h available"><a href="/console/people/4?week=2026-07-13" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">75%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="26h committed / 40h available"><a href="/console/people/4?week=2026-07-20" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">65%</a></td></tr><tr><th style="text-align:left;padding:6px 10px;border:1px solid var(--vera-color-border);white-space:nowrap;font-weight:600">Ruth Okafor</th><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="20h committed / 40h available"><a href="/console/people/5?week=2026-06-15" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">50%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="18h committed / 40h available"><a href="/console/people/5?week=2026-06-22" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">45%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-800)'" onmouseout="this.style.background='var(--vera-color-warning-700)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-800);background:var(--vera-color-warning-700);color:#fff" title="16h committed / 40h available"><a href="/console/people/5?week=2026-06-29" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">40%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="22h committed / 40h available"><a href="/console/people/5?week=2026-07-06" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">55%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-warning-400)'" onmouseout="this.style.background='var(--vera-color-warning-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-warning-400);background:var(--vera-color-warning-300);color:var(--vera-color-warning-900)" title="26h committed / 40h available"><a href="/console/people/5?week=2026-07-13" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">65%</a></td><td class="vera-heatmap-link" onmouseover="this.style.background='var(--vera-color-success-400)'" onmouseout="this.style.background='var(--vera-color-success-300)'" style="text-align:center;padding:6px 10px;font-size:0.8rem;border:1px solid var(--vera-color-success-400);background:var(--vera-color-success-300);color:var(--vera-color-success-900)" title="30h committed / 40h available"><a href="/console/people/5?week=2026-07-20" style="display:block;width:100%;height:100%;color:inherit;text-decoration:none">75%</a></td></tr></tbody></table></div>
+</div>
+</div>
+</main></div>
+</div>
+<script>
+document.addEventListener('click',function(e){ if(e.target.classList&&e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var o=document.querySelectorAll('.modal-overlay.open'); for(var i=0;i<o.length;i++) o[i].classList.remove('open'); } });
+// In-place link navigation: progressively enhance nav links marked
+// [data-inplace] that live inside an id'd [data-inplace-region]. Fetch the
+// target page, swap that region's innerHTML, update the URL — no full reload.
+// No-JS / old browsers / modified clicks keep the plain <a href> navigation.
+(function(){
+  if (!window.history || !window.fetch || !window.DOMParser) return;
+  var seq = 0;
+  function regionOf(el){
+    while (el && el.nodeType === 1) {
+      if (el.hasAttribute('data-inplace-region')) return el;
+      el = el.parentNode;
+    }
+    return null;
+  }
+  // innerHTML never executes <script> tags. Clone-and-replace so a swapped
+// region's own init scripts run again. Region-scoped, idempotent scripts
+// only (must not add document-level listeners — they would double-bind).
+function runScripts(region){
+  var olds = region.querySelectorAll('script');
+  for (var i=0;i<olds.length;i++){
+    var o = olds[i], s = document.createElement('script');
+    for (var j=0;j<o.attributes.length;j++) s.setAttribute(o.attributes[j].name, o.attributes[j].value);
+    s.textContent = o.textContent;
+    o.parentNode.replaceChild(s, o);
+  }
+}
+  document.addEventListener('click', function(e){
+    // Left-click, unmodified only. Cmd/Ctrl/Shift/Alt/middle-click (open in
+    // new tab/window) must fall through to the browser default.
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[data-inplace]') : null;
+    if (!a) return;
+    var region = regionOf(a);
+    if (!region || !region.id) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    e.preventDefault();
+    var id = region.id, mine = ++seq;
+    region.style.opacity = '0.5';
+    fetch(href, { cache: 'no-store', headers: { 'Accept': 'text/html' } })
+      .then(function(r){ return r.text(); })
+      .then(function(html){
+        if (mine !== seq) return; // a newer click superseded this one
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var next = doc.getElementById(id);
+        if (!next) { window.location = href; return; } // parse miss → real nav
+        region.innerHTML = next.innerHTML;
+        runScripts(region);
+        region.style.opacity = '';
+        history.replaceState(null, '', href);
+      })
+      .catch(function(){ if (mine === seq) window.location = href; });
+  });
+})();
+</script>
+<script>
+(function () {
+  var t = document.querySelector('.banner-toast')
+  if (!t) return
+  setTimeout(function () {
+    if (!t || !t.parentNode) return
+    t.classList.add('toast-leaving')
+    setTimeout(function () { if (t && t.parentNode) t.parentNode.removeChild(t) }, 300)
+  }, 4000)
+})()
+</script>
+</body>
+</html>
