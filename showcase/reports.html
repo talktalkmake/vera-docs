@@ -959,12 +959,22 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 	var bn0 = norm(bv)
 	var an = parseFloat(an0)
 	var bn = parseFloat(bn0)
-	var bothNum = !isNaN(an) && !isNaN(bn) && an0 !== '' && bn0 !== '' &&
-		!hasInternalHyphen(an0) && !hasInternalHyphen(bn0)
-	if (bothNum) return (an - bn) * activeDir
+	// Class first, value second. A numeric value and a text value used to be
+	// compared by locale while two numeric values were compared numerically —
+	// two different orders in one column, which is not a total order:
+	// "5" < "10" numerically, "10" < "2026-01" by locale, yet "5" > "2026-01"
+	// by locale. Array.prototype.sort with an inconsistent comparator returns
+	// an implementation-defined order, so the rows land wherever they started.
+	var aNum = !isNaN(an) && an0 !== '' && !hasInternalHyphen(an0)
+	var bNum = !isNaN(bn) && bn0 !== '' && !hasInternalHyphen(bn0)
+	// Blank always sorts last, in BOTH directions — unchanged, and deliberately
+	// not multiplied by activeDir.
 	if (an0 === '' && bn0 !== '') return 1
 	if (bn0 === '' && an0 !== '') return -1
-	return av.localeCompare(bv) * activeDir
+	if (an0 === '' && bn0 === '') return 0
+	if (aNum && bNum) return (an - bn) * activeDir
+	if (aNum !== bNum) return (aNum ? -1 : 1) * activeDir
+	return String(av).localeCompare(String(bv)) * activeDir
 }
   function sortColumnIndex(header) {
     var row = header.parentNode
