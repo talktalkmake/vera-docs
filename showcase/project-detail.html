@@ -546,23 +546,33 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   .bar-scale-reduced { display: block; }
 }
 </style>
+<script data-showcase-canceller>
+(function () {
+  function stop(e) { e.preventDefault(); e.stopImmediatePropagation() }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a') : null
+    if (a) stop(e)
+  }, true)
+  document.addEventListener('submit', stop, true)
+})()
+</script>
 </head>
 <body>
 <button class="nav-toggle" aria-label="Toggle menu" aria-controls="console-nav" onclick="document.getElementById('console-nav').classList.toggle('open')">&#9776;</button>
 <div class="console-layout">
 <nav class="console-sidebar" id="console-nav">
-  <a href="/console" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
-  <div class="nav-links"><a class="nav-link" href="/console/time"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console" aria-current="true"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /></svg><span>Projects</span></a><a class="nav-link" href="/console/clients"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span>Clients</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/envelopes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></svg><span>Envelopes</span></a><a class="nav-link" href="/console/liabilities"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg><span>Liabilities</span></a><a class="nav-link" href="/console/capacity"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4" /> <path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Capacity</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/reports"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="M18 17V9" /> <path d="M13 17V5" /> <path d="M8 17v-3" /></svg><span>Reports</span></a><a class="nav-link" href="/console/contributions"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="m19 9-5 5-4-4-3 3" /></svg><span>Contributions</span></a><a class="nav-link" href="/console/pms"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4" /> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /></svg><span>Project Managers</span></a><a class="nav-link" href="/console/portfolio"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><span>Portfolio</span></a><a class="nav-link" href="/console/forecast"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6" /> <path d="m22 7-8.5 8.5-5-5L2 17" /></svg><span>Forecast</span></a><a class="nav-link" href="/console/proposals"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z" /></svg><span>Proposals</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/users"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg><span>Users</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/tasks"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344" /> <path d="m9 11 3 3L22 4" /></svg><span>Tasks</span></a><a class="nav-link" href="/console/disciplines"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" /> <rect x="3" y="14" width="7" height="7" rx="1" /> <circle cx="17.5" cy="17.5" r="3.5" /></svg><span>Disciplines</span></a><a class="nav-link" href="/console/settings"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></svg><span>Settings</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/messages"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Messages</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="/console/time-off"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /></svg><span>Approvals</span></a><a class="nav-link" href="/console/unresolved"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></svg><span>Unresolved</span></a><a class="nav-link" href="/console/calendar"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
+  <a href="#" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
+  <div class="nav-links"><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#" aria-current="true"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /></svg><span>Projects</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span>Clients</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></svg><span>Envelopes</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg><span>Liabilities</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4" /> <path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Capacity</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="M18 17V9" /> <path d="M13 17V5" /> <path d="M8 17v-3" /></svg><span>Reports</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="m19 9-5 5-4-4-3 3" /></svg><span>Contributions</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4" /> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /></svg><span>Project Managers</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><span>Portfolio</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6" /> <path d="m22 7-8.5 8.5-5-5L2 17" /></svg><span>Forecast</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z" /></svg><span>Proposals</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg><span>Users</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344" /> <path d="m9 11 3 3L22 4" /></svg><span>Tasks</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" /> <rect x="3" y="14" width="7" height="7" rx="1" /> <circle cx="17.5" cy="17.5" r="3.5" /></svg><span>Disciplines</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></svg><span>Settings</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Messages</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /></svg><span>Approvals</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></svg><span>Unresolved</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
   <div class="nav-footer">
   <div class="nav-console-label">VERA<br>Console</div>
   <div class="nav-workspace">Northline Studio</div>
   <div class="nav-userline">Priya Natarajan &middot; owner</div>
   
   
-  <div class="nav-action"><a href="/console/logout">Sign out</a></div></div>
+  <div class="nav-action"><a href="#">Sign out</a></div></div>
 </nav>
 <div class="console-content"><main>
-<p><a class="back" href="/console">&larr; All projects</a></p>
+<p><a class="back" href="#">&larr; All projects</a></p>
 <div class="project-detail-title" style="display:flex;align-items:center;gap:0.75rem;margin:0.25rem 0 1.25rem">
 <h1 style="margin:0;font-size:1.5rem;font-weight:600;color:#1a1a1a">Bellhaven Outdoors — Brand Refresh</h1>
 <span class="badge badge-active">active</span>
@@ -782,7 +792,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <dt>Type</dt><dd>Fixed Price</dd>
 <dt>Status</dt><dd><span class="badge badge-active">active</span></dd>
 <dt>Client</dt><dd>Bellhaven Outdoors</dd>
-<dt>PM</dt><dd><a href="/console/people/2/time">Jordan Wells</a></dd>
+<dt>PM</dt><dd><a href="#">Jordan Wells</a></dd>
 <dt>Deadline</dt><dd>Sep 30</dd>
 <dt>Hours budget</dt><dd>900h</dd>
 <dt>Notes</dt><dd>Full brand identity refresh ahead of the Fall 2026 product line launch. Includes logo system, packaging templates, and a photography style guide.</dd>
@@ -794,7 +804,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </div>
 <div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">PM Assignment</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-pm').classList.add('open')">Change PM</button></div>
-<dl style="margin-top:1rem"><dt>Project Manager</dt><dd><a href="/console/people/2/time">Jordan Wells</a></dd></dl>
+<dl style="margin-top:1rem"><dt>Project Manager</dt><dd><a href="#">Jordan Wells</a></dd></dl>
 </div>
 <div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">Enabled tasks</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-tasks').classList.add('open')">Edit tasks</button></div>
@@ -813,7 +823,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>PM</td>
 <td data-sort-value="">— —</td>
 <td style="white-space:nowrap">
-  <a class="btn-secondary" href="/console/envelopes/5001">Edit</a>
+  <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
 <tr>
@@ -826,7 +836,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>Lead design</td>
 <td data-sort-value="">— —</td>
 <td style="white-space:nowrap">
-  <a class="btn-secondary" href="/console/envelopes/5002">Edit</a>
+  <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
 <tr>
@@ -839,7 +849,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>—</td>
 <td data-sort-value="">— —</td>
 <td style="white-space:nowrap">
-  <a class="btn-secondary" href="/console/envelopes/5003">Edit</a>
+  <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
 <tr>
@@ -852,7 +862,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>—</td>
 <td data-sort-value="">— —</td>
 <td style="white-space:nowrap">
-  <a class="btn-secondary" href="/console/envelopes/5004">Edit</a>
+  <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr></tbody><tfoot><tr style="font-weight:600;border-top:2px solid var(--vera-color-border)">
 <td></td><td>Total</td><td></td>
@@ -893,7 +903,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Edit project</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-config').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101" class="form-stack">
+    <div class="modal-body"><form class="form-stack">
 
 <div class="form-group"><label>Project name</label><input type="text" name="new_name" value="Bellhaven Outdoors — Brand Refresh" maxlength="60" required></div>
 <div class="form-group"><label>Status</label><select name="status"><option value="active" selected>active</option><option value="completed">completed</option><option value="cancelled">cancelled</option></select></div>
@@ -938,7 +948,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Assign project manager</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-pm').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101/pm" class="form-stack">
+    <div class="modal-body"><form class="form-stack">
   <div class="form-group"><label>Project Manager</label><select name="pm_slack_id"><option value="U1000000001">Priya Natarajan</option><option value="U1000000002" selected>Jordan Wells</option><option value="U1000000003">Elena Cho</option></select></div>
   <div class="form-actions"><button type="submit" class="save-btn">Save PM</button></div>
 </form></div>
@@ -948,7 +958,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Enabled tasks</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-tasks').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101/tasks">
+    <div class="modal-body"><form>
 <label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="1" checked> Strategy</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="2" checked> Design</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="3" checked> Project Management</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="4"> Development</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="5"> QA</label>
 <div style="margin-top:0.75rem"><button type="submit" class="save-btn">Save tasks</button></div>
 </form></div>
@@ -958,7 +968,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Add envelope</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-alloc-new').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101/allocations/new" class="form-stack">
+    <div class="modal-body"><form class="form-stack">
   <div class="form-group"><label>Person</label><select id="alloc-new-person" name="user_id"><option value="1" data-default-task="">Priya Natarajan</option><option value="2" data-default-task="Project Management">Jordan Wells</option><option value="3" data-default-task="Design">Elena Cho</option><option value="4" data-default-task="Design">Marcus Ade</option><option value="5" data-default-task="Strategy">Ruth Okafor</option></select></div>
   <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Strategy">Strategy</option><option value="Design">Design</option><option value="Project Management">Project Management</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.5" min="0.5" required></div>
@@ -984,7 +994,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Reactivate envelope</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-alloc-react-4999').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><p>Reactivate envelope for <strong>Devon Marsh</strong>? It will become active again.</p>
-<form method="POST" action="/console/p/101/allocations/reactivate">
+<form>
   <input type="hidden" name="allocation_id" value="4999">
   <div class="form-actions"><button type="submit" class="save-btn">Reactivate</button></div>
 </form></div>
@@ -994,7 +1004,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Edit liability</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-liab-edit-301').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101/liabilities/update" class="form-stack">
+    <div class="modal-body"><form class="form-stack">
   <input type="hidden" name="liability_id" value="301">
   <div class="form-group"><label>Vendor</label><input type="text" value="Anchor Type Foundry" disabled style="color:#888"></div>
   <div class="form-group"><label>Description</label><input type="text" name="description" value="Custom typeface production and licensing" required></div>
@@ -1009,7 +1019,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Cancel liability</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-liab-cancel-301').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><p>Cancel liability for <strong>Anchor Type Foundry</strong> (Custom typeface production and licensing)? This cannot be undone.</p>
-<form method="POST" action="/console/p/101/liabilities/cancel">
+<form>
   <input type="hidden" name="liability_id" value="301">
   <div class="form-actions"><button type="submit" class="save-btn save-btn-danger">Cancel liability</button></div>
 </form></div>
@@ -1019,7 +1029,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Add liability</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-liab-new').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form method="POST" action="/console/p/101/liabilities/new" class="form-stack">
+    <div class="modal-body"><form class="form-stack">
   <div class="form-group"><label>Vendor</label><select name="vendor_name"><option value="Anchor Type Foundry">Anchor Type Foundry</option></select></div>
   <div class="form-group"><label>Description</label><input type="text" name="description" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" required></div>

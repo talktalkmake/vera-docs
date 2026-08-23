@@ -546,19 +546,29 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   .bar-scale-reduced { display: block; }
 }
 </style>
+<script data-showcase-canceller>
+(function () {
+  function stop(e) { e.preventDefault(); e.stopImmediatePropagation() }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a') : null
+    if (a) stop(e)
+  }, true)
+  document.addEventListener('submit', stop, true)
+})()
+</script>
 </head>
 <body>
 <button class="nav-toggle" aria-label="Toggle menu" aria-controls="console-nav" onclick="document.getElementById('console-nav').classList.toggle('open')">&#9776;</button>
 <div class="console-layout">
 <nav class="console-sidebar" id="console-nav">
-  <a href="/console/time" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
-  <div class="nav-links"><strong class="nav-link" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></strong><a class="nav-link" href="/console/calendar"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
+  <a href="#" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
+  <div class="nav-links"><strong class="nav-link" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></strong><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
   <div class="nav-footer">
   <div class="nav-console-label">VERA<br>Console</div>
   <div class="nav-workspace">Northline Studio</div>
   <div class="nav-userline">Marcus Ade &middot; user</div>
   
-  <div class="nav-action"><a href="/console/logout">Sign out</a></div></div>
+  <div class="nav-action"><a href="#">Sign out</a></div></div>
 </nav>
 <div class="console-content"><main>
 <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:0 0 1rem">
@@ -579,7 +589,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>80h</td>
 <td><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>120h · 40% used</td>
 <td>—</td>
-<td style="white-space:nowrap"><form method="POST" action="/console/time/log" style="margin:0">
+<td style="white-space:nowrap"><form style="margin:0">
   <input type="hidden" name="project_name" value="Bellhaven Outdoors — Brand Refresh">
   <input type="hidden" name="task_name" value="Design">
   <input type="hidden" name="date" value="2026-06-15">
@@ -598,7 +608,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td>52h</td>
 <td><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>38h · 57.8% used</td>
 <td>—</td>
-<td style="white-space:nowrap"><form method="POST" action="/console/time/log" style="margin:0">
+<td style="white-space:nowrap"><form style="margin:0">
   <input type="hidden" name="project_name" value="Bellhaven Outdoors — Seasonal Lookbook">
   <input type="hidden" name="task_name" value="Design">
   <input type="hidden" name="date" value="2026-06-15">
@@ -612,10 +622,10 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <div class="card" style="margin-top:2.5rem">
 <h2 style="font-size:1rem;font-weight:600;margin:0 0 1rem">Recent entries</h2>
 <div id="week-view" data-inplace-region><div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
-  <a class="btn-secondary" data-inplace href="/console/time?week=2026-06-01">← Previous</a>
+  <a class="btn-secondary" data-inplace href="#">← Previous</a>
   <strong>Week 24 · Jun 8 – Jun 14</strong>
-  <a class="btn-secondary" data-inplace href="/console/time?week=2026-06-15">Next →</a>
-  <a class="btn-secondary" data-inplace href="/console/time" style="margin-left:auto">This week</a>
+  <a class="btn-secondary" data-inplace href="#">Next →</a>
+  <a class="btn-secondary" data-inplace href="#" style="margin-left:auto">This week</a>
 </div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem">
   <div class="day-cell" data-date="2026-06-08" role="button" tabindex="0" aria-label="Filter to Mon 2026-06-08">
     <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Mon 8</div>
@@ -670,14 +680,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9007</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9007').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9007-form" method="POST" action="/console/time/9007/update">
+<form id="edit-entry-9007-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Seasonal Lookbook" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="5" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Final asset packaging"></div>
 </form>
-<form id="del-entry-9007-form" method="POST" action="/console/time/9007/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9007-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9007-form" class="btn-primary">Save</button>
@@ -705,14 +715,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9006</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9006').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9006-form" method="POST" action="/console/time/9006/update">
+<form id="edit-entry-9006-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Brand Refresh" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="3" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Client feedback revisions"></div>
 </form>
-<form id="del-entry-9006-form" method="POST" action="/console/time/9006/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9006-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9006-form" class="btn-primary">Save</button>
@@ -734,14 +744,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9005</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9005').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9005-form" method="POST" action="/console/time/9005/update">
+<form id="edit-entry-9005-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Seasonal Lookbook" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="4" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Season color palette"></div>
 </form>
-<form id="del-entry-9005-form" method="POST" action="/console/time/9005/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9005-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9005-form" class="btn-primary">Save</button>
@@ -769,14 +779,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9004</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9004').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9004-form" method="POST" action="/console/time/9004/update">
+<form id="edit-entry-9004-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Brand Refresh" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="6" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Photography style guide draft"></div>
 </form>
-<form id="del-entry-9004-form" method="POST" action="/console/time/9004/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9004-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9004-form" class="btn-primary">Save</button>
@@ -804,14 +814,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9003</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9003').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9003-form" method="POST" action="/console/time/9003/update">
+<form id="edit-entry-9003-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Seasonal Lookbook" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="2" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Lookbook layout pass"></div>
 </form>
-<form id="del-entry-9003-form" method="POST" action="/console/time/9003/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9003-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9003-form" class="btn-primary">Save</button>
@@ -833,14 +843,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9002</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9002').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9002-form" method="POST" action="/console/time/9002/update">
+<form id="edit-entry-9002-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Brand Refresh" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="5" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Packaging template review"></div>
 </form>
-<form id="del-entry-9002-form" method="POST" action="/console/time/9002/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9002-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9002-form" class="btn-primary">Save</button>
@@ -868,14 +878,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Edit entry #9001</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('edit-entry-9001').classList.remove('open')">&times;</button></div>
     <div class="modal-body">
-<form id="edit-entry-9001-form" method="POST" action="/console/time/9001/update">
+<form id="edit-entry-9001-form">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08">
   <div class="form-group"><label>Project</label><input type="text" value="Bellhaven Outdoors — Brand Refresh" disabled></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Strategy">Strategy</option><option value="Design" selected>Design</option><option value="Project Management">Project Management</option><option value="Development">Development</option><option value="QA">QA</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="6" required></div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Logo system exploration"></div>
 </form>
-<form id="del-entry-9001-form" method="POST" action="/console/time/9001/delete" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
+<form id="del-entry-9001-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
   <input type="hidden" name="return_to" value="/console/time?week=2026-06-08"></form>
 <div class="modal-actions-split">
   <button type="submit" form="edit-entry-9001-form" class="btn-primary">Save</button>
@@ -906,7 +916,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="modal-box">
     <div class="modal-head"><h3>Log time</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-log-time').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form class="form-stack" method="POST" action="/console/time/log">
+    <div class="modal-body"><form class="form-stack">
   <div style="display:flex;gap:1rem;flex-wrap:wrap">
     <div class="form-group" style="flex:1;min-width:150px"><label>Date</label><input type="date" name="date" value="2026-06-15" max="2026-06-15" required></div>
     <div class="form-group" style="flex:1;min-width:150px"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" required></div>
