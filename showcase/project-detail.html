@@ -467,6 +467,19 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .nav-divider { height: 1px; background: var(--vera-color-border); margin: 0.5rem 1.25rem; }
 .nav-group-label { padding: 0 1.25rem; margin-bottom: 0.35rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vera-color-text-muted); }
 .nav-subitem { font-size: 0.85rem; }
+/* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
+   a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
+   needs to flex/truncate while the pill (.ler-pill, when present) stays
+   fixed-width and never shrinks. The name fades into the pill via a CSS mask
+   rather than wrapping or colliding with it -- a solid-color gradient overlay
+   was rejected because it would have to hard-code the sidebar background,
+   which is a design token, not a fixed color. Applies to every row for visual
+   consistency, including rows with no pill -- a short name simply never
+   reaches the faded region. The full name is preserved in the row's title
+   attribute for hover and assistive tech even when the visible text fades or
+   truncates. */
+.nav-subitem-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
+.nav-subitem .ler-pill { flex: 0 0 auto; }
 .nav-more { color: var(--vera-color-text-muted); font-style: italic; }
 .nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
 .nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
