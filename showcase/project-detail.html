@@ -539,6 +539,10 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .magnitude-cell-value { white-space: nowrap; }
 .magnitude-cell-bar { display: flex; gap: 1px; width: 60px; }
 .magnitude-tick { flex: 1 1 0; height: 8px; min-width: 1px; border-radius: 1px; background: var(--vera-color-neutral-200); }
+/* Compact sibling (#2139) — row direction so it stays on one line, for a
+   table row that must not grow taller (e.g. /console/envelopes). */
+.magnitude-cell-compact { display: inline-flex; flex-direction: row; align-items: center; gap: 6px; }
+.magnitude-cell-compact .magnitude-cell-bar { width: 36px; }
 /* Tick rail (#1885) — the sibling large-bar device to the magnitude cell
    above: a countable scale sitting BESIDE the fill rather than segmenting
    it, since these bars' fills already carry their own color meaning

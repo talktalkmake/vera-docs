@@ -539,6 +539,10 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .magnitude-cell-value { white-space: nowrap; }
 .magnitude-cell-bar { display: flex; gap: 1px; width: 60px; }
 .magnitude-tick { flex: 1 1 0; height: 8px; min-width: 1px; border-radius: 1px; background: var(--vera-color-neutral-200); }
+/* Compact sibling (#2139) — row direction so it stays on one line, for a
+   table row that must not grow taller (e.g. /console/envelopes). */
+.magnitude-cell-compact { display: inline-flex; flex-direction: row; align-items: center; gap: 6px; }
+.magnitude-cell-compact .magnitude-cell-bar { width: 36px; }
 /* Tick rail (#1885) — the sibling large-bar device to the magnitude cell
    above: a countable scale sitting BESIDE the fill rather than segmenting
    it, since these bars' fills already carry their own color meaning
@@ -608,166 +612,123 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <thead><tr>
 <th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th>
 <th data-sort-key="project" class="sortable">Project <span class="sort-caret"></span></th>
-<th data-sort-key="deadline" class="sortable">Deadline <span class="sort-caret"></span></th>
+<th data-sort-key="deadline" class="sortable">Deadline/Window <span class="sort-caret"></span></th>
 <th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th>
 <th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th>
-<th data-sort-key="allocation" class="sortable">Allocation <span class="sort-caret"></span></th>
-<th data-sort-key="logged" class="sortable">Logged <span class="sort-caret"></span></th>
-<th data-sort-key="remaining" class="sortable">Remaining <span class="sort-caret"></span></th>
-<th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th>
-<th>Window</th>
+<th>Hours</th>
 <th>Actions</th>
 </tr></thead>
-<tbody><tr data-filter="solace financial — q3 content sprint ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5007" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="strategy" data-allocation="80" data-logged="62" data-remaining="18" data-shape="unshaped">
+<tbody><tr data-filter="solace financial — q3 content sprint ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5007" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="strategy" data-shape="unshaped">
 <td>5007</td>
 <td><a href="#">Solace Financial — Q3 Content Sprint</a></td>
 <td style="white-space:nowrap">Aug 31</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>
-<td>80h</td>
-<td>62h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>18h &middot; 77.5% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="77.5% used"><span class="magnitude-cell-value">62h / 80h · 18h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="solace financial — q3 content sprint elena cho project management" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5006" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="project management" data-allocation="60" data-logged="45" data-remaining="15" data-shape="unshaped">
+<tr data-filter="solace financial — q3 content sprint elena cho project management" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5006" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="project management" data-shape="unshaped">
 <td>5006</td>
 <td><a href="#">Solace Financial — Q3 Content Sprint</a></td>
 <td style="white-space:nowrap">Aug 31</td>
 <td><a href="#">Elena Cho</a></td>
 <td>Project Management</td>
-<td>60h</td>
-<td>45h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>15h &middot; 75% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="75% used"><span class="magnitude-cell-value">45h / 60h · 15h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="bellhaven outdoors — brand refresh elena cho design" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5002" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-allocation="360" data-logged="210" data-remaining="150" data-shape="unshaped">
+<tr data-filter="bellhaven outdoors — brand refresh elena cho design" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5002" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-shape="unshaped">
 <td>5002</td>
 <td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Elena Cho</a></td>
 <td>Design</td>
-<td>360h</td>
-<td>210h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>150h &middot; 58.3% used</td>
-<td>Lead design</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="58.3% used"><span class="magnitude-cell-value">210h / 360h · 150h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="bellhaven outdoors — seasonal lookbook marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5005" data-project="bellhaven outdoors — seasonal lookbook" data-deadline="2026-07-15" data-task="design" data-allocation="90" data-logged="52" data-remaining="38" data-shape="unshaped">
+<tr data-filter="bellhaven outdoors — seasonal lookbook marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5005" data-project="bellhaven outdoors — seasonal lookbook" data-deadline="2026-07-15" data-task="design" data-shape="unshaped">
 <td>5005</td>
 <td><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></td>
 <td style="white-space:nowrap">Jul 15</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
-<td>90h</td>
-<td>52h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>38h &middot; 57.8% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="57.8% used"><span class="magnitude-cell-value">52h / 90h · 38h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="bellhaven outdoors — brand refresh jordan wells project management" data-pstatus="active" data-usage="under" data-person="jordan wells" data-id="5001" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="project management" data-allocation="120" data-logged="54" data-remaining="66" data-shape="unshaped">
+<tr data-filter="bellhaven outdoors — brand refresh jordan wells project management" data-pstatus="active" data-usage="under" data-person="jordan wells" data-id="5001" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="project management" data-shape="unshaped">
 <td>5001</td>
 <td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Jordan Wells</a></td>
 <td>Project Management</td>
-<td>120h</td>
-<td>54h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>66h &middot; 45% used</td>
-<td>PM</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="45% used"><span class="magnitude-cell-value">54h / 120h · 66h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="bellhaven outdoors — brand refresh marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5003" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-allocation="200" data-logged="80" data-remaining="120" data-shape="unshaped">
+<tr data-filter="bellhaven outdoors — brand refresh marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5003" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-shape="unshaped">
 <td>5003</td>
 <td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
-<td>200h</td>
-<td>80h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>120h &middot; 40% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="40% used"><span class="magnitude-cell-value">80h / 200h · 120h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="kestrel robotics — launch site priya natarajan project management" data-pstatus="active" data-usage="under" data-person="priya natarajan" data-id="5008" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="project management" data-allocation="80" data-logged="30" data-remaining="50" data-shape="unshaped">
+<tr data-filter="kestrel robotics — launch site priya natarajan project management" data-pstatus="active" data-usage="under" data-person="priya natarajan" data-id="5008" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="project management" data-shape="unshaped">
 <td>5008</td>
 <td><a href="#">Kestrel Robotics — Launch Site</a></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Priya Natarajan</a></td>
 <td>Project Management</td>
-<td>80h</td>
-<td>30h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>50h &middot; 37.5% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="37.5% used"><span class="magnitude-cell-value">30h / 80h · 50h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="bellhaven outdoors — brand refresh ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5004" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="strategy" data-allocation="120" data-logged="40" data-remaining="80" data-shape="unshaped">
+<tr data-filter="bellhaven outdoors — brand refresh ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5004" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="strategy" data-shape="unshaped">
 <td>5004</td>
 <td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>
-<td>120h</td>
-<td>40h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>80h &middot; 33.3% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="33.3% used"><span class="magnitude-cell-value">40h / 120h · 80h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="kestrel robotics — launch site marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5009" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="design" data-allocation="150" data-logged="40" data-remaining="110" data-shape="unshaped">
+<tr data-filter="kestrel robotics — launch site marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5009" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="design" data-shape="unshaped">
 <td>5009</td>
 <td><a href="#">Kestrel Robotics — Launch Site</a></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
-<td>150h</td>
-<td>40h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>110h &middot; 26.7% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="26.7% used"><span class="magnitude-cell-value">40h / 150h · 110h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr>
-<tr data-filter="kestrel robotics — launch site ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5010" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="strategy" data-allocation="60" data-logged="10" data-remaining="50" data-shape="unshaped">
+<tr data-filter="kestrel robotics — launch site ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5010" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="strategy" data-shape="unshaped">
 <td>5010</td>
 <td><a href="#">Kestrel Robotics — Launch Site</a></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>
-<td>60h</td>
-<td>10h</td>
-<td style=""><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>50h &middot; 16.7% used</td>
-<td>—</td>
-<td>— —</td>
+<td><span class="magnitude-cell-compact" title="16.7% used"><span class="magnitude-cell-value">10h / 60h · 50h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td style="white-space:nowrap">
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr></tbody></table></div>
+<p style="color:var(--vera-color-text-muted);font-size:0.85rem;margin-top:0.5rem">Hours shows logged against allocated. The bar fills with the share used — amber from 80% up to full, red once usage passes 100% or remaining hours go negative.</p>
 </main>
 <script>
 (function () {
