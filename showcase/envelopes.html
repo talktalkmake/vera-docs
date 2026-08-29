@@ -480,6 +480,12 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
    truncates. */
 .nav-subitem-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
 .nav-subitem .ler-pill { flex: 0 0 auto; }
+/* Table-cell variant of the sidebar name fade (#2093). Fixed width, not
+   max-width: the mask is relative to the element's own box, so a shrink-to-fit
+   element would fade the tail of every name, including short ones that never
+   needed clipping. At a fixed width a short name never reaches the faded
+   region, matching the sidebar's behavior. */
+.cell-name-fade { display: inline-block; width: 22ch; overflow: hidden; white-space: nowrap; vertical-align: bottom; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
 .nav-more { color: var(--vera-color-text-muted); font-style: italic; }
 .nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
 .nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
@@ -620,7 +626,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr></thead>
 <tbody><tr data-filter="solace financial — q3 content sprint ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5007" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="strategy" data-shape="unshaped">
 <td>5007</td>
-<td><a href="#">Solace Financial — Q3 Content Sprint</a></td>
+<td><span class="cell-name-fade" title="Solace Financial — Q3 Content Sprint"><a href="#">Solace Financial — Q3 Content Sprint</a></span></td>
 <td style="white-space:nowrap">Aug 31</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>
@@ -631,7 +637,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="solace financial — q3 content sprint elena cho project management" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5006" data-project="solace financial — q3 content sprint" data-deadline="2026-08-31" data-task="project management" data-shape="unshaped">
 <td>5006</td>
-<td><a href="#">Solace Financial — Q3 Content Sprint</a></td>
+<td><span class="cell-name-fade" title="Solace Financial — Q3 Content Sprint"><a href="#">Solace Financial — Q3 Content Sprint</a></span></td>
 <td style="white-space:nowrap">Aug 31</td>
 <td><a href="#">Elena Cho</a></td>
 <td>Project Management</td>
@@ -642,7 +648,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="bellhaven outdoors — brand refresh elena cho design" data-pstatus="active" data-usage="under" data-person="elena cho" data-id="5002" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-shape="unshaped">
 <td>5002</td>
-<td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
+<td><span class="cell-name-fade" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Elena Cho</a></td>
 <td>Design</td>
@@ -653,7 +659,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="bellhaven outdoors — seasonal lookbook marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5005" data-project="bellhaven outdoors — seasonal lookbook" data-deadline="2026-07-15" data-task="design" data-shape="unshaped">
 <td>5005</td>
-<td><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></td>
+<td><span class="cell-name-fade" title="Bellhaven Outdoors — Seasonal Lookbook"><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></span></td>
 <td style="white-space:nowrap">Jul 15</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
@@ -664,7 +670,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="bellhaven outdoors — brand refresh jordan wells project management" data-pstatus="active" data-usage="under" data-person="jordan wells" data-id="5001" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="project management" data-shape="unshaped">
 <td>5001</td>
-<td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
+<td><span class="cell-name-fade" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Jordan Wells</a></td>
 <td>Project Management</td>
@@ -675,7 +681,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="bellhaven outdoors — brand refresh marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5003" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="design" data-shape="unshaped">
 <td>5003</td>
-<td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
+<td><span class="cell-name-fade" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
@@ -686,7 +692,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="kestrel robotics — launch site priya natarajan project management" data-pstatus="active" data-usage="under" data-person="priya natarajan" data-id="5008" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="project management" data-shape="unshaped">
 <td>5008</td>
-<td><a href="#">Kestrel Robotics — Launch Site</a></td>
+<td><span class="cell-name-fade" title="Kestrel Robotics — Launch Site"><a href="#">Kestrel Robotics — Launch Site</a></span></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Priya Natarajan</a></td>
 <td>Project Management</td>
@@ -697,7 +703,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="bellhaven outdoors — brand refresh ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5004" data-project="bellhaven outdoors — brand refresh" data-deadline="2026-09-30" data-task="strategy" data-shape="unshaped">
 <td>5004</td>
-<td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
+<td><span class="cell-name-fade" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
 <td style="white-space:nowrap">Sep 30</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>
@@ -708,7 +714,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="kestrel robotics — launch site marcus ade design" data-pstatus="active" data-usage="under" data-person="marcus ade" data-id="5009" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="design" data-shape="unshaped">
 <td>5009</td>
-<td><a href="#">Kestrel Robotics — Launch Site</a></td>
+<td><span class="cell-name-fade" title="Kestrel Robotics — Launch Site"><a href="#">Kestrel Robotics — Launch Site</a></span></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Marcus Ade</a></td>
 <td>Design</td>
@@ -719,7 +725,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr>
 <tr data-filter="kestrel robotics — launch site ruth okafor strategy" data-pstatus="active" data-usage="under" data-person="ruth okafor" data-id="5010" data-project="kestrel robotics — launch site" data-deadline="2026-11-30" data-task="strategy" data-shape="unshaped">
 <td>5010</td>
-<td><a href="#">Kestrel Robotics — Launch Site</a></td>
+<td><span class="cell-name-fade" title="Kestrel Robotics — Launch Site"><a href="#">Kestrel Robotics — Launch Site</a></span></td>
 <td style="white-space:nowrap">Nov 30</td>
 <td><a href="#">Ruth Okafor</a></td>
 <td>Strategy</td>

@@ -480,6 +480,12 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
    truncates. */
 .nav-subitem-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
 .nav-subitem .ler-pill { flex: 0 0 auto; }
+/* Table-cell variant of the sidebar name fade (#2093). Fixed width, not
+   max-width: the mask is relative to the element's own box, so a shrink-to-fit
+   element would fade the tail of every name, including short ones that never
+   needed clipping. At a fixed width a short name never reaches the faded
+   region, matching the sidebar's behavior. */
+.cell-name-fade { display: inline-block; width: 22ch; overflow: hidden; white-space: nowrap; vertical-align: bottom; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
 .nav-more { color: var(--vera-color-text-muted); font-style: italic; }
 .nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
 .nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
