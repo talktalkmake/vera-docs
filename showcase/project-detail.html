@@ -1159,63 +1159,6 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   }
 })()
 </script>
-</main>
-<script>
-(function () {
-  // Mirrors _TOAST_SCRIPT's timing (hold ~4s, fade out 300ms, then remove from
-  // the DOM). Duplicated here rather than shared because this page swaps <main>
-  // via fetch instead of a full reload (see below), so it must re-trigger the
-  // dismiss itself after every swap — _TOAST_SCRIPT only runs once, at initial
-  // page load. A success banner is the only kind this ever finds: error/warn are
-  // never .banner-toast (#1884).
-  function dismissBannerSoon() {
-    var b = document.querySelector('main .banner-toast')
-    if (!b) return
-    setTimeout(function () {
-      if (!b || !b.parentNode) return
-      b.classList.add('toast-leaving')
-      setTimeout(function () { if (b && b.parentNode) b.parentNode.removeChild(b) }, 300)
-    }, 4000)
-  }
-  dismissBannerSoon() // handle a banner present on initial load
-  document.addEventListener('submit', async function (e) {
-    var form = e.target
-    if (!form || String(form.method).toLowerCase() !== 'post') return
-    if (form.dataset && form.dataset.fullNav) return // full-page navigation (e.g. delete)
-    e.preventDefault()
-    var btn = form.querySelector('button[type="submit"], button:not([type])')
-    if (btn) btn.disabled = true
-    try {
-      var res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString(),
-        redirect: 'follow',
-      })
-      var html = await res.text()
-      var doc = new DOMParser().parseFromString(html, 'text/html')
-      var newMain = doc.querySelector('main')
-      var curMain = document.querySelector('main')
-      if (newMain && curMain) { curMain.replaceWith(newMain); dismissBannerSoon() }
-      else { window.location.reload() } // safety fallback if parse fails
-    } catch (err) {
-      if (btn) btn.disabled = false
-      // last-resort fallback so a save is never silently lost. This is an
-      // error — inline and persistent, never a toast (#1884): a network
-      // failure that faded away before it was read would defeat the entire
-      // point of surfacing it.
-      var c = document.querySelector('main')
-      if (c) {
-        var e2 = document.createElement('div')
-        e2.className = 'banner banner-error'
-        e2.setAttribute('role', 'alert')
-        e2.textContent = 'Network error — please retry.'
-        c.insertBefore(e2, c.firstChild)
-      }
-    }
-  })
-})()
-</script>
 <script>
 (function () {
   var groups = document.querySelectorAll('.envelope-window-fields')
@@ -1252,6 +1195,81 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
       if (startInput) startInput.focus()
     })
   }
+})()
+</script>
+</main>
+<script>
+(function () {
+  // Mirrors _TOAST_SCRIPT's timing (hold ~4s, fade out 300ms, then remove from
+  // the DOM). Duplicated here rather than shared because this page swaps <main>
+  // via fetch instead of a full reload (see below), so it must re-trigger the
+  // dismiss itself after every swap — _TOAST_SCRIPT only runs once, at initial
+  // page load. A success banner is the only kind this ever finds: error/warn are
+  // never .banner-toast (#1884).
+  function dismissBannerSoon() {
+    var b = document.querySelector('main .banner-toast')
+    if (!b) return
+    setTimeout(function () {
+      if (!b || !b.parentNode) return
+      b.classList.add('toast-leaving')
+      setTimeout(function () { if (b && b.parentNode) b.parentNode.removeChild(b) }, 300)
+    }, 4000)
+  }
+  dismissBannerSoon() // handle a banner present on initial load
+  // A <main> parsed by DOMParser keeps its <script> tags inert, so the swap
+  // below must re-run them itself or the chart tabs, sortable tables and
+  // pill filters stop responding until a reload (issue #2336). Every script
+  // inside <main> binds only to elements inside it, so running it against
+  // the new <main> is safe; this submit handler stays outside <main> so it
+  // is never bound twice.
+  // innerHTML never executes <script> tags. Clone-and-replace so a swapped
+// region's own init scripts run again. Region-scoped, idempotent scripts
+// only (must not add document-level listeners — they would double-bind).
+function runScripts(region){
+  var olds = region.querySelectorAll('script');
+  for (var i=0;i<olds.length;i++){
+    var o = olds[i], s = document.createElement('script');
+    for (var j=0;j<o.attributes.length;j++) s.setAttribute(o.attributes[j].name, o.attributes[j].value);
+    s.textContent = o.textContent;
+    o.parentNode.replaceChild(s, o);
+  }
+}
+  document.addEventListener('submit', async function (e) {
+    var form = e.target
+    if (!form || String(form.method).toLowerCase() !== 'post') return
+    if (form.dataset && form.dataset.fullNav) return // full-page navigation (e.g. delete)
+    e.preventDefault()
+    var btn = form.querySelector('button[type="submit"], button:not([type])')
+    if (btn) btn.disabled = true
+    try {
+      var res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
+        redirect: 'follow',
+      })
+      var html = await res.text()
+      var doc = new DOMParser().parseFromString(html, 'text/html')
+      var newMain = doc.querySelector('main')
+      var curMain = document.querySelector('main')
+      if (newMain && curMain) { curMain.replaceWith(newMain); runScripts(newMain); dismissBannerSoon() }
+      else { window.location.reload() } // safety fallback if parse fails
+    } catch (err) {
+      if (btn) btn.disabled = false
+      // last-resort fallback so a save is never silently lost. This is an
+      // error — inline and persistent, never a toast (#1884): a network
+      // failure that faded away before it was read would defeat the entire
+      // point of surfacing it.
+      var c = document.querySelector('main')
+      if (c) {
+        var e2 = document.createElement('div')
+        e2.className = 'banner banner-error'
+        e2.setAttribute('role', 'alert')
+        e2.textContent = 'Network error — please retry.'
+        c.insertBefore(e2, c.firstChild)
+      }
+    }
+  })
 })()
 </script></div>
 </div>
