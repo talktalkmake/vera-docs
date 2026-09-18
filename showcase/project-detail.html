@@ -953,6 +953,19 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
       bEl=document.getElementById('cfg-billing'), out=document.getElementById('cfg-calc-readout');
   if(!hoursEl||!cEl||!bEl||!out) return;
   var COST=78.5;
+  var TARGET=5, LOGGED=0;
+  function computeTargetLerHours(contractValue, hoursBudget, blendedCost, targetLer, hoursLogged) {
+	var cv = Number(contractValue), cost = Number(blendedCost), t = Number(targetLer)
+	if (!(cv > 0) || !(cost > 0) || !(t > 0)) return null
+	var targetHours = Math.max(1, Math.round(cv / (t * cost)))
+	var hb = Number(hoursBudget) > 0 ? Number(hoursBudget) : 0
+	var logged = Number(hoursLogged) > 0 ? Number(hoursLogged) : 0
+	return {
+		targetHours: targetHours,
+		belowTarget: hb > targetHours,
+		pastTarget: logged > targetHours,
+	}
+}
   function num(el){var v=parseFloat(el&&el.value);return isFinite(v)&&v>0?v:null;}
   function money(n){return '$'+n.toLocaleString(undefined,{maximumFractionDigits:2});}
   function render(){
@@ -968,6 +981,11 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     if(loss){ out.innerHTML += '<br><strong>&#9888; This implies a billing rate at or below your '+money(COST)+'/hr cost — the project will lose money.</strong>'; }
     var fb=document.getElementById('cfg-calc-fill');
     if(fb) fb.onclick=function(){ if(cv&&br){ hoursEl.value=Math.round(cv/br); render(); } };
+    var tl = true ? computeTargetLerHours(cv, hb, COST, TARGET, LOGGED) : null;
+    if(tl && tl.belowTarget){ out.innerHTML += '<br>'+(loss?'':'Below the '+TARGET+':1 LER target. ')+'<button type="button" id="cfg-calc-target" style="margin-top:.3rem;font-size:.78rem;padding:0 .5rem;cursor:pointer">Set hours for '+TARGET+':1 LER ('+tl.targetHours+'h)</button>'; }
+    if(tl && tl.pastTarget){ out.innerHTML += '<br><span style="color:var(--vera-color-text-muted)">'+LOGGED+'h already recorded, more than the '+tl.targetHours+'h this contract supports at '+TARGET+':1.</span>'; }
+    var tb=document.getElementById('cfg-calc-target');
+    if(tb) tb.onclick=function(){ if(tl){ hoursEl.value=tl.targetHours; render(); } };
   }
   [hoursEl,cEl,bEl].forEach(function(el){el.addEventListener('input',render);});
   
