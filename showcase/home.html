@@ -682,6 +682,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>New project</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-new-project').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><form class="form-stack">
+  <input type="hidden" name="return_to" value="/console">
   <div class="form-group">
     <label for="np-name">Project name</label>
     <input type="text" id="np-name" name="project_name" maxlength="60" required>
