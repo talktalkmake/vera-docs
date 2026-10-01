@@ -275,6 +275,10 @@ td a:hover { text-decoration: underline; }
 .card h2 { margin: 0 0 1rem; font-size: 0.95rem; font-weight: 600; color: var(--vera-color-text); }
 .page-heading { font-size: 0.95rem; font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-text); margin-bottom: var(--vera-space-md); } /* 0.95rem: no token yet — pending type-scale pass */
 dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1.5rem; margin: 0; }
+.dl-split { grid-template-columns: max-content 1fr; }
+@media (min-width: 900px) {
+	.dl-split { grid-template-columns: repeat(2, max-content 1fr); }
+}
 dt { font-size: 0.85rem; color: #666; font-weight: 500; align-self: start; padding-top: 1px; }
 dd { margin: 0; font-size: 0.9rem; }
 :where(a) { color: var(--vera-color-brand); }
@@ -337,11 +341,17 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
    shared <colgroup> keeps columns aligned across the stacked per-day tables. */
 .table-scroll > table.week-entries { min-width: 100%; table-layout: fixed; }
 .table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+/* Task tables (/console/tasks, issue #2463): the two tables share one <colgroup> so every column lines up down the page. Same pattern
+   as week-entries above; task names wrap instead of stretching the table. */
+.table-scroll > table.task-table { min-width: 100%; table-layout: fixed; }
+.table-scroll table.task-table th, .table-scroll table.task-table td { white-space: normal; overflow-wrap: anywhere; }
 @media (max-width: 767px) {
   /* Phones: fixed % columns would crush — fall back to the #1608 scroll
      pattern, but cap the notes column so one long note stays readable. */
   .table-scroll > table.week-entries { min-width: max-content; table-layout: auto; }
   .table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: nowrap; }
+  .table-scroll > table.task-table { min-width: max-content; table-layout: auto; }
+  .table-scroll table.task-table th, .table-scroll table.task-table td { white-space: nowrap; }
   .table-scroll table.week-entries td.notes-cell { white-space: normal; overflow-wrap: anywhere; min-width: 14rem; max-width: 18rem; }
 }
 /* Wage-refresh proposals table: the Occupation, Current and Proposed columns
@@ -406,6 +416,9 @@ dd textarea { font-size: 0.9rem; padding: 4px 6px; border: 1px solid #ccc; borde
 .save-btn:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); }
 td .save-btn, td .btn-primary, td .btn-secondary, td .btn-secondary-danger, td button { margin-top: 0; padding: 0.25rem 0.7rem; line-height: 1.2; }
 .save-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+/* A text-styled real <button> (issue #2451), for an action that sits inside a read-only row. Works with _modalTrigger and inside a POST form. */
+.btn-link { border: none; background: none; color: var(--vera-color-brand); text-decoration: underline; font: inherit; text-transform: none; letter-spacing: normal; text-indent: 0; padding: 0; margin: 0; cursor: pointer; }
+.btn-link:hover { text-decoration: underline; }
 .btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn-secondary:disabled:hover { border-color: var(--vera-color-border); }
 .section-head { font-size: 0.9rem; font-weight: 600; color: var(--vera-color-text); margin: 1.25rem 0 0.5rem; border-top: var(--vera-border-width-default) solid var(--vera-color-border-soft); padding-top: 1rem; }
@@ -481,6 +494,10 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
    truncates. */
 .nav-subitem-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
 .nav-subitem .ler-pill { flex: 0 0 auto; }
+/* Hover-to-reveal (issue #2465): the inner span is what slides; the outer
+   .nav-subitem-name keeps clipping it. Transform/transition are set inline by
+   _NAV_NAME_SLIDE_SCRIPT on hover and cleared on leave (a snap, not a slide). */
+.nav-subitem-name-text { display: inline-block; }
 /* Table-cell variant of the sidebar name fade (#2093). Fixed width, not
    max-width: the mask is relative to the element's own box, so a shrink-to-fit
    element would fade the tail of every name, including short ones that never
@@ -586,7 +603,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <div class="console-layout">
 <nav class="console-sidebar" id="console-nav">
   <a href="#" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-29.305 -36.4612 224.61 109.3836" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M10.2906 36.4612L0 0H6.32063L11.1264 18.3873L14.3128 30.7674H14.6263L17.8127 18.3873L22.6707 0H28.7302L18.4395 36.4612H10.2906Z" fill="currentColor"/><path d="M48.8212 36.4612V0H71.6486V4.91024H54.6717V15.5143H71.0217V20.4245H54.6717V31.5509H71.6486V36.4612H48.8212Z" fill="currentColor"/><path d="M97.5379 36.4612H91.7396V0H105.373C108.856 0 111.502 0.975085 113.313 2.92525C115.159 4.87542 116.082 7.5569 116.082 10.9697C116.082 13.7556 115.403 16.0541 114.045 17.8649C112.686 19.6758 110.736 20.7902 108.194 21.2081L116.604 36.4612H110.127L102.396 21.7304H97.5379V36.4612ZM104.538 17.0291C108.159 17.0291 109.97 15.375 109.97 12.0667V9.82049C109.97 6.51217 108.159 4.85801 104.538 4.85801H97.5379V17.0291H104.538Z" fill="currentColor"/><path d="M159.784 36.4612L157.015 26.7452H145.419L142.65 36.4612H136.695L147.352 0H155.344L166 36.4612H159.784ZM151.426 5.90274H151.008L146.516 21.8872H155.918L151.426 5.90274Z" fill="currentColor"/></svg></a>
-  <div class="nav-links"><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#" aria-current="true"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /></svg><span>Projects</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span>Clients</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></svg><span>Envelopes</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg><span>Liabilities</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4" /> <path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Capacity</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="M18 17V9" /> <path d="M13 17V5" /> <path d="M8 17v-3" /></svg><span>Reports</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="m19 9-5 5-4-4-3 3" /></svg><span>Contributions</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4" /> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /></svg><span>Project Managers</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><span>Portfolio</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6" /> <path d="m22 7-8.5 8.5-5-5L2 17" /></svg><span>Forecast</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="12" x="2" y="6" rx="2" /> <circle cx="12" cy="12" r="2" /> <path d="M6 12h.01M18 12h.01" /></svg><span>Billing</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z" /></svg><span>Proposals</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg><span>Users</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344" /> <path d="m9 11 3 3L22 4" /></svg><span>Tasks</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" /> <rect x="3" y="14" width="7" height="7" rx="1" /> <circle cx="17.5" cy="17.5" r="3.5" /></svg><span>Disciplines</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></svg><span>Settings</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Messages</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18" /> <path d="m19 8 3 8a5 5 0 0 1-6 0zV7" /> <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1" /> <path d="m5 8 3 8a5 5 0 0 1-6 0zV7" /> <path d="M7 21h10" /></svg><span>Audit</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /></svg><span>Approvals</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344" /> <path d="m9 11 3 3L22 4" /></svg><span>Time Approvals</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></svg><span>Unresolved</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /> <path d="M16 2v4" /> <rect width="18" height="18" x="3" y="4" rx="2" /> <path d="M3 10h18" /></svg><span>Calendar</span></a></div>
+  <div class="nav-links"><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#" aria-current="true"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" /> <path d="M8 10v4" /> <path d="M12 10v2" /> <path d="M16 10v6" /></svg><span>Projects</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4" /> <path d="M10 8h4" /> <path d="M14 21v-3a2 2 0 0 0-4 0v3" /> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span>Clients</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></svg><span>Staffing</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="M18 17V9" /> <path d="M13 17V5" /> <path d="M8 17v-3" /></svg><span>Reports</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /> <path d="m19 9-5 5-4-4-3 3" /></svg><span>Performance</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6" /> <path d="m22 7-8.5 8.5-5-5L2 17" /></svg><span>Forecast</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="12" x="2" y="6" rx="2" /> <circle cx="12" cy="12" r="2" /> <path d="M6 12h.01M18 12h.01" /></svg><span>Billing</span></a><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z" /></svg><span>Proposals</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg><span>Users</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></svg><span>Settings</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg><span>Logs</span></a><div class="nav-divider" role="separator"></div><a class="nav-link" href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <line x1="12" x2="12" y1="8" y2="12" /> <line x1="12" x2="12.01" y1="16" y2="16" /></svg><span>Needs you</span></a></div>
   <div class="nav-footer">
   <div class="nav-console-label">VERA<br>Console</div>
   <div class="nav-workspace">Northline Studio</div>
@@ -631,13 +648,15 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <h3 class="section-head" style="margin:0">Allocation</h3>
   <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-warning-800);background:var(--vera-color-warning-100);padding:2px 10px;border-radius:999px">89% · Under-allocated (cost estimated)</span>
 </div>
-<div style="display:flex;align-items:baseline;gap:0.5rem;margin:0.5rem 0 0.4rem">
-  <span style="font-size:1.5rem;font-weight:600">800h</span>
-  <span style="font-size:0.85rem;color:var(--vera-color-text-2)">allocated of 900h budget</span>
-</div>
-<div style="display:flex;gap:1rem;font-size:0.72rem;margin-bottom:0.35rem;flex-wrap:wrap">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0.4rem">
+  <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
+    <span style="font-size:1.5rem;font-weight:600">800h</span>
+    <span style="font-size:0.85rem;color:var(--vera-color-text-2)">allocated of 900h budget</span>
+  </span>
+  <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-brand-600);margin-right:4px;vertical-align:middle"></span><span style="font-weight:600">800h</span> allocated</span>
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-brand-300);margin-right:4px;vertical-align:middle"></span><span style="font-weight:600">100h</span> unallocated</span>
+</span>
 </div>
 <div style="position:relative">
   <div class="bar-marker" title="Allocations end here" style="position:absolute;left:88.9%;bottom:100%;transform:translateX(-50%);z-index:2;pointer-events:none"><span class="bar-marker-ping" aria-hidden="true"></span><span style="display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--vera-color-text)"></span></div>
@@ -698,16 +717,18 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <h3 class="section-head" style="margin:0">Accrued P&amp;L</h3>
     <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-success-800);background:var(--vera-color-success-200);padding:2px 10px;border-radius:999px">78% margin · strong</span>
   </div>
-  <div style="display:flex;align-items:baseline;gap:0.5rem;margin:0.5rem 0 0">
-    <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$133,883</span>
-    <span style="font-size:0.85rem;color:var(--vera-color-text-2)">profit · 78% margin</span>
-  </div>
-  <div style="display:flex;gap:1rem;font-size:0.72rem;margin-bottom:0.35rem;flex-wrap:wrap">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0">
+    <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
+      <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$133,883</span>
+      <span style="font-size:0.85rem;color:var(--vera-color-text-2)">profit · 78% margin</span>
+    </span>
+    <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
   <span><span style="color:var(--vera-color-text);font-weight:600">$170,667</span> revenue</span>
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-info-text);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-info-text);font-weight:600">$36,784</span> cost</span>
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-success-700);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-success-700);font-weight:600">$133,883</span> profit</span>
-</div>
-<div style="position:relative;margin:0.75rem 0 0.25rem">
+</span>
+  </div>
+  <div style="position:relative;margin:0.75rem 0 0.25rem">
   <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
     <div style="position:absolute;top:0;bottom:0;left:0;width:21.6%;background:var(--vera-color-info-text)" title="Cost"></div>
     <div style="position:absolute;top:0;bottom:0;left:21.6%;width:78.4%;background:var(--vera-color-success-700)" title="Profit"></div>
@@ -736,15 +757,17 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <h3 class="section-head" style="margin:0">Forecasted P&amp;L</h3>
     <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-success-800);background:var(--vera-color-success-200);padding:2px 10px;border-radius:999px">81% margin · strong</span>
   </div>
-  <div style="display:flex;align-items:baseline;gap:0.5rem;margin:0.5rem 0 0">
-    <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$325,400</span>
-    <span style="font-size:0.85rem;color:var(--vera-color-text-2)">forecast profit · 81% margin</span>
-  </div>
-  <div style="display:flex;gap:1rem;font-size:0.72rem;margin-bottom:0.35rem;flex-wrap:wrap">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0">
+    <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
+      <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$325,400</span>
+      <span style="font-size:0.85rem;color:var(--vera-color-text-2)">forecast profit · 81% margin</span>
+    </span>
+    <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
   <span><span style="color:var(--vera-color-text);font-weight:600">$400,000</span> revenue</span>
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-info-text);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-info-text);font-weight:600">$74,600</span> committed cost</span>
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-success-700);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-success-800);font-weight:600">$325,400</span> profit</span>
-</div>
+</span>
+  </div>
   <div style="position:relative;margin:0.75rem 0 0.25rem">
     <div class="bar-marker" title="Forecast revenue (100%)" style="position:absolute;left:100.0%;bottom:100%;transform:translateX(-50%);z-index:2;pointer-events:none"><span class="bar-marker-ping" aria-hidden="true"></span><span style="display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--vera-color-text)"></span></div>
     <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
@@ -819,26 +842,20 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </div></div></div>
 <div id="config"><div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><h2 style="margin:0">Configuration</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit project</button></div>
-<dl>
+<dl class="dl-split">
 <dt>Name</dt><dd>Bellhaven Outdoors — Brand Refresh</dd>
 <dt>Type</dt><dd>Fixed Price</dd>
 <dt>Status</dt><dd><span class="badge badge-active">active</span></dd>
 <dt>Client</dt><dd>Bellhaven Outdoors</dd>
-<dt>PM</dt><dd><a href="#">Jordan Wells</a></dd>
+<dt>PM</dt><dd id="pm"><a href="#">Jordan Wells</a></dd>
 <dt>Start date</dt><dd>Mar 2</dd>
 <dt>Deadline</dt><dd>Sep 30</dd>
 <dt>Hours budget</dt><dd>900h</dd>
 <dt>Notes</dt><dd>Full brand identity refresh ahead of the Fall 2026 product line launch. Includes logo system, packaging templates, and a photography style guide.</dd>
 <dt>Billable</dt><dd>Yes</dd>
 </dl>
-</div></div>
-<div id="pm"><div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">PM Assignment</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-pm').classList.add('open')">Change PM</button></div>
-<dl style="margin-top:1rem"><dt>Project Manager</dt><dd><a href="#">Jordan Wells</a></dd></dl>
-</div></div>
-<div id="tasks"><div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">Enabled tasks</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-tasks').classList.add('open')">Edit tasks</button></div>
-<div class="task-pills"><span class="task-pill">Strategy</span><span class="task-pill">Design</span><span class="task-pill">Project Management</span></div>
+<div id="tasks"><div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;margin-bottom:0.75rem"><h3 class="section-head" style="margin:0">Enabled tasks</h3><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit tasks</button></div>
+<div class="task-pills"><span class="task-pill">Strategy</span><span class="task-pill">Design</span><span class="task-pill">Project Management</span></div></div>
 </div></div>
 <div id="allocations"><div class="card"><h2>4 Envelopes</h2>
 <table>
@@ -990,24 +1007,14 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   [hoursEl,cEl,bEl].forEach(function(el){el.addEventListener('input',render);});
   
   render();
-})();</script></div>
-  </div>
-</div>
-<div class="modal-overlay" id="modal-pm" role="dialog" aria-modal="true" aria-label="Assign project manager">
-  <div class="modal-box">
-    <div class="modal-head"><h3>Assign project manager</h3>
-      <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-pm').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form class="form-stack">
+})();</script>
+<h3 class="section-head">Project manager</h3>
+<form class="form-stack">
   <div class="form-group"><label>Project Manager</label><select name="pm_user_id"><option value="1">Priya Natarajan</option><option value="2" selected>Jordan Wells</option><option value="3">Elena Cho</option></select></div>
   <div class="form-actions"><button type="submit" class="save-btn">Save PM</button></div>
-</form></div>
-  </div>
-</div>
-<div class="modal-overlay" id="modal-tasks" role="dialog" aria-modal="true" aria-label="Enabled tasks">
-  <div class="modal-box">
-    <div class="modal-head"><h3>Enabled tasks</h3>
-      <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-tasks').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form>
+</form>
+<h3 class="section-head">Enabled tasks</h3>
+<form>
 <label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="1" checked> Strategy</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="2" checked> Design</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="3" checked> Project Management</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="4"> Development</label><label style="display:block;margin-bottom:0.3rem;font-size:0.9rem"><input type="checkbox" name="task_id" value="5"> QA</label>
 <div style="margin-top:0.75rem"><button type="submit" class="save-btn">Save tasks</button></div>
 </form></div>
@@ -1360,6 +1367,45 @@ function runScripts(region){
     t.classList.add('toast-leaving')
     setTimeout(function () { if (t && t.parentNode) t.parentNode.removeChild(t) }, 300)
   }, 4000)
+})()
+</script>
+<script>
+(function () {
+  var PX_PER_S = 30, MIN_S = 1, MAX_S = 8, DELAY_S = 0.4
+  function reduced() {
+    return typeof window !== 'undefined' && window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }
+  var rows = document.querySelectorAll('.nav-subitem')
+  for (var i = 0; i < rows.length; i++) {
+    (function (row) {
+      if (row.dataset.slideBound) return
+      row.dataset.slideBound = '1'
+      var box = row.querySelector('.nav-subitem-name')
+      var text = row.querySelector('.nav-subitem-name-text')
+      if (!box || !text) return
+      function start() {
+        if (reduced()) return
+        var over = text.scrollWidth - box.clientWidth
+        if (!(over > 0)) return
+        var secs = Math.min(MAX_S, Math.max(MIN_S, over / PX_PER_S))
+        box.style.webkitMaskImage = 'none'
+        box.style.maskImage = 'none'
+        text.style.transition = 'transform ' + secs + 's linear ' + DELAY_S + 's'
+        text.style.transform = 'translateX(-' + over + 'px)'
+      }
+      function stop() {
+        text.style.transition = 'none'
+        text.style.transform = ''
+        box.style.webkitMaskImage = ''
+        box.style.maskImage = ''
+      }
+      row.addEventListener('mouseenter', start)
+      row.addEventListener('mouseleave', stop)
+      row.addEventListener('focus', start)
+      row.addEventListener('blur', stop)
+    })(rows[i])
+  }
 })()
 </script>
 </body>
