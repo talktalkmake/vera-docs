@@ -345,6 +345,12 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
    as week-entries above; task names wrap instead of stretching the table. */
 .table-scroll > table.task-table { min-width: 100%; table-layout: fixed; }
 .table-scroll table.task-table th, .table-scroll table.task-table td { white-space: normal; overflow-wrap: anywhere; }
+/* Project Envelopes card (issue 2503): the envelopes table and the time-outside-envelopes table share one <colgroup>, so their
+   columns line up. Same pattern as task-table above. */
+.table-scroll > table.env-table { min-width: 100%; table-layout: fixed; }
+.table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
+.table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
+tr.outside-envelope-row td { color: var(--vera-color-text-muted); font-style: italic; }
 @media (max-width: 767px) {
   /* Phones: fixed % columns would crush — fall back to the #1608 scroll
      pattern, but cap the notes column so one long note stays readable. */
@@ -352,6 +358,8 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
   .table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: nowrap; }
   .table-scroll > table.task-table { min-width: max-content; table-layout: auto; }
   .table-scroll table.task-table th, .table-scroll table.task-table td { white-space: nowrap; }
+  .table-scroll > table.env-table { min-width: max-content; table-layout: auto; }
+  .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: nowrap; }
   .table-scroll table.week-entries td.notes-cell { white-space: normal; overflow-wrap: anywhere; min-width: 14rem; max-width: 18rem; }
 }
 /* Wage-refresh proposals table: the Occupation, Current and Proposed columns
@@ -858,7 +866,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <div class="task-pills"><span class="task-pill">Design</span><span class="task-pill">Project Management</span><span class="task-pill">Strategy</span></div></div>
 </div></div>
 <div id="allocations"><div class="card"><h2>4 Envelopes</h2>
-<table>
+<div class="table-scroll"><table class="env-table"><colgroup><col style="width:5%"><col style="width:15%"><col style="width:18%"><col style="width:21%"><col style="width:12%"><col style="width:14%"><col style="width:15%"></colgroup>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Hours <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th data-sort-key="window" class="sortable">Window <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
 <td>5001</td>
@@ -909,7 +917,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <td></td>
 <td></td>
 <td></td>
-</tr></tfoot></table><h3 class="section-head">Cancelled envelopes</h3>
+</tr></tfoot></table></div><h3 class="section-head">Cancelled envelopes</h3>
 <table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="allocated" class="sortable">Allocated <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
