@@ -351,6 +351,11 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
 .table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
 tr.outside-envelope-row td { color: var(--vera-color-text-muted); font-style: italic; }
+/* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
+   that masking is on. Form controls and tables of individual pay blur whole. */
+.privacy-blur { filter: blur(5px); user-select: none; }
+html.vera-privacy input:not([type=hidden]), html.vera-privacy select, html.vera-privacy textarea { filter: blur(4px); }
+html.vera-privacy .pay-table, html.vera-privacy .pay { filter: blur(6px); user-select: none; }
 @media (max-width: 767px) {
   /* Phones: fixed % columns would crush — fall back to the #1608 scroll
      pattern, but cap the notes column so one long note stays readable. */
@@ -616,6 +621,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="nav-console-label">VERA<br>Console</div>
   <div class="nav-workspace">Northline Studio</div>
   <div class="nav-userline">Priya Natarajan &middot; owner</div>
+  
   
   
   <div class="nav-action"><a href="#">Sign out</a></div></div>
