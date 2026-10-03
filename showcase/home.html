@@ -632,7 +632,36 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="nav-action"><a href="#">Sign out</a></div></div>
 </nav>
 <div class="console-content"><main>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+<style>
+.home-brief { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin-bottom:1.25rem; }
+.home-brief .brief-tile { margin:0; display:flex; flex-direction:column; }
+.home-brief .brief-kicker { font-size:var(--vera-font-size-2xs); text-transform:uppercase; letter-spacing:0.06em; color:var(--vera-color-text-muted); margin:0 0 0.35rem; }
+.home-brief .brief-lead { font-size:1.35rem; font-weight:600; margin:0 0 0.5rem; line-height:1.2; }
+.home-brief .brief-counts { display:flex; flex-wrap:wrap; gap:0.25rem 1rem; margin:0 0 0.75rem; font-size:var(--vera-font-size-sm); }
+.home-brief .brief-counts strong { font-size:1rem; }
+.home-brief .brief-list { list-style:none; padding:0; margin:0 0 0.75rem; font-size:var(--vera-font-size-sm); }
+.home-brief .brief-list li { margin:0 0 0.35rem; }
+.home-brief .brief-note { color:var(--vera-color-text-muted); }
+.home-brief .brief-more { margin-top:auto; font-size:var(--vera-font-size-sm); }
+.home-brief .brief-dot { display:inline-block; width:0.55rem; height:0.55rem; border-radius:50%; margin-right:0.35rem; vertical-align:baseline; }
+</style><div class="home-brief" aria-label="This week at a glance"><section class="card brief-tile" id="brief-money"><p class="brief-kicker">Money</p>
+  <p class="brief-lead">$128,400 <span style="font-size:var(--vera-font-size-sm);font-weight:400;color:var(--vera-color-text-muted)">earned in May</span></p>
+  <div class="brief-counts"><span>Cost <strong>$24,100</strong></span><span>Profit <strong>$104,300</strong></span><span>LER <span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.33x</span></span></div>
+  <p class="brief-note" style="margin:0 0 0.75rem;font-size:var(--vera-font-size-sm)">June so far: $61,200 earned · LER <span class="ler-pill" style="background:var(--vera-color-success-200);color:var(--vera-color-success-900)">4.40x</span></p>
+  <a class="brief-more" href="#">Open Money →</a>
+</section>
+<section class="card brief-tile" id="brief-projects"><p class="brief-kicker">Projects</p>
+  <p class="brief-lead">1 off course</p>
+  <div class="brief-counts"><span>Need setup <strong>0</strong></span><span>Off course <strong>1</strong></span><span>On course <strong>3</strong></span></div>
+  <ul class="brief-list"><li><a href="#">Solace Financial — Q3 Content Sprint</a> <span class="brief-note">· Off course · 18 points behind plan</span></li></ul>
+  
+</section>
+<section class="card brief-tile" id="brief-people"><p class="brief-kicker">People this week</p>
+  <p class="brief-lead">1 over capacity</p>
+  <div class="brief-counts"><span>Over <strong>1</strong></span><span>Optimal <strong>4</strong></span><span>Under <strong>2</strong></span></div>
+  <ul class="brief-list"><li><span class="brief-dot" style="background:var(--vera-color-success-300)" aria-hidden="true"></span><a href="#">Jordan Wells</a> <span class="brief-note">· Over capacity, 112% booked</span></li></ul>
+  <a class="brief-more" href="#">Open Capacity →</a>
+</section></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
   <span></span>
   <button type="button" class="new-project-link" onclick="document.getElementById('modal-new-project').classList.add('open')">+ New project</button>
 </div>
