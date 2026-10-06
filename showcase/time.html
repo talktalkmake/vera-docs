@@ -499,6 +499,12 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .nav-divider { height: 1px; background: var(--vera-color-border); margin: 0.5rem 1.25rem; }
 .nav-group-label { padding: 0 1.25rem; margin-bottom: 0.35rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vera-color-text-muted); }
 .nav-subitem { font-size: 0.85rem; }
+/* Needs you badge (issue 2582): how many items wait on the Needs you All tab.
+   _NEEDS_YOU_BADGE_SCRIPT fills it after the page loads; it stays hidden until
+   then. At zero the badge hides and the link fades (data-quiet). */
+.nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
+.nav-badge[hidden] { display: none; }
+.nav-link[data-quiet] { opacity: 0.5; }
 /* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
    a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
    needs to flex/truncate while the pill (.ler-pill, when present) stays
