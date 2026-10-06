@@ -505,9 +505,9 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
 .nav-badge[hidden] { display: none; }
 .nav-link[data-quiet] { opacity: 0.5; }
-/* Fixed-fee marker (issue 2591): beside the person on an envelope row, owners
-   and admins only. The title explains what a fixed fee does to cost. */
-.fee-marker { display: inline-block; margin-left: 0.4rem; padding: 0 0.45em; border: 1px solid var(--vera-color-border); border-radius: 999px; font-size: var(--vera-font-size-2xs); font-weight: 600; line-height: 1.6; color: var(--vera-color-text-2); white-space: nowrap; cursor: help; }
+/* Contractor-liability marker (issue 2593): beside a contractor's name on a
+   liability row. The title explains what a contractor's liability does. */
+.liab-marker { display: inline-block; margin-left: 0.4rem; padding: 0 0.45em; border: 1px solid var(--vera-color-border); border-radius: 999px; font-size: var(--vera-font-size-2xs); font-weight: 600; line-height: 1.6; color: var(--vera-color-text-2); white-space: nowrap; cursor: help; }
 /* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
    a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
    needs to flex/truncate while the pill (.ler-pill, when present) stays
@@ -970,8 +970,8 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 </tr></tbody>
 </table><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add envelope</button></div>
 </div></div>
-<div class="card"><h2>Vendor liabilities</h2><table>
-<thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Vendor <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
+<div class="card"><h2>Liabilities</h2><table>
+<thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody>
 <tr>
 <td>301</td>
@@ -1100,7 +1100,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-liab-edit-301').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><form class="form-stack">
   <input type="hidden" name="liability_id" value="301">
-  <div class="form-group"><label>Vendor</label><input type="text" value="Anchor Type Foundry" disabled style="color:#888"></div>
+  <div class="form-group"><label>Paid to</label><input type="text" value="Anchor Type Foundry" disabled style="color:#888"></div>
   <div class="form-group"><label>Description</label><input type="text" name="description" value="Custom typeface production and licensing" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" value="9000" required></div>
   <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" value="45" required></div>
@@ -1124,7 +1124,8 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-head"><h3>Add liability</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-liab-new').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><form class="form-stack">
-  <div class="form-group"><label>Vendor</label><select name="vendor_name"><option value="Anchor Type Foundry">Anchor Type Foundry</option></select></div>
+  <div class="form-group"><label>Paid to</label><select name="vendor_name"><option value="Anchor Type Foundry">Anchor Type Foundry</option></select></div>
+  
   <div class="form-group"><label>Description</label><input type="text" name="description" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" required></div>
