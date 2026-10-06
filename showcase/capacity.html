@@ -505,6 +505,9 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
 .nav-badge[hidden] { display: none; }
 .nav-link[data-quiet] { opacity: 0.5; }
+/* Fixed-fee marker (issue 2591): beside the person on an envelope row, owners
+   and admins only. The title explains what a fixed fee does to cost. */
+.fee-marker { display: inline-block; margin-left: 0.4rem; padding: 0 0.45em; border: 1px solid var(--vera-color-border); border-radius: 999px; font-size: var(--vera-font-size-2xs); font-weight: 600; line-height: 1.6; color: var(--vera-color-text-2); white-space: nowrap; cursor: help; }
 /* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
    a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
    needs to flex/truncate while the pill (.ler-pill, when present) stays
