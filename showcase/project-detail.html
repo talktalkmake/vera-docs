@@ -985,7 +985,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <div class="form-group"><label>Status</label><select name="status"><option value="active" selected>active</option><option value="completed">completed</option><option value="cancelled">cancelled</option></select></div>
 <div class="form-group"><label>Start date</label><input type="date" name="start_date" value="2026-03-02"></div>
 <div class="form-group"><label>Deadline</label><input type="date" name="deadline" value="2026-09-30"></div>
-<div class="form-group"><label>Hours budget</label><input type="number" id="cfg-hours" name="hours_budget" step="1" min="0" value="900"></div>
+<div class="form-group"><label>Hours budget</label><input type="number" id="cfg-hours" name="hours_budget" step="0.01" min="0" value="900"></div>
 <div id="cfg-calc-readout" class="budget-hint" style="font-size:0.82rem;margin:-0.25rem 0 0.75rem;color:var(--vera-color-text-muted)"></div>
 <div class="form-group"><label>Notes</label><textarea name="notes">Full brand identity refresh ahead of the Fall 2026 product line launch. Includes logo system, packaging templates, and a photography style guide.</textarea></div>
 <div class="form-group"><label>Billable</label><select name="is_billable"><option value="true" selected>Yes</option><option value="false">No</option></select></div>
@@ -1056,7 +1056,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
     <div class="modal-body"><form class="form-stack">
   <div class="form-group"><label>Person</label><select id="alloc-new-person" name="user_id"><option value="1" data-default-task="">Priya Natarajan</option><option value="2" data-default-task="Project Management">Jordan Wells</option><option value="3" data-default-task="Design">Elena Cho</option><option value="4" data-default-task="Design">Marcus Ade</option><option value="5" data-default-task="Strategy">Ruth Okafor</option></select></div>
   <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Strategy">Strategy</option><option value="Design">Design</option><option value="Project Management">Project Management</option></select></div>
-  <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.5" min="0.5" required></div>
+  <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Label <span class="optional-label">(optional)</span></label><input type="text" name="label" maxlength="40" placeholder="e.g. Director"></div>
   <div class="form-group envelope-window-fields">
     <button type="button" class="btn-secondary btn-xs envelope-window-reveal" hidden>Set a window</button>
@@ -1094,7 +1094,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="form-group"><label>Vendor</label><input type="text" value="Anchor Type Foundry" disabled style="color:#888"></div>
   <div class="form-group"><label>Description</label><input type="text" name="description" value="Custom typeface production and licensing" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" value="9000" required></div>
-  <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.5" min="0.5" value="45" required></div>
+  <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" value="45" required></div>
   <div class="form-actions"><button type="submit" class="btn-primary">Save</button></div>
 </form></div>
   </div>
@@ -1118,7 +1118,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
   <div class="form-group"><label>Vendor</label><select name="vendor_name"><option value="Anchor Type Foundry">Anchor Type Foundry</option></select></div>
   <div class="form-group"><label>Description</label><input type="text" name="description" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" required></div>
-  <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.5" min="0.5" required></div>
+  <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" required></div>
   <div class="form-actions"><button type="submit" class="btn-primary">Add liability</button></div>
 </form></div>
   </div>
