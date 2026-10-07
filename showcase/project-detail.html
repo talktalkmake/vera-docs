@@ -887,7 +887,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <div id="tasks"><div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;margin-bottom:0.75rem"><h3 class="section-head" style="margin:0">Enabled tasks</h3><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit tasks</button></div>
 <div class="task-pills"><span class="task-pill">Design</span><span class="task-pill">Project Management</span><span class="task-pill">Strategy</span></div></div>
 </div></div>
-<div id="allocations"><div class="card"><h2>4 Envelopes</h2>
+<div id="allocations"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">4 Envelopes</h2><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add envelope</button></div>
 <div class="table-scroll"><table class="env-table"><colgroup><col style="width:5%"><col style="width:15%"><col style="width:18%"><col style="width:21%"><col style="width:12%"><col style="width:14%"><col style="width:15%"></colgroup>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Hours <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th data-sort-key="window" class="sortable">Window <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
@@ -970,7 +970,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td>—</td>
 <td><button type="button" class="save-btn" onclick="document.getElementById('modal-alloc-react-4999').classList.add('open')">Reactivate</button></td>
 </tr></tbody>
-</table><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add envelope</button></div>
+</table>
 </div></div>
 <div class="card"><h2>Liabilities</h2><table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
