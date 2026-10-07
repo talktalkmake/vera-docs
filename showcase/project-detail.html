@@ -1069,13 +1069,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Strategy">Strategy</option><option value="Design">Design</option><option value="Project Management">Project Management</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Label <span class="optional-label">(optional)</span></label><input type="text" name="label" maxlength="40" placeholder="e.g. Director"></div>
-  <div class="form-group envelope-window-fields">
+  <div class="form-group envelope-window-fields" data-has-window="1">
     <button type="button" class="btn-secondary btn-xs envelope-window-reveal" hidden>Set a window</button>
     <div class="envelope-window-body">
       <label>Window <span class="optional-label">(optional)</span></label>
       <div style="display:flex;gap:0.5rem">
-        <input type="date" name="start_date" value="" style="flex:1">
-        <input type="date" name="end_date" value="" style="flex:1">
+        <input type="date" name="start_date" value="2026-03-02" style="flex:1">
+        <input type="date" name="end_date" value="2026-09-30" style="flex:1">
       </div>
       <p class="muted" style="margin:0.25rem 0 0;font-size:0.8rem">Leave blank if these hours can land any time before the deadline.</p>
     </div>
