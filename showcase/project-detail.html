@@ -507,6 +507,8 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .nav-link[data-quiet] { opacity: 0.5; }
 /* Contractor-liability marker (issue 2593): beside a contractor's name on a
    liability row. The title explains what a contractor's liability does. */
+.pair-tag { margin-left: 0.1em; font-size: var(--vera-font-size-sm); white-space: nowrap; }
+span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .liab-marker { display: inline-block; margin-left: 0.4rem; padding: 0 0.45em; border: 1px solid var(--vera-color-border); border-radius: 999px; font-size: var(--vera-font-size-2xs); font-weight: 600; line-height: 1.6; color: var(--vera-color-text-2); white-space: nowrap; cursor: help; }
 /* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
    a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
@@ -973,7 +975,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 <div class="card"><h2>Liabilities</h2><table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody>
-<tr>
+<tr id="liability-301">
 <td>301</td>
 <td>Anchor Type Foundry</td>
 <td>Custom typeface production and licensing</td>
