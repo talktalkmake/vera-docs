@@ -973,7 +973,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </table>
 </div></div>
 <div class="card"><h2>Liabilities</h2><table>
-<thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
+<thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="accrues" class="sortable">Accrues <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody>
 <tr id="liability-301">
 <td>301</td>
@@ -981,6 +981,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td>Custom typeface production and licensing</td>
 <td>$9,000</td>
 <td>45h</td>
+<td data-sort-value="">—</td>
 <td><span class="badge badge-active">active</span></td>
 <td><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-edit-301').classList.add('open')">Edit</button> <button type="button" class="btn-secondary-danger" onclick="document.getElementById('modal-liab-cancel-301').classList.add('open')">Cancel</button></td>
 </tr>
@@ -1106,6 +1107,9 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Description</label><input type="text" name="description" value="Custom typeface production and licensing" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" value="9000" required></div>
   <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" value="45" required></div>
+  <div class="form-group"><label>Accrues from</label><input type="date" name="accrual_start" value=""></div>
+  <div class="form-group"><label>Accrues until</label><input type="date" name="accrual_end" value=""></div>
+  <p class="muted" style="margin:0;font-size:var(--vera-font-size-sm)">Leave both empty to accrue from the day it was added to the deadline.</p>
   <div class="form-actions"><button type="submit" class="btn-primary">Save</button></div>
 </form></div>
   </div>
@@ -1131,6 +1135,9 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Description</label><input type="text" name="description" required></div>
   <div class="form-group"><label>Agreed amount (USD)</label><input type="number" name="agreed_amount" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Agreed hours</label><input type="number" name="agreed_hours" step="0.01" min="0.01" required></div>
+  <div class="form-group"><label>Accrues from</label><input type="date" name="accrual_start" value="2026-03-02"></div>
+  <div class="form-group"><label>Accrues until</label><input type="date" name="accrual_end" value="2026-09-30"></div>
+  <p class="muted" style="margin:0;font-size:var(--vera-font-size-sm)">The liability's hours and cost build up evenly between these dates.</p>
   <div class="form-actions"><button type="submit" class="btn-primary">Add liability</button></div>
 </form></div>
   </div>
