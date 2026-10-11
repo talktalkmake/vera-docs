@@ -672,11 +672,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="brief-counts"><span>Over <strong>1</strong></span><span>Optimal <strong>4</strong></span><span>Under <strong>2</strong></span></div>
   <ul class="brief-list"><li><span class="brief-dot" style="background:var(--vera-color-success-300)" aria-hidden="true"></span><a href="#">Jordan Wells</a> <span class="brief-note">· Over capacity, 112% booked</span></li></ul>
   <a class="brief-more" href="#">Open Capacity →</a>
-</section></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
-  <span></span>
-  <button type="button" class="new-project-link" onclick="document.getElementById('modal-new-project').classList.add('open')">+ New project</button>
-</div>
-<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+</section></div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
   <input type="text" id="proj-filter" placeholder="Filter projects…" autocomplete="off" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px;flex:1;min-width:200px;max-width:320px">
   <select id="type-filter" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px"><option value="">All types</option><option value="fixed price">Fixed Price</option><option value="pro bono">Pro Bono</option><option value="t&amp;m">T&amp;M</option></select>
   <select id="status-filter" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px"><option value="">All statuses</option><option value="active" selected>active</option><option value="completed">completed</option></select>
@@ -685,6 +681,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     <button type="button" class="cat-btn active" data-category="client">Client</button>
     <button type="button" class="cat-btn" data-category="internal">Internal</button>
   </div>
+  <button type="button" class="new-project-link" onclick="document.getElementById('modal-new-project').classList.add('open')">+ New project</button>
 </div>
 <div class="table-scroll"><table id="proj-table">
 <thead><tr>
