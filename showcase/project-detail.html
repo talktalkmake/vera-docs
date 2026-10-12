@@ -1070,13 +1070,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Strategy">Strategy</option><option value="Design">Design</option><option value="Project Management">Project Management</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Label <span class="optional-label">(optional)</span></label><input type="text" name="label" maxlength="40" placeholder="e.g. Director"></div>
-  <div class="form-group envelope-window-fields" data-has-window="1">
+  <div class="form-group envelope-window-fields" data-has-window="1" data-min="2026-03-02" data-max="2026-09-30">
     <button type="button" class="btn-secondary btn-xs envelope-window-reveal" hidden>Set a window</button>
     <div class="envelope-window-body">
       <label>Window <span class="optional-label">(optional)</span></label>
       <div style="display:flex;gap:0.5rem">
-        <input type="date" name="start_date" value="2026-03-02" style="flex:1">
-        <input type="date" name="end_date" value="2026-09-30" style="flex:1">
+        <input type="date" name="start_date" value="2026-03-02" min="2026-03-02" max="2026-09-30" style="flex:1">
+        <input type="date" name="end_date" value="2026-09-30" min="2026-03-02" max="2026-09-30" style="flex:1">
       </div>
       <p class="muted" style="margin:0.25rem 0 0;font-size:0.8rem">Leave blank if these hours can land any time before the deadline.</p>
     </div>
@@ -1246,6 +1246,19 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     var btn = root.querySelector('.envelope-window-reveal')
     var body = root.querySelector('.envelope-window-body')
     if (!btn || !body) return
+
+    var s = body.querySelector('input[name="start_date"]')
+    var e = body.querySelector('input[name="end_date"]')
+    var bMin = root.getAttribute('data-min') || ''
+    var bMax = root.getAttribute('data-max') || ''
+    function later(a, b) { return a && b ? (a > b ? a : b) : (a || b) }
+    function earlier(a, b) { return a && b ? (a < b ? a : b) : (a || b) }
+    function link() {
+      if (!s || !e) return
+      var eMin = later(bMin, s.value); if (eMin) e.min = eMin; else e.removeAttribute('min')
+      var sMax = earlier(bMax, e.value); if (sMax) s.max = sMax; else s.removeAttribute('max')
+    }
+    if (s && e) { s.addEventListener('change', link); e.addEventListener('change', link); link() }
 
     if (root.hasAttribute('data-has-window')) {
       // Already has a stored window — nothing to collapse.
