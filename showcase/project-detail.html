@@ -891,22 +891,6 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <div class="table-scroll"><table class="env-table"><colgroup><col style="width:5%"><col style="width:15%"><col style="width:18%"><col style="width:21%"><col style="width:12%"><col style="width:14%"><col style="width:15%"></colgroup>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Hours <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th data-sort-key="window" class="sortable">Window <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
-<td>5001</td>
-<td>Jordan Wells</td>
-<td>Project Management</td>
-<td data-sort-value="45"><span class="magnitude-cell-compact" title="45% used"><span class="magnitude-cell-value">54h / 120h · 66h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
-<td>PM</td>
-<td data-sort-value="">— —</td>
-<td style="white-space:nowrap">
-  <a class="btn-secondary" href="#">Edit</a>
-  <form style="display:inline;margin:0">
-  <input type="hidden" name="allocation_id" value="5001">
-  <input type="hidden" name="return_to" value="/console/p/101">
-  <button type="submit" class="btn-secondary">Duplicate</button>
-</form>
-</td>
-</tr>
-<tr>
 <td>5002</td>
 <td>Elena Cho</td>
 <td>Design</td>
@@ -917,6 +901,22 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <a class="btn-secondary" href="#">Edit</a>
   <form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5002">
+  <input type="hidden" name="return_to" value="/console/p/101">
+  <button type="submit" class="btn-secondary">Duplicate</button>
+</form>
+</td>
+</tr>
+<tr>
+<td>5001</td>
+<td>Jordan Wells</td>
+<td>Project Management</td>
+<td data-sort-value="45"><span class="magnitude-cell-compact" title="45% used"><span class="magnitude-cell-value">54h / 120h · 66h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
+<td>PM</td>
+<td data-sort-value="">— —</td>
+<td style="white-space:nowrap">
+  <a class="btn-secondary" href="#">Edit</a>
+  <form style="display:inline;margin:0">
+  <input type="hidden" name="allocation_id" value="5001">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
 </form>
@@ -1051,7 +1051,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 })();</script>
 <h3 class="section-head">Project manager</h3>
 <form class="form-stack">
-  <div class="form-group"><label>Project Manager</label><select name="pm_user_id"><option value="1">Priya Natarajan</option><option value="2" selected>Jordan Wells</option><option value="3">Elena Cho</option></select></div>
+  <div class="form-group"><label>Project Manager</label><select name="pm_user_id"><option value="3">Elena Cho</option><option value="2" selected>Jordan Wells</option><option value="1">Priya Natarajan</option></select></div>
   <div class="form-actions"><button type="submit" class="save-btn">Save PM</button></div>
 </form>
 <h3 class="section-head">Enabled tasks</h3>
@@ -1066,8 +1066,8 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     <div class="modal-head"><h3>Add envelope</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-alloc-new').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><form class="form-stack">
-  <div class="form-group"><label>Person</label><select id="alloc-new-person" name="user_id"><option value="1" data-default-task="">Priya Natarajan</option><option value="2" data-default-task="Project Management">Jordan Wells</option><option value="3" data-default-task="Design">Elena Cho</option><option value="4" data-default-task="Design">Marcus Ade</option><option value="5" data-default-task="Strategy">Ruth Okafor</option></select></div>
-  <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Strategy">Strategy</option><option value="Design">Design</option><option value="Project Management">Project Management</option></select></div>
+  <div class="form-group"><label>Person</label><select id="alloc-new-person" name="user_id"><option value="3" data-default-task="Design">Elena Cho</option><option value="2" data-default-task="Project Management">Jordan Wells</option><option value="4" data-default-task="Design">Marcus Ade</option><option value="1" data-default-task="">Priya Natarajan</option><option value="5" data-default-task="Strategy">Ruth Okafor</option></select></div>
+  <div class="form-group"><label>Task</label><select id="alloc-new-task" name="task_name"><option value="Design">Design</option><option value="Project Management">Project Management</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" inputmode="decimal" name="allocated_hours" step="0.01" min="0.01" required></div>
   <div class="form-group"><label>Label <span class="optional-label">(optional)</span></label><input type="text" name="label" maxlength="40" placeholder="e.g. Director"></div>
   <div class="form-group envelope-window-fields" data-has-window="1" data-min="2026-03-02" data-max="2026-09-30">
