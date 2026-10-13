@@ -644,10 +644,17 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </nav>
 <div class="console-content"><main>
 <p><a class="back" href="#">&larr; All projects</a></p>
-<div class="project-detail-title" style="display:flex;align-items:center;gap:0.75rem;margin:0.25rem 0 1.25rem">
-<h1 style="margin:0;font-size:1.5rem;font-weight:600;color:#1a1a1a">Bellhaven Outdoors — Brand Refresh</h1>
-<span class="badge badge-active">active</span>
+<div class="project-detail-title">
+<div class="pdt-main"><div class="pdt-client"><a href="#">Bellhaven Outdoors</a></div><div class="pdt-name"><h1 style="margin:0;font-size:1.5rem;font-weight:600;color:#1a1a1a">Bellhaven Outdoors — Brand Refresh</h1>
+<span class="badge badge-active">active</span></div></div><div class="pdt-meta"><div class="pdt-deadline">Sep 30 deadline (107 days)</div><div class="pdt-type"><span>Fixed Price</span></div></div>
 </div>
+<style>.project-detail-title{display:flex;align-items:flex-end;flex-wrap:wrap;gap:0.5rem 1.5rem;margin:0.25rem 0 1.25rem}
+.pdt-main{min-width:0}
+.pdt-client{font-size:var(--vera-font-size-sm);color:var(--vera-color-text-2);margin-bottom:0.15rem}
+.pdt-name{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.pdt-meta{margin-left:auto;text-align:right;font-size:var(--vera-font-size-sm);color:var(--vera-color-text-2)}
+.pdt-type{display:flex;align-items:center;justify-content:flex-end;gap:0.6rem;font-weight:600;color:var(--vera-color-text)}
+@media (max-width:640px){.pdt-meta{margin-left:0;text-align:left;width:100%}.pdt-type{justify-content:flex-start}}</style>
 <div id="delivery"></div><div id="analytics"><div class="card"><h2>Analytics &amp; Health</h2><dl>
 <dt>Logged</dt><dd>384h of 900h (43%)</dd>
 </dl>
