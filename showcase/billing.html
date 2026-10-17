@@ -838,7 +838,9 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </main></div>
 </div>
 <script>
-document.addEventListener('click',function(e){ if(e.target.classList&&e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); });
+var _modalPressTarget=null;
+document.addEventListener('mousedown',function(e){ _modalPressTarget=e.target; });
+document.addEventListener('click',function(e){ var t=e.target, p=_modalPressTarget; _modalPressTarget=null; if(t&&t.classList&&t.classList.contains('modal-overlay')&&p===t) t.classList.remove('open'); });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var o=document.querySelectorAll('.modal-overlay.open'); for(var i=0;i<o.length;i++) o[i].classList.remove('open'); } });
 // In-place link navigation: progressively enhance nav links marked
 // [data-inplace] that live inside an id'd [data-inplace-region]. Fetch the
