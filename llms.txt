@@ -1,6 +1,6 @@
 # VERA
 
-> VERA is a multi-tenant time-tracking, project-management, and financial-intelligence platform for small marketing and creative agencies ($1M–$5M revenue). Its primary surface is a fast web console where owners and managers run projects, allocations, financials, capacity, and reporting, and team members log and review their own time. A Slack bot remains a lightweight option for logging time, but the console is where the work happens.
+> VERA is a multi-tenant time-tracking, project-management, and financial-intelligence platform for marketing and creative agencies and other firms that bill for time ($1M–$20M revenue). Its primary surface is a fast web console where owners and managers run projects, allocations, financials, capacity, and reporting, and team members log and review their own time. A Slack bot remains a lightweight option for logging time, but the console is where the work happens.
 
 ## What VERA does
 
