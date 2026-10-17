@@ -663,7 +663,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>120h · 40% used</td>
 <td>—</td>
 <td style="white-space:nowrap"><form style="margin:0">
-  <input type="hidden" name="project_name" value="Bellhaven Outdoors — Brand Refresh">
+  <input type="hidden" name="project_id" value="101">
   <input type="hidden" name="task_name" value="Design">
   <input type="hidden" name="date" value="2026-06-15">
   <input type="hidden" name="allocation_id" value="5003">
@@ -682,7 +682,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td><span class="usage-dot" style="background:var(--vera-color-success-600)"></span>38h · 58% used</td>
 <td>—</td>
 <td style="white-space:nowrap"><form style="margin:0">
-  <input type="hidden" name="project_name" value="Bellhaven Outdoors — Seasonal Lookbook">
+  <input type="hidden" name="project_id" value="104">
   <input type="hidden" name="task_name" value="Design">
   <input type="hidden" name="date" value="2026-06-15">
   <input type="hidden" name="allocation_id" value="5005">
@@ -1001,8 +1001,8 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     <div class="form-group" style="flex:1;min-width:150px"><label>Date</label><input type="date" name="date" value="2026-06-15" max="2026-06-15" required></div>
     <div class="form-group" style="flex:1;min-width:150px"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" required></div>
   </div>
-  <div class="form-group"><label>Project</label><select id="log-project-select" name="project_name" required><option value="">-- select --</option><option value="Bellhaven Outdoors — Brand Refresh">Bellhaven Outdoors — Brand Refresh</option><option value="Bellhaven Outdoors — Seasonal Lookbook">Bellhaven Outdoors — Seasonal Lookbook</option><option value="Kestrel Robotics — Launch Site">Kestrel Robotics — Launch Site</option><option value="Solace Financial — Q3 Content Sprint">Solace Financial — Q3 Content Sprint</option><option disabled>──────── Internal ────────</option><option value="Northline Studio — Internal Ops">Northline Studio — Internal Ops</option></select></div>
-  <div class="form-group"><label>Task</label><select id="log-task-select" name="task_name" required data-tasks="{&quot;byProject&quot;:{&quot;Bellhaven Outdoors — Brand Refresh&quot;:[&quot;Design&quot;,&quot;Project Management&quot;,&quot;Strategy&quot;],&quot;Solace Financial — Q3 Content Sprint&quot;:[&quot;Design&quot;,&quot;Development&quot;],&quot;Kestrel Robotics — Launch Site&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;Bellhaven Outdoors — Seasonal Lookbook&quot;:[&quot;Design&quot;]},&quot;all&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;Project Management&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;internal&quot;:[&quot;Northline Studio — Internal Ops&quot;]}" data-default-task="Design"><option value="">-- select --</option></select></div>
+  <div class="form-group"><label>Project</label><select id="log-project-select" name="project_id" required><option value="">-- select --</option><option value="">Bellhaven Outdoors — Brand Refresh</option><option value="">Bellhaven Outdoors — Seasonal Lookbook</option><option value="">Kestrel Robotics — Launch Site</option><option value="">Solace Financial — Q3 Content Sprint</option><option disabled>──────── Internal ────────</option><option value="">Northline Studio — Internal Ops</option></select></div>
+  <div class="form-group"><label>Task</label><select id="log-task-select" name="task_name" required data-tasks="{&quot;byProject&quot;:{&quot;Bellhaven Outdoors — Brand Refresh&quot;:[&quot;Design&quot;,&quot;Project Management&quot;,&quot;Strategy&quot;],&quot;Solace Financial — Q3 Content Sprint&quot;:[&quot;Design&quot;,&quot;Development&quot;],&quot;Kestrel Robotics — Launch Site&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;Bellhaven Outdoors — Seasonal Lookbook&quot;:[&quot;Design&quot;]},&quot;all&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;Project Management&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;internal&quot;:[&quot;undefined&quot;]}" data-default-task="Design"><option value="">-- select --</option></select></div>
   
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500"></div>
   <div class="form-actions"><button type="submit" class="btn-primary">Log time</button></div>
