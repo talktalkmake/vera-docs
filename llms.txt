@@ -29,4 +29,5 @@ VERA is built by Tom Hart of [Hart Ops](https://hartops.com), a profit advisor w
 - Harvest alternative, with a side-by-side comparison and how switching works: https://getvera.site/harvest-alternative.html
 - The Playbook (named console routines for owners, managers, and teams): https://getvera.site/playbook/
 - Documentation: https://getvera.site/guide/
+- Labor efficiency ratio explained, with a calculator: https://getvera.site/learn/ler.html
 - Hart Ops (the advisory practice behind VERA): https://hartops.com/
