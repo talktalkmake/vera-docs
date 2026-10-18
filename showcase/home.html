@@ -783,6 +783,17 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
       <option value="Retainer">Retainer</option>
     </select>
   </div>
+  <div class="form-group" id="np-kind-group" style="display:none">
+    <style>.segmented-group{border:0;margin:0;padding:0;min-width:0}
+.segmented-group legend{font-weight:500;margin:0 0 0.35rem;padding:0}
+.segmented{display:inline-flex;border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-full);overflow:hidden}
+.segmented label{position:relative;cursor:pointer;margin:0}
+.segmented input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.segmented span{display:block;padding:0.35rem 0.95rem;font-size:var(--vera-font-size-sm);color:var(--vera-color-brand);background:var(--vera-color-surface)}
+.segmented input:checked+span{background:var(--vera-color-brand);color:var(--vera-color-on-brand)}
+.segmented input:focus-visible+span{outline:2px solid var(--vera-color-brand);outline-offset:-2px}
+.segmented-hint{font-size:var(--vera-font-size-sm);color:var(--vera-color-text-muted);margin:0.35rem 0 0}</style><fieldset class="segmented-group"><legend>Kind</legend><div class="segmented"><label><input type="radio" name="evergreen" value="true" checked><span>Evergreen</span></label><label><input type="radio" name="evergreen" value="false"><span>Measured</span></label></div><p class="segmented-hint">Evergreen runs indefinitely, with no deadline or hours budget (Admin, say). Measured has a deadline and optionally an hours budget (an internal tool build, say), and can carry a vendor or contractor on a fixed price.</p></fieldset>
+  </div>
   <div class="form-group" id="np-hours-group">
     <label for="np-hours"><span id="np-hours-label-text">Hours budget</span><span class="required-mark" id="np-hours-req" aria-hidden="true">*</span></label>
     <input type="number" id="np-hours" name="hours_budget" min="0.01" step="0.01">
@@ -813,7 +824,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   </div>
 </form>
 <script>
-(function(){var s=document.getElementById('np-type');if(!s)return;var cs=document.getElementById('np-client'),f=s.form,h=document.getElementById('np-hours-group'),d=document.getElementById('np-deadline-group'),c=document.getElementById('np-contract-group'),b=document.getElementById('np-billing-group'),hi=document.getElementById('np-hours'),di=document.getElementById('np-deadline'),ci=document.getElementById('np-contract'),hr=document.getElementById('np-hours-req'),dr=document.getElementById('np-deadline-req'),cr=document.getElementById('np-contract-req'),hlt=document.getElementById('np-hours-label-text'),clt=document.getElementById('np-contract-label-text');function u(){var t=s.value,iI=t==='Internal',iF=t==='Fixed Price',iR=t==='Retainer';h.style.display='';d.style.display=iR?'none':'';c.style.display=(iF||iR)?'':'none';b.style.display=iI?'none':'';hi.required=!iI;di.required=!iI&&!iR;ci.required=iF||iR;hr.style.display=iI?'none':'';dr.style.display=(iI||iR)?'none':'';cr.style.display=(iF||iR)?'':'none';hlt.textContent=iR?'Hours budget (per period)':'Hours budget';clt.textContent=iR?'Contract value (per period)':'Contract value';}function si(){if(cs.value==='Internal'){s.value='Internal';s.disabled=true;}else if(s.disabled){s.disabled=false;s.value='';}u();}cs.addEventListener('change',si);if(f)f.addEventListener('submit',function(){s.disabled=false;});s.addEventListener('change',u);si();})()
+(function(){var s=document.getElementById('np-type');if(!s)return;var cs=document.getElementById('np-client'),f=s.form,h=document.getElementById('np-hours-group'),d=document.getElementById('np-deadline-group'),c=document.getElementById('np-contract-group'),b=document.getElementById('np-billing-group'),k=document.getElementById('np-kind-group'),hi=document.getElementById('np-hours'),di=document.getElementById('np-deadline'),ci=document.getElementById('np-contract'),hr=document.getElementById('np-hours-req'),dr=document.getElementById('np-deadline-req'),cr=document.getElementById('np-contract-req'),hlt=document.getElementById('np-hours-label-text'),clt=document.getElementById('np-contract-label-text');function ev(){var r=f?f.querySelector('input[name="evergreen"]:checked'):null;return !r||r.value==='true';}function u(){var t=s.value,iI=t==='Internal',iF=t==='Fixed Price',iR=t==='Retainer',iE=iI&&ev(),iM=iI&&!iE;k.style.display=iI?'':'none';h.style.display=iE?'none':'';d.style.display=(iR||iE)?'none':'';c.style.display=(iF||iR)?'':'none';b.style.display=iI?'none':'';hi.required=!iI;di.required=(!iI&&!iR)||iM;ci.required=iF||iR;hr.style.display=iI?'none':'';dr.style.display=di.required?'':'none';cr.style.display=(iF||iR)?'':'none';hlt.textContent=iR?'Hours budget (per period)':'Hours budget';clt.textContent=iR?'Contract value (per period)':'Contract value';}function si(){if(cs.value==='Internal'){s.value='Internal';s.disabled=true;}else if(s.disabled){s.disabled=false;s.value='';}u();}cs.addEventListener('change',si);if(f){f.addEventListener('submit',function(){s.disabled=false;});var rs=f.querySelectorAll('input[name="evergreen"]');for(var i=0;i<rs.length;i++)rs[i].addEventListener('change',u);}s.addEventListener('change',u);si();})()
 </script>
 <script>(function(){
   var hoursEl=document.getElementById('np-hours'), cEl=document.getElementById('np-contract'),
