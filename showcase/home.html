@@ -291,6 +291,9 @@ ul.task-list li { margin-bottom: 0.2rem; }
 .task-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; }
 .task-pill { display: inline-flex; align-items: center; padding: 0.4rem 0.85rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-pill); background: var(--vera-color-surface); color: var(--vera-color-text); font-size: 0.85rem; line-height: 1.2; }
 .badge { display: inline-block; padding: 2px 8px; border-radius: var(--vera-radius-pill); font-size: 0.75rem; font-weight: 500; }
+.cell-clip { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+.cell-clip-project { max-width: 32ch; }
+.cell-clip-client { max-width: 24ch; }
 .pm-you { display: inline-block; margin-left: 0.4rem; padding: 1px 7px; border-radius: var(--vera-radius-pill); background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle; }
 .ler-pill, .plan-accuracy-pill { display: inline-block; padding: 1px 8px; border-radius: var(--vera-radius-pill); font-size: 0.8125rem; font-weight: 600; }
 .badge-active    { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); }
@@ -692,62 +695,55 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <th data-sort-key="project" class="sortable">Project <span class="sort-caret"></span></th>
 <th data-sort-key="client" class="sortable">Client <span class="sort-caret"></span></th>
 <th data-sort-key="type" class="sortable">Type <span class="sort-caret"></span></th>
-<th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th>
 <th data-sort-key="pm" class="sortable">PM <span class="sort-caret"></span></th>
 <th>Trend</th>
 </tr></thead>
 <tbody>
 <tr data-filter="bellhaven outdoors — brand refresh bellhaven outdoors fixed price active jordan wells" data-category="client" data-project="bellhaven outdoors — brand refresh" data-client="bellhaven outdoors" data-type="fixed price" data-status="active" data-pm="jordan wells">
 <td>101</td>
-<td><a href="#">Bellhaven Outdoors — Brand Refresh</a></td>
-<td>Bellhaven Outdoors</td>
+<td><span class="cell-clip cell-clip-project" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
+<td><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
 <td>Fixed Price</td>
-<td><span class="badge badge-active">active</span></td>
 <td>Jordan Wells</td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 22h → 27h → 31h (80h total)</title><polyline points="2,16 32,8.2 62,2" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="2" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
 <tr data-filter="bellhaven outdoors — seasonal lookbook bellhaven outdoors t&amp;m active elena cho" data-category="client" data-project="bellhaven outdoors — seasonal lookbook" data-client="bellhaven outdoors" data-type="t&amp;m" data-status="active" data-pm="elena cho">
 <td>104</td>
-<td><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></td>
-<td>Bellhaven Outdoors</td>
+<td><span class="cell-clip cell-clip-project" title="Bellhaven Outdoors — Seasonal Lookbook"><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></span></td>
+<td><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
 <td>T&amp;M</td>
-<td><span class="badge badge-active">active</span></td>
 <td>Elena Cho</td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 18h → 20h → 19h (57h total)</title><polyline points="2,16 32,2 62,9" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="9" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
 <tr data-filter="kestrel robotics — launch site kestrel robotics fixed price active priya natarajan" data-category="client" data-project="kestrel robotics — launch site" data-client="kestrel robotics" data-type="fixed price" data-status="active" data-pm="priya natarajan">
 <td>103</td>
-<td><a href="#">Kestrel Robotics — Launch Site</a></td>
-<td>Kestrel Robotics</td>
+<td><span class="cell-clip cell-clip-project" title="Kestrel Robotics — Launch Site"><a href="#">Kestrel Robotics — Launch Site</a></span></td>
+<td><span class="cell-clip cell-clip-client" title="Kestrel Robotics">Kestrel Robotics</span></td>
 <td>Fixed Price</td>
-<td><span class="badge badge-active">active</span></td>
-<td>Priya Natarajan <span class="pm-you">You</span></td>
+<td><span class="pm-you" title="Priya Natarajan">You</span></td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 6h → 9h → 15h (30h total)</title><polyline points="2,16 32,11.3 62,2" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="2" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
 <tr data-filter="northline studio — internal ops internal internal active —" data-category="internal" data-project="northline studio — internal ops" data-client="internal" data-type="internal" data-status="active" data-pm="—">
 <td>106</td>
-<td><a href="#">Northline Studio — Internal Ops</a></td>
+<td><span class="cell-clip cell-clip-project" title="Northline Studio — Internal Ops"><a href="#">Northline Studio — Internal Ops</a></span></td>
+<td><span class="cell-clip cell-clip-client" title="Internal">Internal</span></td>
 <td>Internal</td>
-<td>Internal</td>
-<td><span class="badge badge-active">active</span></td>
 <td>—</td>
 <td style="text-align:center"></td>
 </tr>
 <tr data-filter="solace financial — onboarding audit solace financial pro bono completed jordan wells" data-category="client" data-project="solace financial — onboarding audit" data-client="solace financial" data-type="pro bono" data-status="completed" data-pm="jordan wells">
 <td>105</td>
-<td><a href="#">Solace Financial — Onboarding Audit</a></td>
-<td>Solace Financial</td>
+<td><span class="cell-clip cell-clip-project" title="Solace Financial — Onboarding Audit"><a href="#">Solace Financial — Onboarding Audit</a></span> <span class="badge badge-completed">completed</span></td>
+<td><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
 <td>Pro Bono</td>
-<td><span class="badge badge-completed">completed</span></td>
 <td>Jordan Wells</td>
 <td style="text-align:center"></td>
 </tr>
 <tr data-filter="solace financial — q3 content sprint solace financial t&amp;m active elena cho" data-category="client" data-project="solace financial — q3 content sprint" data-client="solace financial" data-type="t&amp;m" data-status="active" data-pm="elena cho">
 <td>102</td>
-<td><a href="#">Solace Financial — Q3 Content Sprint</a></td>
-<td>Solace Financial</td>
+<td><span class="cell-clip cell-clip-project" title="Solace Financial — Q3 Content Sprint"><a href="#">Solace Financial — Q3 Content Sprint</a></span></td>
+<td><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
 <td>T&amp;M</td>
-<td><span class="badge badge-active">active</span></td>
 <td>Elena Cho</td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 14h → 11h → 9h (34h total)</title><polyline points="2,2 32,10.4 62,16" fill="none" stroke="var(--vera-color-danger-600)" stroke-width="1.5"/><circle cx="62" cy="16" r="2" fill="var(--vera-color-danger-600)"/></svg></td>
 </tr>
