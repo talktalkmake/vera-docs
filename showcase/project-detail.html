@@ -684,17 +684,17 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <dt>Contract value</dt><dd>$400,000</dd>
 <dt>Billing rate</dt><dd>—</dd>
 </dl><div class="fin-section"><h3 class="section-head" style="margin:0">Money</h3>
-<table class="fin-table"><thead><tr><th></th><th>Revenue</th><th>People cost</th><th>Margin</th></tr></thead><tbody>
+<table class="fin-table"><thead><tr><th></th><th>Revenue</th><th>Cost</th><th>Margin</th></tr></thead><tbody>
 <tr><th scope="row" class="fin-row-head">Today<div class="fin-sub">earned so far</div></th>
 <td class="fin-num">$170,667</td>
 <td class="fin-num"><span style="color:var(--vera-color-info-text)">$36,784</span></td>
 <td class="fin-num"><span style="color:var(--vera-color-success-800)">$133,883</span><div class="fin-sub">78% · LER <span class="ler-pill" style="background:var(--vera-color-success-200);color:var(--vera-color-success-900)">4.64x</span></div></td>
-</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:9.2%;background:var(--vera-color-info-text)" title="People cost"></div><div style="width:33.5%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
-<tr><th scope="row" class="fin-row-head">At finish<div class="fin-sub">if every allocation is used</div></th>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:9.2%;background:var(--vera-color-info-text)" title="Cost"></div><div style="width:33.5%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
+<tr><th scope="row" class="fin-row-head">On Sep 30 (at finish)<div class="fin-sub">so far, plus the rest of each allocation</div></th>
 <td class="fin-num">$400,000</td>
-<td class="fin-num"><span style="color:var(--vera-color-info-text)">$74,600</span><div class="fin-sub"><span>$65,600 people of $78,200 budget at 5:1</span> · $9,000 fixed fees</div></td>
+<td class="fin-num"><span style="color:var(--vera-color-info-text)">$74,600</span><div class="fin-sub"><span style="color:var(--vera-color-warning-800)">Allocations $65,600 of $78,200 people budget at 5:1 (near budget)</span></div></td>
 <td class="fin-num"><span style="color:var(--vera-color-success-800)">$325,400</span><div class="fin-sub">81% · LER <span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.36x</span></div></td>
-</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:18.6%;background:var(--vera-color-info-text)" title="People cost"></div><div style="width:81.3%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:18.6%;background:var(--vera-color-info-text)" title="Cost"></div><div style="width:81.3%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
 </tbody></table>
 <p class="fin-sub" style="margin:0">Both bars share one scale. Cost fills first, then margin; red is cost past revenue.</p></div><div class="fin-section"><h3 class="section-head" style="margin:0">Hours</h3>
 <table class="fin-table"><thead><tr><th></th><th>Hours</th><th>Budget</th><th>Used</th></tr></thead><tbody>
@@ -703,11 +703,11 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td class="fin-num">900h</td>
 <td class="fin-num">43%</td>
 </tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:42.7%;background:var(--vera-color-brand-600)" title="Today"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Over budget"></div></div></td></tr>
-<tr><th scope="row" class="fin-row-head">At finish<div class="fin-sub">allocated to people</div></th>
-<td class="fin-num">800h</td>
+<tr><th scope="row" class="fin-row-head">On Sep 30 (at finish)<div class="fin-sub">so far, plus the rest of each allocation</div></th>
+<td class="fin-num">845h</td>
 <td class="fin-num">900h</td>
-<td class="fin-num">89%<div class="fin-sub">100h not yet allocated</div></td>
-</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:88.9%;background:var(--vera-color-brand-600)" title="At finish"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Over budget"></div></div></td></tr>
+<td class="fin-num">94%<div class="fin-sub">55h of the budget not planned</div></td>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:93.9%;background:var(--vera-color-brand-600)" title="On Sep 30 (at finish)"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Over budget"></div></div></td></tr>
 </tbody></table></div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
   <h3 class="section-head" style="margin:0">Billing schedule</h3>
   <p style="margin:0.35rem 0 0.5rem;font-size:0.85rem">$400,000 of $400,000 scheduled &middot; $0 unscheduled</p>
@@ -872,7 +872,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </tr></tbody>
 </table>
 </div></div>
-<div class="card"><h2>Liabilities</h2><table>
+<div id="liabilities"><div class="card"><h2>Liabilities</h2><table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="accrues" class="sortable">Accrues <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody>
 <tr id="liability-301">
@@ -885,7 +885,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td><span class="badge badge-active">active</span></td>
 <td><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-edit-301').classList.add('open')">Edit</button> <button type="button" class="btn-secondary-danger" onclick="document.getElementById('modal-liab-cancel-301').classList.add('open')">Cancel</button></td>
 </tr>
-</tbody></table><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-new').classList.add('open')">+ Add liability</button></div></div>
+</tbody></table><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-new').classList.add('open')">+ Add liability</button></div></div></div>
 
 <div class="modal-overlay" id="modal-config" role="dialog" aria-modal="true" aria-label="Edit project">
   <div class="modal-box">
