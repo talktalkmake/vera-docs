@@ -683,162 +683,36 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <p style="color:var(--vera-color-neutral-600);font-size:0.85rem;margin:0.25rem 0 0">Hours recorded vs. plan — On course. The Allocated line marks 800h allocated to people. Pace is assumed even across the project — shape an allocation's weeks to plan when its hours land.</p></div></div><div id="financials"><div class="card"><h2>Financials</h2><dl>
 <dt>Contract value</dt><dd>$400,000</dd>
 <dt>Billing rate</dt><dd>—</dd>
-</dl><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
+</dl><div class="fin-section"><h3 class="section-head" style="margin:0">Money</h3>
+<table class="fin-table"><thead><tr><th></th><th>Revenue</th><th>People cost</th><th>Margin</th></tr></thead><tbody>
+<tr><th scope="row" class="fin-row-head">Today<div class="fin-sub">earned so far</div></th>
+<td class="fin-num">$170,667</td>
+<td class="fin-num"><span style="color:var(--vera-color-info-text)">$36,784</span></td>
+<td class="fin-num"><span style="color:var(--vera-color-success-800)">$133,883</span><div class="fin-sub">78% · LER <span class="ler-pill" style="background:var(--vera-color-success-200);color:var(--vera-color-success-900)">4.64x</span></div></td>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:9.2%;background:var(--vera-color-info-text)" title="People cost"></div><div style="width:33.5%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
+<tr><th scope="row" class="fin-row-head">At finish<div class="fin-sub">if every allocation is used</div></th>
+<td class="fin-num">$400,000</td>
+<td class="fin-num"><span style="color:var(--vera-color-info-text)">$74,600</span><div class="fin-sub"><span>$65,600 people of $78,200 budget at 5:1</span> · $9,000 fixed fees</div></td>
+<td class="fin-num"><span style="color:var(--vera-color-success-800)">$325,400</span><div class="fin-sub">81% · LER <span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.36x</span></div></td>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:18.6%;background:var(--vera-color-info-text)" title="People cost"></div><div style="width:81.3%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
+</tbody></table>
+<p class="fin-sub" style="margin:0">Both bars share one scale. Cost fills first, then margin; red is cost past revenue.</p></div><div class="fin-section"><h3 class="section-head" style="margin:0">Hours</h3>
+<table class="fin-table"><thead><tr><th></th><th>Hours</th><th>Budget</th><th>Used</th></tr></thead><tbody>
+<tr><th scope="row" class="fin-row-head">Today<div class="fin-sub">recorded so far</div></th>
+<td class="fin-num">384h</td>
+<td class="fin-num">900h</td>
+<td class="fin-num">43%</td>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:42.7%;background:var(--vera-color-brand-600)" title="Today"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Over budget"></div></div></td></tr>
+<tr><th scope="row" class="fin-row-head">At finish<div class="fin-sub">allocated to people</div></th>
+<td class="fin-num">800h</td>
+<td class="fin-num">900h</td>
+<td class="fin-num">89%<div class="fin-sub">100h not yet allocated</div></td>
+</tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:88.9%;background:var(--vera-color-brand-600)" title="At finish"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Over budget"></div></div></td></tr>
+</tbody></table></div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
   <h3 class="section-head" style="margin:0">Billing schedule</h3>
   <p style="margin:0.35rem 0 0.5rem;font-size:0.85rem">$400,000 of $400,000 scheduled &middot; $0 unscheduled</p>
 <svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>Billing schedule across the project (dollars per month)</title><polyline points="2,2 12,12 22,13 32,14 42,14 52,15 62,16" fill="none" stroke="var(--vera-color-brand-600)" stroke-width="1.5"/><circle cx="62" cy="16" r="2" fill="var(--vera-color-brand-600)"/></svg>
   <p style="margin:0.5rem 0 0"><a href="#">Edit billing schedule</a></p>
-</div><div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.75rem;flex-wrap:wrap">
-  <h3 class="section-head" style="margin:0">Allocation</h3>
-  <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-warning-800);background:var(--vera-color-warning-100);padding:2px 10px;border-radius:999px">89% · Under-allocated (cost estimated)</span>
-</div>
-<div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0.4rem">
-  <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
-    <span style="font-size:1.5rem;font-weight:600">800h</span>
-    <span style="font-size:0.85rem;color:var(--vera-color-text-2)">allocated of 900h budget</span>
-  </span>
-  <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-brand-600);margin-right:4px;vertical-align:middle"></span><span style="font-weight:600">800h</span> allocated</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-brand-300);margin-right:4px;vertical-align:middle"></span><span style="font-weight:600">100h</span> unallocated</span>
-</span>
-</div>
-<div style="position:relative">
-  <div class="bar-marker" title="Allocations end here" style="position:absolute;left:88.9%;bottom:100%;transform:translateX(-50%);z-index:2;pointer-events:none"><span class="bar-marker-ping" aria-hidden="true"></span><span style="display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--vera-color-text)"></span></div>
-  <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
-    <div style="position:absolute;top:0;bottom:0;left:0;width:88.9%;background:var(--vera-color-brand-600)" title="Allocated"></div>
-    <div style="position:absolute;top:0;bottom:0;left:88.9%;width:11.1%;background:var(--vera-color-brand-300)" title="Unallocated"></div>
-  </div>
-  <div class="bar-scale" aria-hidden="true"><div class="bar-scale-full"><span class="bar-scale-mark" style="left:8.89%"></span><span class="bar-scale-mark" style="left:17.78%"></span><span class="bar-scale-mark" style="left:26.67%"></span><span class="bar-scale-mark" style="left:35.56%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:44.44%"></span><span class="bar-scale-mark" style="left:53.33%"></span><span class="bar-scale-mark" style="left:62.22%"></span><span class="bar-scale-mark" style="left:71.11%"></span><span class="bar-scale-mark" style="left:80.00%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:88.89%"></span><span class="bar-scale-mark" style="left:97.78%"></span></div><div class="bar-scale-reduced"><span class="bar-scale-mark" style="left:22.22%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:44.44%"></span><span class="bar-scale-mark" style="left:66.67%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:88.89%"></span></div></div>
-</div>
-<div style="font-size:0.72rem;color:var(--vera-color-text-muted)">▾ marks where allocations end — the lighter band is unallocated budget.</div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.75rem;flex-wrap:wrap">
-    <h3 class="section-head" style="margin:0">Envelope budget <span style="font-weight:400;color:var(--vera-color-text-muted);font-size:0.8rem">· target 5:1 ratio</span></h3>
-    <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-warning-800);background:var(--vera-color-warning-100);padding:2px 10px;border-radius:999px">near budget</span>
-  </div>
-  <div style="display:flex;align-items:baseline;gap:0.5rem;margin:0.5rem 0 0">
-    <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-text)">$12,600</span>
-    <span style="font-size:0.85rem;color:var(--vera-color-text-2)">remaining of $78,200 people budget</span>
-  </div>
-  <div style="position:relative;margin:0.75rem 0 0">
-    <div class="bar-marker" title="People budget (100%)" style="position:absolute;left:100.0%;bottom:100%;transform:translateX(-50%);z-index:2;pointer-events:none"><span class="bar-marker-ping" aria-hidden="true"></span><span style="display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--vera-color-text)"></span></div>
-    <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
-      <div style="position:absolute;top:0;bottom:0;left:0;width:83.9%;background:var(--vera-color-brand)" title="Envelopes"></div>
-      
-    </div>
-    <div class="bar-scale" aria-hidden="true"><div class="bar-scale-full"><span class="bar-scale-mark" style="left:10.00%"></span><span class="bar-scale-mark" style="left:20.00%"></span><span class="bar-scale-mark" style="left:30.00%"></span><span class="bar-scale-mark" style="left:40.00%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:50.00%"></span><span class="bar-scale-mark" style="left:60.00%"></span><span class="bar-scale-mark" style="left:70.00%"></span><span class="bar-scale-mark" style="left:80.00%"></span><span class="bar-scale-mark" style="left:90.00%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:100.00%"></span></div><div class="bar-scale-reduced"><span class="bar-scale-mark" style="left:25.00%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:50.00%"></span><span class="bar-scale-mark" style="left:75.00%"></span><span class="bar-scale-mark bar-scale-mark-tall" style="left:100.00%"></span></div></div>
-  </div>
-  
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);margin-top:0.25rem">Fixed fees $9,000 come off the contract first; the people budget is what's left ÷ 5:1.</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);margin:0.5rem 0 1rem">People budget = (project budget − fixed fees) ÷ 5:1 target. Committed = allocated envelope cost; updates as envelopes change.</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;border-top:1px solid var(--vera-color-border);padding-top:0.9rem">
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Project budget</div>
-  <div style="font-size:1.05rem;font-weight:600">$400,000</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">client contract</div>
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Fixed fees</div>
-  <div style="font-size:1.05rem;font-weight:600">$9,000</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">vendors and contractors</div>
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">People budget</div>
-  <div style="font-size:1.05rem;font-weight:600">$78,200</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">at 5:1 target</div>
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Committed</div>
-  <div style="font-size:1.05rem;font-weight:600">$65,600</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">envelopes</div>
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Remaining</div>
-  <div style="font-size:1.05rem;font-weight:600"><span style="color:var(--vera-color-text)">$12,600</span></div>
-  
-</div>
-  </div>
-</div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.75rem;flex-wrap:wrap">
-    <h3 class="section-head" style="margin:0">Accrued P&amp;L</h3>
-    <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-success-800);background:var(--vera-color-success-200);padding:2px 10px;border-radius:999px">78% margin · strong</span>
-  </div>
-  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0">
-    <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
-      <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$133,883</span>
-      <span style="font-size:0.85rem;color:var(--vera-color-text-2)">profit · 78% margin</span>
-    </span>
-    <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
-  <span><span style="color:var(--vera-color-text);font-weight:600">$170,667</span> revenue</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-info-text);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-info-text);font-weight:600">$36,784</span> cost</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-success-700);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-success-700);font-weight:600">$133,883</span> profit</span>
-</span>
-  </div>
-  <div style="position:relative;margin:0.75rem 0 0.25rem">
-  <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
-    <div style="position:absolute;top:0;bottom:0;left:0;width:21.6%;background:var(--vera-color-info-text)" title="Cost"></div>
-    <div style="position:absolute;top:0;bottom:0;left:21.6%;width:78.4%;background:var(--vera-color-success-700)" title="Profit"></div>
-  </div>
-</div>
-<div style="font-size:0.72rem;color:var(--vera-color-text-muted);margin-bottom:1rem">Cost fills first, then profit; together they make up recognized revenue. If cost fills the whole bar, the project is at break-even or worse.</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;border-top:1px solid var(--vera-color-border);padding-top:0.9rem;margin-top:0.5rem">
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Recognized revenue</div>
-  <div style="font-size:1.05rem;font-weight:600">$170,667</div>
-  
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Accrued cost</div>
-  <div style="font-size:1.05rem;font-weight:600"><span style="color:var(--vera-color-info-text)">$36,784</span></div>
-  
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">LER</div>
-  <div style="font-size:1.05rem;font-weight:600">4.64x</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">(revenue − fees) ÷ labor</div>
-</div>
-</div>
-</div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.75rem;flex-wrap:wrap">
-    <h3 class="section-head" style="margin:0">Forecasted P&amp;L</h3>
-    <span style="font-size:0.78rem;font-weight:600;color:var(--vera-color-success-800);background:var(--vera-color-success-200);padding:2px 10px;border-radius:999px">81% margin · strong</span>
-  </div>
-  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap;margin:0.5rem 0 0">
-    <span style="display:inline-flex;align-items:baseline;gap:0.5rem">
-      <span style="font-size:1.5rem;font-weight:600;color:var(--vera-color-success-800)">$325,400</span>
-      <span style="font-size:0.85rem;color:var(--vera-color-text-2)">forecast profit · 81% margin</span>
-    </span>
-    <span style="display:flex;gap:1rem;font-size:0.72rem;flex-wrap:wrap">
-  <span><span style="color:var(--vera-color-text);font-weight:600">$400,000</span> revenue</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-info-text);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-info-text);font-weight:600">$74,600</span> committed cost</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--vera-color-success-700);margin-right:4px;vertical-align:middle"></span><span style="color:var(--vera-color-success-800);font-weight:600">$325,400</span> profit</span>
-</span>
-  </div>
-  <div style="position:relative;margin:0.75rem 0 0.25rem">
-    <div class="bar-marker" title="Forecast revenue (100%)" style="position:absolute;left:100.0%;bottom:100%;transform:translateX(-50%);z-index:2;pointer-events:none"><span class="bar-marker-ping" aria-hidden="true"></span><span style="display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--vera-color-text)"></span></div>
-    <div style="position:relative;height:1.5rem;background:var(--vera-color-surface-alt);border:1px solid var(--vera-color-border);border-radius:var(--vera-radius-sm);overflow:hidden">
-      <div style="position:absolute;top:0;bottom:0;left:0;width:18.6%;background:var(--vera-color-info-text)" title="Committed cost"></div>
-      <div style="position:absolute;top:0;bottom:0;left:18.6%;width:81.3%;background:var(--vera-color-success-700)" title="Forecast profit"></div>
-    </div>
-  </div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);margin-bottom:0.5rem">▾ marks forecast revenue. Cost fills first, then profit — together they make up the revenue earned if every envelope is logged in full.</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);margin:0 0 0.75rem">Assumes every active envelope is logged in full and all vendor commitments are paid — the financial picture at the project's close if work goes to plan.</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;border-top:1px solid var(--vera-color-border);padding-top:0.9rem;margin-top:0.5rem">
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Forecast revenue</div>
-  <div style="font-size:1.05rem;font-weight:600">$400,000</div>
-  
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Committed cost</div>
-  <div style="font-size:1.05rem;font-weight:600"><span style="color:var(--vera-color-info-text)">$74,600</span></div>
-  
-</div>
-<div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em">Forecast LER</div>
-  <div style="font-size:1.05rem;font-weight:600">5.36x</div>
-  <div style="font-size:0.72rem;color:var(--vera-color-text-muted)">(revenue − fees) ÷ labor</div>
-</div>
-</div>
 </div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
 <h3 class="section-head" style="margin:0 0 0.75rem">Cost breakdown</h3>
 <table class="pay-table">
@@ -884,7 +758,18 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </tr></tfoot>
 </table>
 <p style="font-size:0.72rem;color:var(--vera-color-text-muted);margin-top:0.5rem">A liability&#39;s cost builds up evenly across its accrual dates, not hours × rate. Internal cost is hours logged × each person&#39;s cost rate on the entry date.</p>
-</div></div></div>
+</div><style>.fin-table{width:100%;border-collapse:collapse;margin:0.25rem 0 0}
+.fin-table th,.fin-table td{border:0;background:none}
+.fin-table thead th{font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em;font-weight:500;text-align:right;padding:0 0 0.25rem;white-space:nowrap}
+.fin-table thead th:first-child{text-align:left}
+.fin-table th.fin-row-head{text-align:left;vertical-align:top;padding:0.75rem 0.75rem 0.25rem 0;white-space:nowrap;font-weight:600;text-transform:none;letter-spacing:0;font-size:inherit;color:inherit}
+.fin-num{text-align:right;vertical-align:top;padding:0.75rem 0 0.25rem 0.75rem;font-weight:600;font-variant-numeric:tabular-nums}
+.fin-empty{color:var(--vera-color-text-muted);font-weight:400;padding:0.75rem 0 0.25rem 0.75rem;text-align:right}
+.fin-sub{font-size:0.72rem;font-weight:400;color:var(--vera-color-text-muted);margin-top:2px}
+.fin-bar-cell{padding:0 0 0.75rem}
+.fin-bar{display:flex;height:0.5rem;background:var(--vera-color-surface-alt);border-radius:var(--vera-radius-sm);overflow:hidden}
+.fin-bar>div{height:100%}
+.fin-section{border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem}</style></div></div>
 <div id="config"><div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><h2 style="margin:0">Configuration</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit project</button></div>
 <dl class="dl-split">
