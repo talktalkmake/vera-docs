@@ -713,62 +713,70 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   </div>
   <button type="button" class="new-project-link" onclick="document.getElementById('modal-new-project').classList.add('open')">+ New project</button>
 </div>
-<div class="table-scroll"><table id="proj-table">
+<style>#proj-table[data-view="internal"] .col-client,#proj-table[data-view="internal"] .col-type,#proj-table[data-view="internal"] .col-ler{display:none}#proj-table[data-view="client"] .col-kind{display:none}</style>
+<div class="table-scroll"><table id="proj-table" data-view="client">
 <thead><tr>
 <th>ID</th>
+<th data-sort-key="client" class="sortable col-client">Client <span class="sort-caret"></span></th>
 <th data-sort-key="project" class="sortable">Project <span class="sort-caret"></span></th>
-<th data-sort-key="client" class="sortable">Client <span class="sort-caret"></span></th>
-<th data-sort-key="type" class="sortable">Type <span class="sort-caret"></span></th>
+<th data-sort-key="type" class="sortable col-type">Type <span class="sort-caret"></span></th>
 <th data-sort-key="pm" class="sortable">PM <span class="sort-caret"></span></th>
+<th data-sort-key="kind" class="sortable col-kind">Kind <span class="sort-caret"></span></th>
 <th>Trend</th>
 </tr></thead>
 <tbody>
-<tr data-filter="bellhaven outdoors — brand refresh bellhaven outdoors fixed price active jordan wells" data-category="client" data-project="bellhaven outdoors — brand refresh" data-client="bellhaven outdoors" data-type="fixed price" data-status="active" data-pm="jordan wells">
+<tr data-filter="bellhaven outdoors — brand refresh bellhaven outdoors fixed price active jordan wells" data-category="client" data-project="bellhaven outdoors — brand refresh" data-client="bellhaven outdoors" data-type="fixed price" data-status="active" data-pm="jordan wells" data-kind="">
 <td>101</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
 <td><span class="cell-clip cell-clip-project" title="Bellhaven Outdoors — Brand Refresh"><a href="#">Bellhaven Outdoors — Brand Refresh</a></span></td>
-<td><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
-<td>Fixed Price</td>
+<td class="col-type">Fixed Price</td>
 <td>Jordan Wells</td>
+<td class="col-kind"></td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 22h → 27h → 31h (80h total)</title><polyline points="2,16 32,8.2 62,2" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="2" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
-<tr data-filter="bellhaven outdoors — seasonal lookbook bellhaven outdoors t&amp;m active elena cho" data-category="client" data-project="bellhaven outdoors — seasonal lookbook" data-client="bellhaven outdoors" data-type="t&amp;m" data-status="active" data-pm="elena cho">
+<tr data-filter="bellhaven outdoors — seasonal lookbook bellhaven outdoors t&amp;m active elena cho" data-category="client" data-project="bellhaven outdoors — seasonal lookbook" data-client="bellhaven outdoors" data-type="t&amp;m" data-status="active" data-pm="elena cho" data-kind="">
 <td>104</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
 <td><span class="cell-clip cell-clip-project" title="Bellhaven Outdoors — Seasonal Lookbook"><a href="#">Bellhaven Outdoors — Seasonal Lookbook</a></span></td>
-<td><span class="cell-clip cell-clip-client" title="Bellhaven Outdoors">Bellhaven Outdoors</span></td>
-<td>T&amp;M</td>
+<td class="col-type">T&amp;M</td>
 <td>Elena Cho</td>
+<td class="col-kind"></td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 18h → 20h → 19h (57h total)</title><polyline points="2,16 32,2 62,9" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="9" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
-<tr data-filter="kestrel robotics — launch site kestrel robotics fixed price active priya natarajan" data-category="client" data-project="kestrel robotics — launch site" data-client="kestrel robotics" data-type="fixed price" data-status="active" data-pm="priya natarajan">
+<tr data-filter="kestrel robotics — launch site kestrel robotics fixed price active priya natarajan" data-category="client" data-project="kestrel robotics — launch site" data-client="kestrel robotics" data-type="fixed price" data-status="active" data-pm="priya natarajan" data-kind="">
 <td>103</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Kestrel Robotics">Kestrel Robotics</span></td>
 <td><span class="cell-clip cell-clip-project" title="Kestrel Robotics — Launch Site"><a href="#">Kestrel Robotics — Launch Site</a></span></td>
-<td><span class="cell-clip cell-clip-client" title="Kestrel Robotics">Kestrel Robotics</span></td>
-<td>Fixed Price</td>
+<td class="col-type">Fixed Price</td>
 <td><span class="pm-you" title="Priya Natarajan">You</span></td>
+<td class="col-kind"></td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 6h → 9h → 15h (30h total)</title><polyline points="2,16 32,11.3 62,2" fill="none" stroke="var(--vera-color-success-600)" stroke-width="1.5"/><circle cx="62" cy="2" r="2" fill="var(--vera-color-success-600)"/></svg></td>
 </tr>
-<tr data-filter="northline studio — internal ops internal internal active —" data-category="internal" data-project="northline studio — internal ops" data-client="internal" data-type="internal" data-status="active" data-pm="—">
+<tr data-filter="northline studio — internal ops internal internal active —" data-category="internal" data-project="northline studio — internal ops" data-client="internal" data-type="internal" data-status="active" data-pm="—" data-kind="measured">
 <td>106</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Internal">Internal</span></td>
 <td><span class="cell-clip cell-clip-project" title="Northline Studio — Internal Ops"><a href="#">Northline Studio — Internal Ops</a></span></td>
-<td><span class="cell-clip cell-clip-client" title="Internal">Internal</span></td>
-<td>Internal</td>
+<td class="col-type">Internal</td>
 <td>—</td>
+<td class="col-kind">Measured</td>
 <td style="text-align:center"></td>
 </tr>
-<tr data-filter="solace financial — onboarding audit solace financial pro bono completed jordan wells" data-category="client" data-project="solace financial — onboarding audit" data-client="solace financial" data-type="pro bono" data-status="completed" data-pm="jordan wells">
+<tr data-filter="solace financial — onboarding audit solace financial pro bono completed jordan wells" data-category="client" data-project="solace financial — onboarding audit" data-client="solace financial" data-type="pro bono" data-status="completed" data-pm="jordan wells" data-kind="">
 <td>105</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
 <td><span class="cell-clip cell-clip-project" title="Solace Financial — Onboarding Audit"><a href="#">Solace Financial — Onboarding Audit</a></span> <span class="badge badge-completed">completed</span></td>
-<td><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
-<td>Pro Bono</td>
+<td class="col-type">Pro Bono</td>
 <td>Jordan Wells</td>
+<td class="col-kind"></td>
 <td style="text-align:center"></td>
 </tr>
-<tr data-filter="solace financial — q3 content sprint solace financial t&amp;m active elena cho" data-category="client" data-project="solace financial — q3 content sprint" data-client="solace financial" data-type="t&amp;m" data-status="active" data-pm="elena cho">
+<tr data-filter="solace financial — q3 content sprint solace financial t&amp;m active elena cho" data-category="client" data-project="solace financial — q3 content sprint" data-client="solace financial" data-type="t&amp;m" data-status="active" data-pm="elena cho" data-kind="">
 <td>102</td>
+<td class="col-client"><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
 <td><span class="cell-clip cell-clip-project" title="Solace Financial — Q3 Content Sprint"><a href="#">Solace Financial — Q3 Content Sprint</a></span></td>
-<td><span class="cell-clip cell-clip-client" title="Solace Financial">Solace Financial</span></td>
-<td>T&amp;M</td>
+<td class="col-type">T&amp;M</td>
 <td>Elena Cho</td>
+<td class="col-kind"></td>
 <td style="text-align:center"><svg viewBox="0 0 64 18" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:18px;vertical-align:middle" role="img" class="sparkline"><title>3-week trend: 14h → 11h → 9h (34h total)</title><polyline points="2,2 32,10.4 62,16" fill="none" stroke="var(--vera-color-danger-600)" stroke-width="1.5"/><circle cx="62" cy="16" r="2" fill="var(--vera-color-danger-600)"/></svg></td>
 </tr>
 </tbody>
@@ -946,6 +954,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     var catBtns = catToggle.querySelectorAll('.cat-btn')
     for (var c = 0; c < catBtns.length; c++) {
       catBtns[c].addEventListener('click', function () {
+        var tbl = document.getElementById('proj-table'); if (tbl) tbl.setAttribute('data-view', this.getAttribute('data-category'))
         for (var k = 0; k < catBtns.length; k++) catBtns[k].classList.remove('active')
         this.classList.add('active')
         syncTypeVisibility()
