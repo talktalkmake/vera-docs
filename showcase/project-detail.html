@@ -306,7 +306,11 @@ ul.task-list li { margin-bottom: 0.2rem; }
 .box h2 { margin: 0 0 1rem; }
 .box p { color: var(--vera-color-text-2); margin: 0 0 1.5rem; line-height: 1.6; }
 code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radius: 3px; font-family: var(--vera-font-mono); }
-@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; } }
+@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; }
+  /* Phones (issue 2775): a label column beside its value leaves the value a
+     sliver, so each label sits above its value instead. */
+  dl, .dl-split { grid-template-columns: 1fr; gap: 0 }
+  dt { margin-top: 0.6rem } dd { margin-bottom: 0.1rem } }
 .banner { padding: 0.65rem 1rem; border-radius: 5px; margin-bottom: 1rem; font-size: 0.9rem; }
 .banner-success { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); border: 1px solid var(--vera-color-success-200); }
 .banner-warn    { background: var(--vera-color-warning-soft); color: var(--vera-color-warning-text); border: 1px solid var(--vera-color-warning-200); }
@@ -325,6 +329,10 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 @keyframes vera-toast-out { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, var(--toast-slide)); } }
 @media (prefers-reduced-motion: reduce) { .banner-toast { --toast-slide: 0px; } }
 .table-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+/* A table that fits on a desktop but may be wider than a phone or a tablet beside
+   the sidebar (issue 2775): it scrolls inside its own box there, and keeps its
+   ordinary wrapping layout everywhere it fits. */
+.table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
 .pm-acc { border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); margin-bottom: 0.5rem; background: var(--vera-color-surface); overflow: hidden; }
 .pm-acc > summary { list-style: none; cursor: pointer; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; }
 .pm-acc > summary::-webkit-details-marker { display: none; }
@@ -353,6 +361,9 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 .table-scroll > table.env-table { min-width: 100%; table-layout: fixed; }
 .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
 .table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
+/* Edit and Duplicate wrap onto two lines when the column is narrow, rather
+   than the second button running past the table's edge (issue 2775). */
+.env-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
 tr.outside-envelope-row td { color: var(--vera-color-text-muted); }
 details.outside-envelopes > summary { list-style: none; display: inline-block; margin: 0 0 0.5rem; }
 details.outside-envelopes > summary::-webkit-details-marker { display: none; }
@@ -509,6 +520,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
    then. At zero the badge hides and the link fades (data-quiet). */
 .nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
 .nav-badge[hidden] { display: none; }
+.nav-toggle[data-count]::after { content: attr(data-count); position: absolute; top: -0.45rem; right: -0.55rem; min-width: 1.5em; padding: 0 0.4em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.5; text-align: center; }
 .nav-link[data-quiet] { opacity: 0.5; }
 /* Contractor-liability marker (issue 2593): beside a contractor's name on a
    liability row. The title explains what a contractor's liability does. */
@@ -559,7 +571,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .nav-toggle { display: none; }
 @media (max-width: 767px) {
   .console-layout { display: block; }
-  .console-content main { padding: 1.25rem .75rem 1.5rem; }
+  .console-content { margin: 0.5rem; }
+  /* The menu button is fixed at the top right; page content starts below it
+     rather than under it (issue 2775). */
+  .console-content main { padding: 3.25rem .75rem 1.5rem; }
+  /* A zoomable chart keeps a readable size and scrolls inside its frame. */
+  .chart-zoom-scroll > svg { min-width: 600px; }
+  /* An empty table's message stays on screen when the table scrolls sideways. */
+  .table-wrap tr[data-sort-skip] > td[colspan], .table-scroll tr[data-sort-skip] > td[colspan] { text-align: left !important; }
   .nav-toggle { display: block; position: fixed; top: 0.6rem; right: 0.8rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
   .console-sidebar { display: none; }
   .console-sidebar.open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 1050; background: var(--vera-color-bg); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
@@ -683,7 +702,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <p style="color:var(--vera-color-neutral-600);font-size:0.85rem;margin:0.25rem 0 0">Hours recorded vs. plan — On course. The Allocated line marks 800h allocated to people. Pace is assumed even across the project — shape an allocation's weeks to plan when its hours land.</p></div></div><div id="financials"><div class="card"><h2>Financials</h2><dl>
 <dt>Contract value</dt><dd>$400,000</dd>
 <dt>Billing rate</dt><dd>—</dd>
-</dl><div class="fin-section"><h3 class="section-head" style="margin:0">Money</h3>
+</dl><div class="fin-section fin-money"><h3 class="section-head" style="margin:0">Money</h3>
 <table class="fin-table"><thead><tr><th></th><th>Revenue</th><th>Cost</th><th>Margin</th></tr></thead><tbody>
 <tr><th scope="row" class="fin-row-head">Today<div class="fin-sub">earned so far</div></th>
 <td class="fin-num">$170,667</td>
@@ -696,7 +715,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td class="fin-num"><span style="color:var(--vera-color-success-800)">$325,400</span><div class="fin-sub">81% · LER <span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.36x</span></div></td>
 </tr><tr><td colspan="4" class="fin-bar-cell"><div class="fin-bar"><div style="width:18.6%;background:var(--vera-color-info-text)" title="Cost"></div><div style="width:81.3%;background:var(--vera-color-success-700)" title="Margin"></div><div style="width:0.0%;background:var(--vera-color-danger-500)" title="Cost past revenue"></div></div></td></tr>
 </tbody></table>
-<p class="fin-sub" style="margin:0">Both bars share one scale. Cost fills first, then margin; red is cost past revenue.</p></div><div class="fin-section"><h3 class="section-head" style="margin:0">Hours</h3>
+<p class="fin-sub" style="margin:0">Both bars share one scale. Cost fills first, then margin; red is cost past revenue.</p></div><div class="fin-section fin-hours"><h3 class="section-head" style="margin:0">Hours</h3>
 <table class="fin-table"><thead><tr><th></th><th>Hours</th><th>Budget</th><th>Used</th></tr></thead><tbody>
 <tr><th scope="row" class="fin-row-head">Today<div class="fin-sub">recorded so far</div></th>
 <td class="fin-num">384h</td>
@@ -715,7 +734,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <p style="margin:0.5rem 0 0"><a href="#">Edit billing schedule</a></p>
 </div><div style="border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem">
 <h3 class="section-head" style="margin:0 0 0.75rem">Cost breakdown</h3>
-<table class="pay-table">
+<div class="table-wrap"><table class="pay-table">
 <thead><tr><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="type" class="sortable">Type <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Hours <span class="sort-caret"></span></th><th data-sort-key="rate" class="sortable">Effective rate <span class="sort-caret"></span></th><th data-sort-key="cost" class="sortable">Cost <span class="sort-caret"></span></th></tr></thead>
 <tbody><tr>
 <td>Elena Cho</td>
@@ -756,12 +775,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td>Total</td><td></td><td></td><td></td>
 <td>$36,784</td>
 </tr></tfoot>
-</table>
+</table></div>
 <p style="font-size:0.72rem;color:var(--vera-color-text-muted);margin-top:0.5rem">A liability&#39;s cost builds up evenly across its accrual dates, not hours × rate. Internal cost is hours logged × each person&#39;s cost rate on the entry date.</p>
 </div><style>.fin-table{width:100%;border-collapse:collapse;margin:0.25rem 0 0}
 .fin-table th,.fin-table td{border:0;background:none}
 .fin-table thead th{font-size:0.72rem;color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.03em;font-weight:500;text-align:right;padding:0 0 0.25rem;white-space:nowrap}
 .fin-table thead th:first-child{text-align:left}
+.fin-table thead th+th{padding-left:0.75rem}
 .fin-table th.fin-row-head{text-align:left;vertical-align:top;padding:0.75rem 0.75rem 0.25rem 0;white-space:nowrap;font-weight:600;text-transform:none;letter-spacing:0;font-size:inherit;color:inherit}
 .fin-num{text-align:right;vertical-align:top;padding:0.75rem 0 0.25rem 0.75rem;font-weight:600;font-variant-numeric:tabular-nums}
 .fin-empty{color:var(--vera-color-text-muted);font-weight:400;padding:0.75rem 0 0.25rem 0.75rem;text-align:right}
@@ -769,7 +789,27 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .fin-bar-cell{padding:0 0 0.75rem}
 .fin-bar{display:flex;height:0.5rem;background:var(--vera-color-surface-alt);border-radius:var(--vera-radius-sm);overflow:hidden}
 .fin-bar>div{height:100%}
-.fin-section{border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem}</style></div></div>
+.fin-section{border-top:1px solid var(--vera-color-border);margin-top:1.25rem;padding-top:1rem}
+/* Phones, and tablets beside the sidebar (issue 2775): each row stacks, its
+   figures one per line with their own caption, and notes run the full width
+   rather than squeezing a column. */
+@media (max-width:900px){
+.fin-table thead{display:none}
+.fin-table{border:0;box-shadow:none;background:none;border-radius:0}
+.fin-table,.fin-table tbody,.fin-table tr,.fin-table th,.fin-table td{display:block;width:auto}
+.fin-table th.fin-row-head{padding:0.75rem 0 0.25rem;white-space:normal}
+.fin-table td.fin-num{display:grid;grid-template-columns:auto 1fr;column-gap:1rem;align-items:baseline;padding:0.2rem 0;text-align:right}
+.fin-table td.fin-num>*{grid-column:2;min-width:0;overflow-wrap:anywhere}
+.fin-table td.fin-num::before{grid-column:1;grid-row:1 / span 6;font-weight:400;color:var(--vera-color-text-muted);font-size:0.8rem;text-align:left}
+.fin-money td.fin-num:nth-of-type(1)::before{content:"Revenue"}
+.fin-money td.fin-num:nth-of-type(2)::before{content:"Cost"}
+.fin-money td.fin-num:nth-of-type(3)::before{content:"Margin"}
+.fin-hours td.fin-num:nth-of-type(1)::before{content:"Hours"}
+.fin-hours td.fin-num:nth-of-type(2)::before{content:"Budget"}
+.fin-hours td.fin-num:nth-of-type(3)::before{content:"Used"}
+.fin-table td.fin-empty{text-align:left;padding:0.25rem 0}
+.fin-table td.fin-bar-cell{padding:0.35rem 0 0.75rem}
+}</style></div></div>
 <div id="config"><div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><h2 style="margin:0">Configuration</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit project</button></div>
 <dl class="dl-split">
@@ -797,14 +837,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="58"><span class="magnitude-cell-compact" title="58% used"><span class="magnitude-cell-value">210h / 360h · 150h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>Lead design</td>
 <td data-sort-value="">— —</td>
-<td style="white-space:nowrap">
+<td><div class="env-actions">
   <a class="btn-secondary" href="#">Edit</a>
   <form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5002">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
 </form>
-</td>
+</div></td>
 </tr>
 <tr>
 <td>5001</td>
@@ -813,14 +853,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="45"><span class="magnitude-cell-compact" title="45% used"><span class="magnitude-cell-value">54h / 120h · 66h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>PM</td>
 <td data-sort-value="">— —</td>
-<td style="white-space:nowrap">
+<td><div class="env-actions">
   <a class="btn-secondary" href="#">Edit</a>
   <form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5001">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
 </form>
-</td>
+</div></td>
 </tr>
 <tr>
 <td>5003</td>
@@ -829,14 +869,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="40"><span class="magnitude-cell-compact" title="40% used"><span class="magnitude-cell-value">80h / 200h · 120h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>—</td>
 <td data-sort-value="">— —</td>
-<td style="white-space:nowrap">
+<td><div class="env-actions">
   <a class="btn-secondary" href="#">Edit</a>
   <form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5003">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
 </form>
-</td>
+</div></td>
 </tr>
 <tr>
 <td>5004</td>
@@ -845,14 +885,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="33"><span class="magnitude-cell-compact" title="33% used"><span class="magnitude-cell-value">40h / 120h · 80h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>—</td>
 <td data-sort-value="">— —</td>
-<td style="white-space:nowrap">
+<td><div class="env-actions">
   <a class="btn-secondary" href="#">Edit</a>
   <form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5004">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
 </form>
-</td>
+</div></td>
 </tr></tbody><tfoot><tr style="font-weight:600;border-top:2px solid var(--vera-color-border)">
 <td></td><td>Total</td><td></td>
 <td style="font-weight:600" data-sort-value="48"><span class="magnitude-cell-compact" title="48% used"><span class="magnitude-cell-value">384h / 800h · 416h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
@@ -872,7 +912,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </tr></tbody>
 </table>
 </div></div>
-<div id="liabilities"><div class="card"><h2>Liabilities</h2><table>
+<div id="liabilities"><div class="card"><h2>Liabilities</h2><div class="table-wrap"><table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="accrues" class="sortable">Accrues <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody>
 <tr id="liability-301">
@@ -885,7 +925,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td><span class="badge badge-active">active</span></td>
 <td><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-edit-301').classList.add('open')">Edit</button> <button type="button" class="btn-secondary-danger" onclick="document.getElementById('modal-liab-cancel-301').classList.add('open')">Cancel</button></td>
 </tr>
-</tbody></table><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-new').classList.add('open')">+ Add liability</button></div></div></div>
+</tbody></table></div><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-new').classList.add('open')">+ Add liability</button></div></div></div>
 
 <div class="modal-overlay" id="modal-config" role="dialog" aria-modal="true" aria-label="Edit project">
   <div class="modal-box">

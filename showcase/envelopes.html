@@ -306,7 +306,11 @@ ul.task-list li { margin-bottom: 0.2rem; }
 .box h2 { margin: 0 0 1rem; }
 .box p { color: var(--vera-color-text-2); margin: 0 0 1.5rem; line-height: 1.6; }
 code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radius: 3px; font-family: var(--vera-font-mono); }
-@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; } }
+@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; }
+  /* Phones (issue 2775): a label column beside its value leaves the value a
+     sliver, so each label sits above its value instead. */
+  dl, .dl-split { grid-template-columns: 1fr; gap: 0 }
+  dt { margin-top: 0.6rem } dd { margin-bottom: 0.1rem } }
 .banner { padding: 0.65rem 1rem; border-radius: 5px; margin-bottom: 1rem; font-size: 0.9rem; }
 .banner-success { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); border: 1px solid var(--vera-color-success-200); }
 .banner-warn    { background: var(--vera-color-warning-soft); color: var(--vera-color-warning-text); border: 1px solid var(--vera-color-warning-200); }
@@ -325,6 +329,10 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 @keyframes vera-toast-out { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, var(--toast-slide)); } }
 @media (prefers-reduced-motion: reduce) { .banner-toast { --toast-slide: 0px; } }
 .table-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+/* A table that fits on a desktop but may be wider than a phone or a tablet beside
+   the sidebar (issue 2775): it scrolls inside its own box there, and keeps its
+   ordinary wrapping layout everywhere it fits. */
+.table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
 .pm-acc { border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); margin-bottom: 0.5rem; background: var(--vera-color-surface); overflow: hidden; }
 .pm-acc > summary { list-style: none; cursor: pointer; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; }
 .pm-acc > summary::-webkit-details-marker { display: none; }
@@ -353,6 +361,9 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 .table-scroll > table.env-table { min-width: 100%; table-layout: fixed; }
 .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
 .table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
+/* Edit and Duplicate wrap onto two lines when the column is narrow, rather
+   than the second button running past the table's edge (issue 2775). */
+.env-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
 tr.outside-envelope-row td { color: var(--vera-color-text-muted); }
 details.outside-envelopes > summary { list-style: none; display: inline-block; margin: 0 0 0.5rem; }
 details.outside-envelopes > summary::-webkit-details-marker { display: none; }
@@ -509,6 +520,7 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
    then. At zero the badge hides and the link fades (data-quiet). */
 .nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
 .nav-badge[hidden] { display: none; }
+.nav-toggle[data-count]::after { content: attr(data-count); position: absolute; top: -0.45rem; right: -0.55rem; min-width: 1.5em; padding: 0 0.4em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.5; text-align: center; }
 .nav-link[data-quiet] { opacity: 0.5; }
 /* Contractor-liability marker (issue 2593): beside a contractor's name on a
    liability row. The title explains what a contractor's liability does. */
@@ -559,7 +571,14 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .nav-toggle { display: none; }
 @media (max-width: 767px) {
   .console-layout { display: block; }
-  .console-content main { padding: 1.25rem .75rem 1.5rem; }
+  .console-content { margin: 0.5rem; }
+  /* The menu button is fixed at the top right; page content starts below it
+     rather than under it (issue 2775). */
+  .console-content main { padding: 3.25rem .75rem 1.5rem; }
+  /* A zoomable chart keeps a readable size and scrolls inside its frame. */
+  .chart-zoom-scroll > svg { min-width: 600px; }
+  /* An empty table's message stays on screen when the table scrolls sideways. */
+  .table-wrap tr[data-sort-skip] > td[colspan], .table-scroll tr[data-sort-skip] > td[colspan] { text-align: left !important; }
   .nav-toggle { display: block; position: fixed; top: 0.6rem; right: 0.8rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
   .console-sidebar { display: none; }
   .console-sidebar.open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 1050; background: var(--vera-color-bg); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
