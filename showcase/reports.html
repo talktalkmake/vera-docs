@@ -252,6 +252,8 @@ th.sortable:hover { color: var(--vera-color-text); }
    pressed appearance, not a bespoke second one invented for the flash. */
 .chart-zoom-btn:active, .chart-zoom-btn[data-zoom-active="1"] { background: var(--vera-color-surface-alt); border-color: var(--vera-color-brand); }
 .chart-zoom-scroll { overflow: auto; max-width: 100%; max-height: 70vh; }
+/* A chart fitted narrower than its box sits centered in it (issue 2826). */
+.chart-zoom-scroll > svg { display: block; margin: 0 auto; }
 /* max-height (issue #2000) is what actually makes vertical panning and
    vertical zoom-anchoring work: without a height bound the scroller simply
    grows to whatever height the zoomed SVG needs, so scrollHeight ===
@@ -1140,6 +1142,21 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <script>
 (function () {
   var ZOOM_STEP = 0.5, ZOOM_MIN = 1, ZOOM_MAX = 3, ZOOM_WHEEL_RATE = 0.002
+  // Re-fit every chart when the window changes size (issue 2826). Bound
+  // once per page load (the flag survives the in-place region swaps that
+  // re-run this script), and it looks the frames up afresh each time, so a
+  // swapped-in chart is covered and a swapped-out one is simply gone.
+  if (typeof window !== 'undefined' && window.addEventListener && !window.__veraZoomFitBound) {
+    window.__veraZoomFitBound = true
+    var fitTimer = null
+    window.addEventListener('resize', function () {
+      if (fitTimer) clearTimeout(fitTimer)
+      fitTimer = setTimeout(function () {
+        var fs = document.getElementsByClassName('chart-zoom-frame')
+        for (var f = 0; f < fs.length; f++) if (fs[f].__veraRefit) fs[f].__veraRefit()
+      }, 150)
+    })
+  }
   var frames = document.querySelectorAll('.chart-zoom-frame')
   for (var i = 0; i < frames.length; i++) initFrame(frames[i])
 
@@ -1178,6 +1195,18 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     var baseWidth = measured > 0
       ? measured
       : (parseFloat(frame.getAttribute('data-base-width')) || 820)
+    // Fit to the window (issue 2826): at level 1 the chart is no wider than
+    // the width at which its height fills the scroll box's 70vh cap, so both
+    // axes are always in view. data-base-width/-height are the SVG's own
+    // viewBox, so their ratio is the chart's exact aspect.
+    var vbW = parseFloat(frame.getAttribute('data-base-width')) || 0
+    var vbH = parseFloat(frame.getAttribute('data-base-height')) || 0
+    function fitWidth(containerW) {
+      var maxH = (typeof window !== 'undefined' && window.innerHeight) ? window.innerHeight * 0.7 : 0
+      if (vbW > 0 && vbH > 0 && maxH > 0) return Math.min(containerW, Math.floor(maxH * vbW / vbH))
+      return containerW
+    }
+    baseWidth = fitWidth(baseWidth)
     var level = 1
     var scroller = frame.querySelector('.chart-zoom-scroll')
     var buttons = frame.querySelectorAll('[data-zoom-action]')
@@ -1330,9 +1359,9 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     // and the SVG is height:auto, so measuring before it reads the wrong height.
     // Math.ceil avoids a sub-pixel shortfall that would leave the scroller
     // permanently 0.4px overflowing and show a grab cursor with nothing to pan.
-    // The lock is measured once at init and goes stale if the window is resized
-    // later — the same accepted trade as baseWidth in #1996; do not add a
-    // resize observer. Guarded on scroller itself (not just naturalH > 0)
+    // Since issue 2826 the width and this pin are recomputed when the window is
+    // resized (frame.__veraRefit below), so both axes stay in view at any
+    // window size. Guarded on scroller itself (not just naturalH > 0)
     // because mini-dom's buildFrame test helper builds frames with no
     // .chart-zoom-scroll wrapper at all — every real _zoomableChart frame
     // always has one.
@@ -1343,6 +1372,19 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     // replacement, and the visible path must stay measurement-driven.
     if (!(naturalH > 0)) naturalH = parseFloat(frame.getAttribute('data-base-height')) || 0
     if (scroller && naturalH > 0) scroller.style.height = Math.ceil(naturalH) + 'px'
+
+    // Called by the once-per-page resize listener (issue 2826). Keeps the
+    // current zoom level; recomputes the level-1 width from the box's width
+    // and the window's height, then re-pins the height from the viewBox
+    // aspect (exact, so no measurement is needed). A hidden frame (width 0)
+    // is left alone until it is shown and the window next changes size.
+    frame.__veraRefit = function () {
+      var boxW = scroller && scroller.getBoundingClientRect ? scroller.getBoundingClientRect().width : 0
+      if (!(boxW > 0)) return
+      baseWidth = fitWidth(boxW)
+      apply()
+      if (scroller && vbW > 0 && vbH > 0) scroller.style.height = Math.ceil(baseWidth * vbH / vbW) + 'px'
+    }
   }
 })()
 </script>

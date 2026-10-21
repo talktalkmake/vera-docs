@@ -252,6 +252,8 @@ th.sortable:hover { color: var(--vera-color-text); }
    pressed appearance, not a bespoke second one invented for the flash. */
 .chart-zoom-btn:active, .chart-zoom-btn[data-zoom-active="1"] { background: var(--vera-color-surface-alt); border-color: var(--vera-color-brand); }
 .chart-zoom-scroll { overflow: auto; max-width: 100%; max-height: 70vh; }
+/* A chart fitted narrower than its box sits centered in it (issue 2826). */
+.chart-zoom-scroll > svg { display: block; margin: 0 auto; }
 /* max-height (issue #2000) is what actually makes vertical panning and
    vertical zoom-anchoring work: without a height bound the scroller simply
    grows to whatever height the zoomed SVG needs, so scrollHeight ===
