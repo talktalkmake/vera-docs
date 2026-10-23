@@ -269,6 +269,14 @@ th.sortable:hover { color: var(--vera-color-text); }
    in progress. */
 .chart-zoom-scroll[data-pannable="1"] { cursor: grab; }
 .chart-zoom-scroll[data-panning="1"]  { cursor: grabbing; }
+/* No chart ever shows a scrollbar (issue 2908): panning is by drag,
+   trackpad or shift+wheel. At rest on a desktop screen the box cannot
+   scroll at all; phones keep sideways scrolling (issue 2775). */
+.chart-zoom-scroll { scrollbar-width: none; }
+.chart-zoom-scroll::-webkit-scrollbar { display: none; }
+@media (min-width: 768px) {
+  .chart-zoom-scroll[data-zoom-level="1"] { overflow: hidden; }
+}
 td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--vera-color-border-soft); font-size: 0.9rem; vertical-align: middle; }
 tr:last-child td { border-bottom: none; }
 td a { color: var(--vera-color-brand); text-decoration: none; }
@@ -1341,6 +1349,7 @@ Recorded client-project time cost $183,600 of that pay (utilization 85%).">$158,
     // disappears again at Reset.
     function updatePannable() {
       if (!scroller) return
+      if (level === 1) { scroller.removeAttribute('data-pannable'); return }
       var canPan = scroller.scrollWidth > scroller.clientWidth || scroller.scrollHeight > scroller.clientHeight
       if (canPan) scroller.setAttribute('data-pannable', '1')
       else scroller.removeAttribute('data-pannable')
@@ -1382,6 +1391,7 @@ Recorded client-project time cost $183,600 of that pay (utilization 85%).">$158,
 
     function apply() {
       svg.style.width = (baseWidth * level) + 'px'
+      if (scroller) scroller.setAttribute('data-zoom-level', level === 1 ? '1' : 'zoomed')
       for (var k = 0; k < buttons.length; k++) {
         var a = buttons[k].getAttribute('data-zoom-action')
         if (a === 'out') buttons[k].disabled = (level <= ZOOM_MIN)
