@@ -804,7 +804,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-12"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="5" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Final asset packaging"></div>
 </form>
 <form id="del-entry-9007-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -841,7 +847,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-11"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="3" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Client feedback revisions"></div>
 </form>
 <form id="del-entry-9006-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -872,7 +884,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-11"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="4" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Season color palette"></div>
 </form>
 <form id="del-entry-9005-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -909,7 +927,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-10"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="6" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Photography style guide draft"></div>
 </form>
 <form id="del-entry-9004-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -946,7 +970,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-09"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="2" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Lookbook layout pass"></div>
 </form>
 <form id="del-entry-9003-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -977,7 +1007,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-09"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="5" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Packaging template review"></div>
 </form>
 <form id="del-entry-9002-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -1014,7 +1050,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Date</label><input type="date" name="date" value="2026-06-08"></div>
   <div class="form-group"><label>Task</label><select name="task_name"><option value="Design" selected>Design</option><option value="Development">Development</option><option value="Project Management">Project Management</option><option value="QA">QA</option><option value="Strategy">Strategy</option></select></div>
   <div class="form-group"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" value="6" required></div>
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500" value="Logo system exploration"></div>
 </form>
 <form id="del-entry-9001-form" onsubmit="return confirm('Delete this entry? This cannot be undone.')">
@@ -1042,13 +1084,85 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     c.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(d); } });
   })(cells[k]); }
 })();
+</script><script>
+(function () {
+  document.querySelectorAll('[data-links-editor]').forEach(function (ed) {
+    if (ed.dataset.linksBound) return;
+    ed.dataset.linksBound = '1';
+    var rows = ed.querySelector('[data-links-rows]');
+    var tpl = ed.querySelector('[data-links-template]');
+    function newRow(value, inherited) {
+      var holder = document.createElement('div');
+      holder.innerHTML = tpl.innerHTML;
+      var row = holder.firstElementChild;
+      var inp = row.querySelector('input');
+      inp.value = value || '';
+      if (inherited) inp.setAttribute('data-inherited', '1');
+      return row;
+    }
+    ed.addEventListener('click', function (ev) {
+      var t = ev.target;
+      if (!t || !t.closest) return;
+      var rm = t.closest('[data-link-remove]');
+      if (rm) {
+        var row = rm.closest('.task-link-row');
+        if (row) row.parentNode.removeChild(row);
+        return;
+      }
+      if (t.closest('[data-link-add]') && tpl) {
+        var added = newRow('', false);
+        rows.appendChild(added);
+        var inp = added.querySelector('input');
+        if (inp) inp.focus();
+      }
+    });
+    ed.addEventListener('input', function (ev) {
+      if (ev.target && ev.target.removeAttribute) ev.target.removeAttribute('data-inherited');
+    });
+    var form = ed.closest('form');
+    var raw = form && form.getAttribute('data-alloc-links');
+    if (!raw) return;
+    var allocs = {};
+    try { allocs = JSON.parse(raw) || {}; } catch (e) {}
+    function chosenLinks() {
+      var proj = form.elements['project_id'];
+      var task = form.elements['task_name'];
+      var sel = form.querySelector('.alloc-group select:not([disabled])');
+      if (sel && sel.value && allocs[sel.value]) return allocs[sel.value].links || [];
+      var hits = [];
+      Object.keys(allocs).forEach(function (k) {
+        var a = allocs[k];
+        if (proj && task && String(a.project_id) === proj.value && a.task_name === task.value) hits.push(a);
+      });
+      return hits.length === 1 ? (hits[0].links || []) : [];
+    }
+    function refill() {
+      Array.prototype.slice.call(rows.querySelectorAll('input[data-inherited]')).forEach(function (i) {
+        var row = i.closest('.task-link-row');
+        if (row) row.parentNode.removeChild(row);
+      });
+      var have = {};
+      rows.querySelectorAll('input').forEach(function (i) { if (i.value) have[i.value] = true; });
+      var first = rows.firstChild;
+      chosenLinks().forEach(function (l) {
+        if (have[l]) return;
+        have[l] = true;
+        rows.insertBefore(newRow(l, true), first);
+      });
+    }
+    form.addEventListener('change', function (ev) {
+      var n = ev.target && ev.target.name;
+      if (n === 'project_id' || n === 'task_name' || n === 'allocation_id') refill();
+    });
+  });
+})();
 </script></div>
 </div>
 <div class="modal-overlay" id="modal-log-time" role="dialog" aria-modal="true" aria-label="Log time">
   <div class="modal-box">
     <div class="modal-head"><h3>Log time</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-log-time').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><form class="form-stack">
+    <div class="modal-body"><form class="form-stack" data-alloc-links="{&quot;5003&quot;:{&quot;project_id&quot;:&quot;101&quot;,&quot;task_name&quot;:&quot;Design&quot;,&quot;links&quot;:[]},&quot;5005&quot;:{&quot;project_id&quot;:&quot;104&quot;,&quot;task_name&quot;:&quot;Design&quot;,&quot;links&quot;:[]}}">
   <div style="display:flex;gap:1rem;flex-wrap:wrap">
     <div class="form-group" style="flex:1;min-width:150px"><label>Date</label><input type="date" name="date" value="2026-06-15" max="2026-06-15" required></div>
     <div class="form-group" style="flex:1;min-width:150px"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" required></div>
@@ -1056,12 +1170,91 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <div class="form-group"><label>Project</label><select id="log-project-select" name="project_id" required><option value="">-- select --</option><option value="">Bellhaven Outdoors — Brand Refresh</option><option value="">Bellhaven Outdoors — Seasonal Lookbook</option><option value="">Kestrel Robotics — Launch Site</option><option value="">Solace Financial — Q3 Content Sprint</option><option disabled>──────── Internal ────────</option><option value="">Northline Studio — Internal Ops</option></select></div>
   <div class="form-group" id="log-task-group"><label>Task</label><select id="log-task-select" name="task_name" required data-tasks="{&quot;byProject&quot;:{&quot;Bellhaven Outdoors — Brand Refresh&quot;:[&quot;Design&quot;,&quot;Project Management&quot;,&quot;Strategy&quot;],&quot;Solace Financial — Q3 Content Sprint&quot;:[&quot;Design&quot;,&quot;Development&quot;],&quot;Kestrel Robotics — Launch Site&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;Bellhaven Outdoors — Seasonal Lookbook&quot;:[&quot;Design&quot;]},&quot;all&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;Project Management&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;internal&quot;:[&quot;undefined&quot;],&quot;protected&quot;:[]}" data-default-task="Design"><option value="">-- select --</option></select></div>
   
-  <div class="form-group"><label>Task link <span class="optional-label">(optional)</span></label><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value=""></div>
+  <div class="form-group task-links-editor" data-links-editor>
+<label>Task links <span class="optional-label">(optional)</span></label>
+<input type="hidden" name="task_link" value="">
+<div data-links-rows><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></div>
+<button type="button" class="btn-secondary" data-link-add>+ Add link</button>
+<template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
+</div>
   <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500"></div>
   <div class="form-actions"><button type="submit" class="btn-primary">Log time</button></div>
 </form></div>
   </div>
 </div>
+<script>
+(function () {
+  document.querySelectorAll('[data-links-editor]').forEach(function (ed) {
+    if (ed.dataset.linksBound) return;
+    ed.dataset.linksBound = '1';
+    var rows = ed.querySelector('[data-links-rows]');
+    var tpl = ed.querySelector('[data-links-template]');
+    function newRow(value, inherited) {
+      var holder = document.createElement('div');
+      holder.innerHTML = tpl.innerHTML;
+      var row = holder.firstElementChild;
+      var inp = row.querySelector('input');
+      inp.value = value || '';
+      if (inherited) inp.setAttribute('data-inherited', '1');
+      return row;
+    }
+    ed.addEventListener('click', function (ev) {
+      var t = ev.target;
+      if (!t || !t.closest) return;
+      var rm = t.closest('[data-link-remove]');
+      if (rm) {
+        var row = rm.closest('.task-link-row');
+        if (row) row.parentNode.removeChild(row);
+        return;
+      }
+      if (t.closest('[data-link-add]') && tpl) {
+        var added = newRow('', false);
+        rows.appendChild(added);
+        var inp = added.querySelector('input');
+        if (inp) inp.focus();
+      }
+    });
+    ed.addEventListener('input', function (ev) {
+      if (ev.target && ev.target.removeAttribute) ev.target.removeAttribute('data-inherited');
+    });
+    var form = ed.closest('form');
+    var raw = form && form.getAttribute('data-alloc-links');
+    if (!raw) return;
+    var allocs = {};
+    try { allocs = JSON.parse(raw) || {}; } catch (e) {}
+    function chosenLinks() {
+      var proj = form.elements['project_id'];
+      var task = form.elements['task_name'];
+      var sel = form.querySelector('.alloc-group select:not([disabled])');
+      if (sel && sel.value && allocs[sel.value]) return allocs[sel.value].links || [];
+      var hits = [];
+      Object.keys(allocs).forEach(function (k) {
+        var a = allocs[k];
+        if (proj && task && String(a.project_id) === proj.value && a.task_name === task.value) hits.push(a);
+      });
+      return hits.length === 1 ? (hits[0].links || []) : [];
+    }
+    function refill() {
+      Array.prototype.slice.call(rows.querySelectorAll('input[data-inherited]')).forEach(function (i) {
+        var row = i.closest('.task-link-row');
+        if (row) row.parentNode.removeChild(row);
+      });
+      var have = {};
+      rows.querySelectorAll('input').forEach(function (i) { if (i.value) have[i.value] = true; });
+      var first = rows.firstChild;
+      chosenLinks().forEach(function (l) {
+        if (have[l]) return;
+        have[l] = true;
+        rows.insertBefore(newRow(l, true), first);
+      });
+    }
+    form.addEventListener('change', function (ev) {
+      var n = ev.target && ev.target.name;
+      if (n === 'project_id' || n === 'task_name' || n === 'allocation_id') refill();
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   var proj = document.getElementById('log-project-select');
