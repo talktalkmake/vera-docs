@@ -8,6 +8,7 @@
 - Project financials: live project margin, retainer burn, fixed-price percentage-of-completion, and over-budget alerts the day a project starts drifting — not at month-end
 - Capacity & allocations: per-person hour envelopes and a forward-looking capacity heatmap to answer "can we take this project?" with data
 - Reporting: a continuously up-to-date P&L by month, customer, and discipline, with CSV export — the board deck is no longer a Sunday-night project
+- Proposals: price a job against a target LER, check it against the team's capacity, and download a client-facing estimate
 - Vendor liabilities: fixed-fee vendor commitments accrue cost and revenue on the same clock, so margin is correct from the first hour
 
 ## Core concepts
