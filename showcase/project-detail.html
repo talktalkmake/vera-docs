@@ -395,6 +395,14 @@ details.outside-envelopes > summary::-webkit-details-marker { display: none; }
 details.outside-envelopes > summary .outside-hide { display: none; }
 details.outside-envelopes[open] > summary .outside-show { display: none; }
 details.outside-envelopes[open] > summary .outside-hide { display: inline; }
+/* The entries in a row of time outside envelopes (issue 3198). */
+details.outside-entries > summary { cursor: pointer; }
+details.outside-entries > ul { list-style: none; margin: 0.35rem 0 0; padding: 0; max-height: 16rem; overflow-y: auto; }
+details.outside-entries > ul > li { padding: 0.15rem 0; }
+/* The entry a link points at, on a person's time page (issue 3198). */
+table.week-entries tr[id] { scroll-margin-top: 5rem; }
+table.week-entries tr:target td { background: var(--vera-color-brand-50); }
+table.week-entries tr:target td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
 /* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
    that masking is on. Form controls and tables of individual pay blur whole. */
 .privacy-blur { filter: blur(5px); user-select: none; }
@@ -915,6 +923,8 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td></td>
 <td></td>
 </tr></tfoot></table></div><h3 class="section-head">Cancelled envelopes</h3>
+<details class="outside-envelopes">
+<summary class="btn-secondary"><span class="outside-show">Show 1 row</span><span class="outside-hide">Hide rows</span></summary>
 <table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="allocated" class="sortable">Allocated <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
@@ -926,6 +936,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td><button type="button" class="save-btn" onclick="document.getElementById('modal-alloc-react-4999').classList.add('open')">Reactivate</button></td>
 </tr></tbody>
 </table>
+</details>
 </div></div>
 <div id="liabilities"><div class="card"><h2>Liabilities</h2><div class="table-wrap"><table>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="vendor" class="sortable">Paid to <span class="sort-caret"></span></th><th data-sort-key="description" class="sortable">Description <span class="sort-caret"></span></th><th data-sort-key="amount" class="sortable">Agreed amount <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Agreed hours <span class="sort-caret"></span></th><th data-sort-key="accrues" class="sortable">Accrues <span class="sort-caret"></span></th><th data-sort-key="status" class="sortable">Status <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
