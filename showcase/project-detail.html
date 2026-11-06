@@ -380,9 +380,15 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
    column can't push Profit off the screen; long names fade (.cell-name-fade). */
 .table-scroll > table.pm-table { min-width: 100%; table-layout: fixed; }
 .table-scroll table.pm-table td { overflow: hidden; }
-/* Edit and Duplicate wrap onto two lines when the column is narrow, rather
-   than the second button running past the table's edge (issue 2775). */
-.env-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+/* Buttons in a table's Actions cell (issue 3197, _rowActions): two sit side by
+   side and three or more stack, always with a gap, so none touches another.
+   The envelope table's columns are fixed, so there the pair may wrap rather
+   than run past the table's edge (issue 2775). Below desktop any pair may wrap. */
+.row-actions { display: flex; flex-wrap: nowrap; gap: 0.5rem; align-items: center; }
+.row-actions-stack { flex-direction: column; align-items: flex-start; }
+.row-actions button, .row-actions a { white-space: nowrap; }
+table.env-table .row-actions { flex-wrap: wrap; }
+@media (max-width: 899px) { .row-actions { flex-wrap: wrap; } }
 tr.outside-envelope-row td { color: var(--vera-color-text-muted); }
 details.outside-envelopes > summary { list-style: none; display: inline-block; margin: 0 0 0.5rem; }
 details.outside-envelopes > summary::-webkit-details-marker { display: none; }
@@ -858,14 +864,11 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="58"><span class="magnitude-cell-compact" title="58% used"><span class="magnitude-cell-value">210h / 360h · 150h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>Lead design</td>
 <td data-sort-value="">— —</td>
-<td><div class="env-actions">
-  <a class="btn-secondary" href="#">Edit</a>
-  <form style="display:inline;margin:0">
+<td><div class="row-actions"><a class="btn-secondary" href="#">Edit</a><form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5002">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
-</form>
-</div></td>
+</form></div></td>
 </tr>
 <tr>
 <td>5001</td>
@@ -874,14 +877,11 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="45"><span class="magnitude-cell-compact" title="45% used"><span class="magnitude-cell-value">54h / 120h · 66h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>PM</td>
 <td data-sort-value="">— —</td>
-<td><div class="env-actions">
-  <a class="btn-secondary" href="#">Edit</a>
-  <form style="display:inline;margin:0">
+<td><div class="row-actions"><a class="btn-secondary" href="#">Edit</a><form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5001">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
-</form>
-</div></td>
+</form></div></td>
 </tr>
 <tr>
 <td>5003</td>
@@ -890,14 +890,11 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="40"><span class="magnitude-cell-compact" title="40% used"><span class="magnitude-cell-value">80h / 200h · 120h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>—</td>
 <td data-sort-value="">— —</td>
-<td><div class="env-actions">
-  <a class="btn-secondary" href="#">Edit</a>
-  <form style="display:inline;margin:0">
+<td><div class="row-actions"><a class="btn-secondary" href="#">Edit</a><form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5003">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
-</form>
-</div></td>
+</form></div></td>
 </tr>
 <tr>
 <td>5004</td>
@@ -906,14 +903,11 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td data-sort-value="33"><span class="magnitude-cell-compact" title="33% used"><span class="magnitude-cell-value">40h / 120h · 80h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td>—</td>
 <td data-sort-value="">— —</td>
-<td><div class="env-actions">
-  <a class="btn-secondary" href="#">Edit</a>
-  <form style="display:inline;margin:0">
+<td><div class="row-actions"><a class="btn-secondary" href="#">Edit</a><form style="display:inline;margin:0">
   <input type="hidden" name="allocation_id" value="5004">
   <input type="hidden" name="return_to" value="/console/p/101">
   <button type="submit" class="btn-secondary">Duplicate</button>
-</form>
-</div></td>
+</form></div></td>
 </tr></tbody><tfoot><tr style="font-weight:600;border-top:2px solid var(--vera-color-border)">
 <td></td><td>Total</td><td></td>
 <td style="font-weight:600" data-sort-value="48"><span class="magnitude-cell-compact" title="48% used"><span class="magnitude-cell-value">384h / 800h · 416h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
@@ -944,7 +938,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td>45h</td>
 <td data-sort-value="">—</td>
 <td><span class="badge badge-active">active</span></td>
-<td><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-edit-301').classList.add('open')">Edit</button> <button type="button" class="btn-secondary-danger" onclick="document.getElementById('modal-liab-cancel-301').classList.add('open')">Cancel</button></td>
+<td><div class="row-actions"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-edit-301').classList.add('open')">Edit</button><button type="button" class="btn-secondary-danger" onclick="document.getElementById('modal-liab-cancel-301').classList.add('open')">Cancel</button></div></td>
 </tr>
 </tbody></table></div><div style="margin-top:1rem;display:flex;justify-content:flex-end"><button type="button" class="btn-primary" onclick="document.getElementById('modal-liab-new').classList.add('open')">+ Add liability</button></div></div></div>
 
