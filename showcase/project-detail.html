@@ -867,7 +867,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <div id="tasks"><div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;margin-bottom:0.75rem"><h3 class="section-head" style="margin:0">Enabled tasks</h3><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit tasks</button></div>
 <div class="task-pills"><span class="task-pill">Design</span><span class="task-pill">Project Management</span><span class="task-pill">Strategy</span></div></div>
 </div></div>
-<div id="allocations"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">4 Envelopes</h2><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add envelope</button></div>
+<div id="allocations"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">4 Allocations</h2><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add allocation</button></div>
 <div class="table-scroll"><table class="env-table"><colgroup><col style="width:5%"><col style="width:15%"><col style="width:18%"><col style="width:21%"><col style="width:12%"><col style="width:14%"><col style="width:15%"></colgroup>
 <thead><tr><th data-sort-key="id" class="sortable">ID <span class="sort-caret"></span></th><th data-sort-key="person" class="sortable">Person <span class="sort-caret"></span></th><th data-sort-key="task" class="sortable">Task <span class="sort-caret"></span></th><th data-sort-key="hours" class="sortable">Hours <span class="sort-caret"></span></th><th data-sort-key="label" class="sortable">Label <span class="sort-caret"></span></th><th data-sort-key="window" class="sortable">Window <span class="sort-caret"></span></th><th>Actions</th></tr></thead>
 <tbody><tr>
@@ -927,7 +927,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td></td>
 <td></td>
 <td></td>
-</tr></tfoot></table></div><h3 class="section-head">Cancelled envelopes</h3>
+</tr></tfoot></table></div><h3 class="section-head">Cancelled allocations</h3>
 <details class="outside-envelopes">
 <summary class="btn-secondary"><span class="outside-show">Show 1 row</span><span class="outside-hide">Hide rows</span></summary>
 <table>
@@ -1036,9 +1036,9 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 </form></div>
   </div>
 </div>
-<div class="modal-overlay" id="modal-alloc-new" role="dialog" aria-modal="true" aria-label="Add envelope">
+<div class="modal-overlay" id="modal-alloc-new" role="dialog" aria-modal="true" aria-label="Add allocation">
   <div class="modal-box">
-    <div class="modal-head"><h3>Add envelope</h3>
+    <div class="modal-head"><h3>Add allocation</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-alloc-new').classList.remove('open')">&times;</button></div>
     <div class="modal-body"><form class="form-stack">
   <div class="form-group"><label>Person</label><select id="alloc-new-person" name="user_id"><option value="3" data-default-task="Design">Elena Cho</option><option value="2" data-default-task="Project Management">Jordan Wells</option><option value="4" data-default-task="Design">Marcus Ade</option><option value="1" data-default-task="">Priya Natarajan</option><option value="5" data-default-task="Strategy">Ruth Okafor</option></select></div>
@@ -1056,16 +1056,16 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
       <p class="muted" style="margin:0.25rem 0 0;font-size:0.8rem">Leave blank if these hours can land any time before the deadline.</p>
     </div>
   </div>
-  <div class="form-actions"><button type="submit" class="btn-primary">Add envelope</button></div>
+  <div class="form-actions"><button type="submit" class="btn-primary">Add allocation</button></div>
 </form>
 <script>(function(){var p=document.getElementById('alloc-new-person'),t=document.getElementById('alloc-new-task');if(!p||!t)return;function infer(){var def=(p.options[p.selectedIndex]&&p.options[p.selectedIndex].getAttribute('data-default-task'))||'';if(!def)return;for(var i=0;i<t.options.length;i++){if(t.options[i].value===def){t.value=def;break;}}}p.addEventListener('change',infer);infer();})()</script></div>
   </div>
 </div>
-<div class="modal-overlay" id="modal-alloc-react-4999" role="dialog" aria-modal="true" aria-label="Reactivate envelope">
+<div class="modal-overlay" id="modal-alloc-react-4999" role="dialog" aria-modal="true" aria-label="Reactivate allocation">
   <div class="modal-box">
-    <div class="modal-head"><h3>Reactivate envelope</h3>
+    <div class="modal-head"><h3>Reactivate allocation</h3>
       <button type="button" class="modal-close" aria-label="Close" onclick="document.getElementById('modal-alloc-react-4999').classList.remove('open')">&times;</button></div>
-    <div class="modal-body"><p>Reactivate envelope for <strong>Devon Marsh</strong>? It will become active again.</p>
+    <div class="modal-body"><p>Reactivate allocation for <strong>Devon Marsh</strong>? It will become active again.</p>
 <form>
   <input type="hidden" name="allocation_id" value="4999">
   <div class="form-actions"><button type="submit" class="save-btn">Reactivate</button></div>
