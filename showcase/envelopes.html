@@ -377,6 +377,9 @@ code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radiu
 .table-scroll > table.env-table { min-width: 100%; table-layout: fixed; }
 .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
 .table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
+/* An ID never breaks inside its number (issue 3368); a pair tag after it may
+   still wrap to its own line. */
+.table-scroll table.env-table td:first-child { overflow-wrap: normal; }
 /* Project Managers detail tables (issue 2825): fixed columns so the Project
    column can't push Profit off the screen; long names fade (.cell-name-fade). */
 .table-scroll > table.pm-table { min-width: 100%; table-layout: fixed; }
