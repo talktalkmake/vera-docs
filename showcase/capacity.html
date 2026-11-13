@@ -880,5 +880,103 @@ function runScripts(region){
   }
 })()
 </script>
+<script>
+(function () {
+  if (window.__veraChartHover) return
+  window.__veraChartHover = true
+  var NS = 'http://www.w3.org/2000/svg'
+  var tip = null
+  var active = null
+  function tipEl() {
+    if (tip) return tip
+    tip = document.createElement('div')
+    tip.className = 'vera-chart-tip'
+    tip.style.cssText = 'position:fixed;z-index:1000;pointer-events:none;display:none;background:var(--vera-color-surface);color:var(--vera-color-text);border:1px solid var(--vera-color-border);border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,0.12);padding:6px 8px;font-family:var(--vera-font-sans);font-size:12px;line-height:1.5;max-width:280px'
+    document.body.appendChild(tip)
+    return tip
+  }
+  function dataOf(svg) {
+    if (svg.__veraHover === undefined) {
+      try { svg.__veraHover = JSON.parse(svg.getAttribute('data-hover')) } catch (err) { svg.__veraHover = null }
+    }
+    return svg.__veraHover
+  }
+  function layerOf(svg) {
+    var g = svg.querySelector('g.vera-hover-layer')
+    if (!g) {
+      g = document.createElementNS(NS, 'g')
+      g.setAttribute('class', 'vera-hover-layer')
+      g.setAttribute('pointer-events', 'none')
+      svg.appendChild(g)
+    }
+    while (g.firstChild) g.removeChild(g.firstChild)
+    return g
+  }
+  function mark(g, name, attrs) {
+    var el = document.createElementNS(NS, name)
+    for (var k in attrs) el.setAttribute(k, attrs[k])
+    g.appendChild(el)
+  }
+  function hide() {
+    if (active) layerOf(active)
+    active = null
+    if (tip) tip.style.display = 'none'
+  }
+  function show(svg, e) {
+    var d = dataOf(svg)
+    if (!d || !d.cols || !d.cols.length) return hide()
+    var box = svg.getBoundingClientRect()
+    var vb = svg.viewBox && svg.viewBox.baseVal
+    if (!vb || !box.width || !box.height) return hide()
+    var x = (e.clientX - box.left) * (vb.width / box.width)
+    var y = (e.clientY - box.top) * (vb.height / box.height)
+    if (x < d.l - 4 || x > d.r + 4 || y < d.t - 4 || y > d.b + 4) return hide()
+    var col = d.cols[0]
+    for (var i = 1; i < d.cols.length; i++) {
+      if (Math.abs(d.cols[i].x - x) < Math.abs(col.x - x)) col = d.cols[i]
+    }
+    if (active && active !== svg) layerOf(active)
+    active = svg
+    var g = layerOf(svg)
+    if (d.w) mark(g, 'rect', { x: col.x - d.w / 2, y: d.t, width: d.w, height: d.b - d.t, fill: 'var(--vera-color-neutral-400)', 'fill-opacity': '0.12' })
+    else mark(g, 'line', { x1: col.x, y1: d.t, x2: col.x, y2: d.b, stroke: 'var(--vera-color-neutral-400)', 'stroke-width': '1' })
+    for (var j = 0; j < col.i.length; j++) {
+      if (col.i[j].y != null) mark(g, 'circle', { cx: col.x, cy: col.i[j].y, r: '4', fill: col.i[j].c, stroke: 'var(--vera-color-surface)', 'stroke-width': '2' })
+    }
+    var t = tipEl()
+    while (t.firstChild) t.removeChild(t.firstChild)
+    if (col.h) {
+      var head = document.createElement('div')
+      head.style.fontWeight = '600'
+      head.textContent = col.h
+      t.appendChild(head)
+    }
+    for (var k = 0; k < col.i.length; k++) {
+      var row = document.createElement('div')
+      var sw = document.createElement('span')
+      sw.style.cssText = 'display:inline-block;width:0.6em;height:0.6em;border-radius:2px;margin-right:6px;vertical-align:middle'
+      sw.style.background = col.i[k].c
+      row.appendChild(sw)
+      row.appendChild(document.createTextNode(col.i[k].t))
+      t.appendChild(row)
+    }
+    t.style.display = 'block'
+    var left = e.clientX + 14
+    if (left + t.offsetWidth > window.innerWidth - 8) left = Math.max(8, e.clientX - 14 - t.offsetWidth)
+    var top = e.clientY + 14
+    if (top + t.offsetHeight > window.innerHeight - 8) top = Math.max(8, e.clientY - 14 - t.offsetHeight)
+    t.style.left = left + 'px'
+    t.style.top = top + 'px'
+  }
+  function onPoint(e) {
+    var svg = e.target && e.target.closest ? e.target.closest('svg[data-hover]') : null
+    if (!svg) { if (active) hide(); return }
+    show(svg, e)
+  }
+  document.addEventListener('pointermove', onPoint)
+  document.addEventListener('pointerdown', onPoint)
+  window.addEventListener('scroll', hide, true)
+})()
+</script>
 </body>
 </html>
