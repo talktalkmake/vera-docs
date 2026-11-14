@@ -1145,7 +1145,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
       var hits = [];
       Object.keys(allocs).forEach(function (k) {
         var a = allocs[k];
-        if (proj && task && String(a.project_id) === proj.value && a.task_name === task.value) hits.push(a);
+        if (proj && task && String(a.project_id) === proj.value && (a.task_name === '' || a.task_name === task.value)) hits.push(a);
       });
       return hits.length === 1 ? (hits[0].links || []) : [];
     }
@@ -1244,7 +1244,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
       var hits = [];
       Object.keys(allocs).forEach(function (k) {
         var a = allocs[k];
-        if (proj && task && String(a.project_id) === proj.value && a.task_name === task.value) hits.push(a);
+        if (proj && task && String(a.project_id) === proj.value && (a.task_name === '' || a.task_name === task.value)) hits.push(a);
       });
       return hits.length === 1 ? (hits[0].links || []) : [];
     }
