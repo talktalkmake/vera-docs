@@ -871,7 +871,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <div class="task-pills"><span class="task-pill">Design</span><span class="task-pill">Project Management</span><span class="task-pill">Strategy</span></div></div>
 </div></div>
 <div id="allocations"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem"><h2 style="margin:0">4 Allocations</h2><button type="button" class="btn-primary" onclick="document.getElementById('modal-alloc-new').classList.add('open')">+ Add allocation</button></div>
-<div class="table-scroll"><table class="env-table" data-by-person><colgroup><col style="width:8%"><col style="width:35%"><col style="width:28%"><col style="width:15%"><col style="width:14%"></colgroup>
+<div class="table-scroll"><table class="env-table" data-active-allocations><colgroup><col style="width:8%"><col style="width:35%"><col style="width:28%"><col style="width:15%"><col style="width:14%"></colgroup>
 <thead><tr><th>ID</th><th>Person</th><th>Hours</th><th>Window</th><th>Actions</th></tr></thead>
 <tbody><tr>
 <td>5002</td>
@@ -905,32 +905,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <td style="font-weight:600" data-sort-value="48"><span class="magnitude-cell-compact" title="48% used"><span class="magnitude-cell-value">384h / 800h · 416h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
 <td></td>
 <td></td>
-</tr></tfoot></table></div>
-<style>
-.alloc-person-toggle{background:none;border:none;padding:0;font:inherit;font-weight:600;color:var(--vera-color-text);cursor:pointer;text-transform:none;letter-spacing:normal}
-.alloc-person-toggle::before{content:'▸';display:inline-block;width:1em;color:var(--vera-color-text-muted)}
-.alloc-person-toggle[aria-expanded="true"]::before{content:'▾'}
-tr.alloc-person-child td:nth-child(2){padding-left:1.5em}
-</style>
-<script>
-(function () {
-  var buttons = document.querySelectorAll('.alloc-person-toggle')
-  for (var i = 0; i < buttons.length; i++) {
-    (function (btn) {
-      if (btn.dataset.bound) return
-      btn.dataset.bound = '1'
-      btn.addEventListener('click', function () {
-        var open = btn.getAttribute('aria-expanded') !== 'true'
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false')
-        var row = btn.closest('tr')
-        var group = row.getAttribute('data-alloc-person')
-        var rows = row.parentNode.querySelectorAll('tr.alloc-person-child[data-alloc-person="' + group + '"]')
-        for (var j = 0; j < rows.length; j++) rows[j].hidden = !open
-      })
-    })(buttons[i])
-  }
-})()
-</script><h3 class="section-head">Cancelled allocations</h3>
+</tr></tfoot></table></div><h3 class="section-head">Cancelled allocations</h3>
 <details class="outside-envelopes">
 <summary class="btn-secondary"><span class="outside-show">Show 1 row</span><span class="outside-hide">Hide rows</span></summary>
 <table>
@@ -1194,57 +1169,6 @@ tr.alloc-person-child td:nth-child(2){padding-left:1.5em}
         })
       }
     })(tables[t])
-  }
-})()
-</script>
-<script>
-(function () {
-  var groups = document.querySelectorAll('.envelope-window-fields')
-  for (var i = 0; i < groups.length; i++) initGroup(groups[i])
-
-  function initGroup(root) {
-    if (root.getAttribute('data-bound') === '1') return
-    root.setAttribute('data-bound', '1')
-
-    var btn = root.querySelector('.envelope-window-reveal')
-    var body = root.querySelector('.envelope-window-body')
-    if (!btn || !body) return
-
-    var s = body.querySelector('input[name="start_date"]')
-    var e = body.querySelector('input[name="end_date"]')
-    var bMin = root.getAttribute('data-min') || ''
-    var bMax = root.getAttribute('data-max') || ''
-    function later(a, b) { return a && b ? (a > b ? a : b) : (a || b) }
-    function earlier(a, b) { return a && b ? (a < b ? a : b) : (a || b) }
-    function link() {
-      if (!s || !e) return
-      var eMin = later(bMin, s.value); if (eMin) e.min = eMin; else e.removeAttribute('min')
-      var sMax = earlier(bMax, e.value); if (sMax) s.max = sMax; else s.removeAttribute('max')
-    }
-    if (s && e) { s.addEventListener('change', link); e.addEventListener('change', link); link() }
-
-    if (root.hasAttribute('data-has-window')) {
-      // Already has a stored window — nothing to collapse.
-      return
-    }
-
-    body.hidden = true
-    btn.hidden = false
-
-    btn.addEventListener('click', function () {
-      body.hidden = false
-      btn.hidden = true
-
-      var startInput = body.querySelector('input[name="start_date"]')
-      var endInput = body.querySelector('input[name="end_date"]')
-      var projectStart = root.getAttribute('data-project-start')
-      var projectEnd = root.getAttribute('data-project-end')
-      if (startInput && endInput && !startInput.value && !endInput.value && projectStart && projectEnd) {
-        startInput.value = projectStart
-        endInput.value = projectEnd
-      }
-      if (startInput) startInput.focus()
-    })
   }
 })()
 </script>
