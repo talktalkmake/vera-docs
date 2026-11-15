@@ -716,8 +716,8 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   </select>
   <div id="usage-toggle" style="margin-left:auto;display:inline-flex;border:1px solid var(--vera-color-brand);border-radius:4px;overflow:hidden">
     <button type="button" class="cat-btn active" data-usage="">All</button>
-    <button type="button" class="cat-btn" data-usage="under" title="Under 80% used"><span class="usage-dot" style="background:var(--vera-color-success-600)"></span></button>
-    <button type="button" class="cat-btn" data-usage="near" title="80–100% used"><span class="usage-dot" style="background:var(--vera-color-warning-600)"></span></button>
+    <button type="button" class="cat-btn" data-usage="under" title="On course"><span class="usage-dot" style="background:var(--vera-color-success-600)"></span></button>
+    <button type="button" class="cat-btn" data-usage="near" title="Heading over"><span class="usage-dot" style="background:var(--vera-color-warning-600)"></span></button>
     <button type="button" class="cat-btn" data-usage="over" title="Over-allocated"><span class="usage-dot" style="background:var(--vera-color-danger-600)"></span></button>
   </div>
 </div>
@@ -830,7 +830,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <a class="btn-secondary" href="#">Edit</a>
 </td>
 </tr></tbody></table></div>
-<p style="color:var(--vera-color-text-muted);font-size:0.85rem;margin-top:0.5rem">Hours shows logged against allocated. The bar fills with the share used — amber from 80% up to full, red once usage passes 100% or remaining hours go negative. Sorting Hours orders by share used, not logged hours.</p>
+<p style="color:var(--vera-color-text-muted);font-size:0.85rem;margin-top:0.5rem">Hours shows logged against allocated, and where each allocation lands at this pace. The bar fills with the share used. It turns amber once 20% of the project's time has gone and the pace lands more than 10% over, and red once the hours run out. An allocation with no project dates is amber from 80% used. Sorting Hours orders by share used, not logged hours.</p>
 </main>
 <script>
 (function () {
