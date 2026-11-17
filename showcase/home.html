@@ -615,6 +615,8 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   /* The menu button is fixed at the top right; page content starts below it
      rather than under it (issue 2775). */
   .console-content main { padding: 3.25rem .75rem 1.5rem; }
+  /* Issue 3451: a card's left and right padding is halved on a phone (space-md). */
+  .card { padding-left: var(--vera-space-md); padding-right: var(--vera-space-md); }
   /* A zoomable chart keeps a readable size and scrolls inside its frame. */
   .chart-zoom-scroll > svg { min-width: 600px; }
   /* An empty table's message stays on screen when the table scrolls sideways. */
