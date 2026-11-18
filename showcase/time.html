@@ -714,43 +714,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <button type="button" class="btn-primary" onclick="document.getElementById('modal-log-time').classList.add('open')">+ Log time</button>
 </div>
 
-<div class="card">
-<h2 style="font-size:1rem;font-weight:600;margin:0 0 1rem">Your allocations</h2>
-<div class="table-scroll"><table>
-<thead><tr><th>ID</th><th>Client</th><th>Project</th><th>Deadline</th><th>Hours</th><th>Quick log</th></tr></thead>
-<tbody><tr>
-<td>5003</td>
-<td>—</td>
-<td>Bellhaven Outdoors — Brand Refresh</td>
-<td>Sep 30</td>
-<td data-sort-value="40"><span class="magnitude-cell-compact" title="40% used"><span class="magnitude-cell-value">80h / 200h · 120h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
-<td style="white-space:nowrap"><form style="margin:0">
-  <input type="hidden" name="project_id" value="101">
-  <input type="hidden" name="task_name" value="Design">
-  <input type="hidden" name="date" value="2026-06-15">
-  <input type="hidden" name="allocation_id" value="5003">
-  <select name="hours" onchange="if(this.value)this.form.submit()" style="font-size:0.85rem;padding:4px 6px;border:1px solid #ccc;border-radius:var(--vera-radius-sm)" aria-label="Quick-log time to Bellhaven Outdoors — Brand Refresh">
-    <option value="">+ Log…</option><option value="0.25">15m</option><option value="0.5">30m</option><option value="0.75">45m</option><option value="1">1h</option><option value="2">2h</option><option value="4">4h</option><option value="8">8h</option>
-  </select>
-</form></td>
-</tr>
-<tr>
-<td>5005</td>
-<td>—</td>
-<td>Bellhaven Outdoors — Seasonal Lookbook</td>
-<td>Jul 15</td>
-<td data-sort-value="58"><span class="magnitude-cell-compact" title="58% used"><span class="magnitude-cell-value">52h / 90h · 38h left</span><span class="magnitude-cell-bar" aria-hidden="true"><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick magnitude-tick-filled" style="background:var(--vera-color-success-600)"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span><span class="magnitude-tick"></span></span></span></td>
-<td style="white-space:nowrap"><form style="margin:0">
-  <input type="hidden" name="project_id" value="104">
-  <input type="hidden" name="task_name" value="Design">
-  <input type="hidden" name="date" value="2026-06-15">
-  <input type="hidden" name="allocation_id" value="5005">
-  <select name="hours" onchange="if(this.value)this.form.submit()" style="font-size:0.85rem;padding:4px 6px;border:1px solid #ccc;border-radius:var(--vera-radius-sm)" aria-label="Quick-log time to Bellhaven Outdoors — Seasonal Lookbook">
-    <option value="">+ Log…</option><option value="0.25">15m</option><option value="0.5">30m</option><option value="0.75">45m</option><option value="1">1h</option><option value="2">2h</option><option value="4">4h</option><option value="8">8h</option>
-  </select>
-</form></td>
-</tr></tbody></table></div>
-</div>
+
 <div class="card" style="margin-top:2.5rem">
 <h2 style="font-size:1rem;font-weight:600;margin:0 0 1rem">Recent entries</h2>
 <div id="week-view" data-inplace-region><div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
