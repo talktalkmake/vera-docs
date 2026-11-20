@@ -725,31 +725,80 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .home-brief .brief-tile { margin:0; display:flex; flex-direction:column; }
 .home-brief .brief-kicker { font-size:var(--vera-font-size-2xs); text-transform:uppercase; letter-spacing:0.06em; color:var(--vera-color-text-muted); margin:0 0 0.35rem; }
 .home-brief .brief-lead { font-size:1.35rem; font-weight:600; margin:0 0 0.5rem; line-height:1.2; }
-.home-brief .brief-counts { display:flex; flex-wrap:wrap; gap:0.25rem 1rem; margin:0 0 0.75rem; font-size:var(--vera-font-size-sm); }
-.home-brief .brief-counts strong { font-size:1rem; }
 .home-brief .brief-list { list-style:none; padding:0; margin:0 0 0.75rem; font-size:var(--vera-font-size-sm); }
-.home-brief .brief-list li { margin:0 0 0.35rem; }
 .home-brief .brief-note { color:var(--vera-color-text-muted); }
-.home-brief .brief-more { margin-top:auto; font-size:var(--vera-font-size-sm); }
+.home-brief .brief-more { margin-left:auto; font-size:var(--vera-font-size-sm); }
 .home-brief .brief-dot { display:inline-block; width:0.55rem; height:0.55rem; border-radius:50%; margin-right:0.35rem; vertical-align:baseline; }
+.home-brief .brief-rows { display:flex; flex-direction:column; gap:var(--vera-space-md); margin:0 0 var(--vera-space-md); font-size:var(--vera-font-size-sm); }
+.home-brief .brief-list { display:flex; flex-direction:column; gap:var(--vera-space-md); }
+.home-brief .brief-row { display:flex; align-items:baseline; gap:var(--vera-space-xs); }
+.home-brief .brief-row[hidden] { display:none; }
+.home-brief .brief-leader { flex:1 1 auto; min-width:var(--vera-space-md); align-self:flex-end; margin-bottom:0.3em; border-bottom:var(--vera-border-width-default) dotted var(--vera-color-border); }
+.home-brief .brief-fade { -webkit-mask-image:linear-gradient(to bottom,#000,transparent); mask-image:linear-gradient(to bottom,#000,transparent); }
+.home-brief .brief-foot { margin-top:auto; display:flex; align-items:center; gap:var(--vera-space-md); }
+.home-brief .brief-show-more { border:0; background:none; padding:0; font:inherit; font-size:var(--vera-font-size-sm); color:var(--vera-color-brand); cursor:pointer; }
+</style><style>
+.card-tabs { display:flex; flex-wrap:wrap; gap:var(--vera-space-xs); margin:0 0 var(--vera-space-md); }
+.card-tab { display:inline-flex; align-items:center; gap:var(--vera-space-xs); padding:var(--vera-space-sm); border:0; border-radius:var(--vera-radius-xs) var(--vera-radius-xs) 0 0; background:transparent; color:var(--vera-color-text-2); font:inherit; font-size:var(--vera-font-size-xs); font-weight:500; cursor:pointer; }
+.card-tab[aria-selected="true"] { color:var(--vera-color-brand); background:var(--vera-color-brand-50); box-shadow:inset 0 -2px 0 var(--vera-color-brand); }
+.card-tab[aria-selected="true"] .count-pill { color:var(--vera-color-brand); border-color:var(--vera-color-brand); }
+.count-pill { display:inline-flex; align-items:center; line-height:1; }
+.count-pill-text { font-weight:700; font-size:var(--vera-font-size-xs); }
+.count-pill-pill { font-weight:600; font-size:var(--vera-font-size-2xs); padding:0 var(--vera-space-xs); border:var(--vera-border-width-default) solid currentColor; border-radius:var(--vera-radius-full); background:var(--vera-color-surface); }
+.count-pill.tone-danger { color:var(--vera-color-danger-600); }
+.count-pill.tone-success { color:var(--vera-color-success-600); }
+.count-pill.tone-brand { color:var(--vera-color-brand); }
+.count-pill.tone-muted { color:var(--vera-color-text-2); }
 </style><div class="home-brief" aria-label="This week at a glance"><section class="card brief-tile" id="brief-money"><p class="brief-kicker">Money</p>
   <p class="brief-lead">$128,400 <span style="font-size:var(--vera-font-size-sm);font-weight:400;color:var(--vera-color-text-muted)">earned in May</span></p>
-  <div class="brief-counts"><span>Contribution margin <strong>$71,200</strong></span><span>Cost <strong>$24,100</strong></span><span>Project profit <strong>$104,300</strong></span><span>Project LER <span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.33x</span></span></div>
+  <div class="brief-rows">
+    <div class="brief-row"><span>Contribution margin</span><span class="brief-leader" aria-hidden="true"></span><strong>$71,200</strong></div>
+    <div class="brief-row"><span>Cost</span><span class="brief-leader" aria-hidden="true"></span><strong>$24,100</strong></div>
+    <div class="brief-row"><span>Project profit</span><span class="brief-leader" aria-hidden="true"></span><strong>$104,300</strong></div>
+    <div class="brief-row"><span>Project LER</span><span class="brief-leader" aria-hidden="true"></span><span class="ler-pill" style="background:var(--vera-color-success-400);color:var(--vera-color-success-900)">5.33x</span></div>
+  </div>
   <p class="brief-note" style="margin:0 0 0.75rem;font-size:var(--vera-font-size-sm)">June so far: $61,200 earned · Project LER <span class="ler-pill" style="background:var(--vera-color-success-200);color:var(--vera-color-success-900)">4.40x</span></p>
-  <a class="brief-more" href="#">Open Money →</a>
+  <div class="brief-foot"><a class="brief-more" href="#">Open Money →</a></div>
 </section>
-<section class="card brief-tile" id="brief-projects"><p class="brief-kicker">Projects</p>
+<section class="card brief-tile" id="brief-projects" data-tabs><p class="brief-kicker">Projects</p>
   <p class="brief-lead">1 needs attention</p>
-  <div class="brief-counts"><span>Need setup <strong>0</strong></span><span>Off course <strong>1</strong></span><span>On course <strong>3</strong></span></div>
-  <ul class="brief-list"><li><a href="#">Solace Financial — Q3 Content Sprint</a> <span class="brief-note">· Off course · 18 points behind plan</span></li></ul>
-  
+  <div class="card-tabs" role="tablist"><button type="button" role="tab" class="card-tab" data-tab="setup" aria-selected="false"><span class="count-pill count-pill-text tone-danger">0</span>Need setup</button><button type="button" role="tab" class="card-tab" data-tab="off" aria-selected="true"><span class="count-pill count-pill-text tone-danger">1</span>Off course</button><button type="button" role="tab" class="card-tab" data-tab="on" aria-selected="false"><span class="count-pill count-pill-text tone-success">3</span>On course</button></div><ul class="brief-list"><li class="brief-row" data-tab="off" data-i="0"><a href="#">Solace Financial — Q3 Content Sprint</a><span class="brief-leader" aria-hidden="true"></span><span class="brief-note">18 points behind</span></li></ul>
+  <div class="brief-foot"><button type="button" class="brief-show-more" hidden>Show more</button></div>
 </section>
-<section class="card brief-tile" id="brief-people"><p class="brief-kicker">People this week</p>
-  <p class="brief-lead">1 over capacity</p>
-  <div class="brief-counts"><span>Over <strong>1</strong></span><span>Optimal <strong>4</strong></span><span>Under <strong>2</strong></span></div>
-  <ul class="brief-list"><li><span class="brief-dot" style="background:var(--vera-color-success-300)" aria-hidden="true"></span><a href="#">Jordan Wells</a> <span class="brief-note">· Over capacity, 112% booked</span></li></ul>
-  <a class="brief-more" href="#">Open Capacity →</a>
-</section></div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+<section class="card brief-tile" id="brief-people" data-tabs><p class="brief-kicker">People this week</p>
+  <p class="brief-lead">3 need attention</p>
+  <div class="card-tabs" role="tablist"><button type="button" role="tab" class="card-tab" data-tab="over" aria-selected="true"><span class="count-pill count-pill-text tone-danger">1</span>Over</button><button type="button" role="tab" class="card-tab" data-tab="ideal" aria-selected="false"><span class="count-pill count-pill-text tone-success">4</span>Optimal</button><button type="button" role="tab" class="card-tab" data-tab="under" aria-selected="false"><span class="count-pill count-pill-text tone-danger">2</span>Under</button></div><ul class="brief-list"><li class="brief-row" data-tab="over" data-i="0"><span class="brief-dot" style="background:var(--vera-color-success-300)" aria-hidden="true"></span><a href="#">Jordan Wells</a><span class="brief-leader" aria-hidden="true"></span><span class="brief-note">Over capacity, 112%</span></li></ul>
+  <div class="brief-foot"><button type="button" class="brief-show-more" hidden>Show more</button><a class="brief-more" href="#">Open Capacity →</a></div>
+</section></div>
+<script>
+(function () {
+  var tiles = document.querySelectorAll('.home-brief [data-tabs]')
+  for (var t = 0; t < tiles.length; t++) (function (tile) {
+    var tabs = tile.querySelectorAll('.card-tab')
+    var rows = tile.querySelectorAll('.brief-row[data-tab]')
+    var more = tile.querySelector('.brief-show-more')
+    function show(key, all) {
+      var n = 0
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i], mine = r.getAttribute('data-tab') === key
+        if (!mine) { r.hidden = true; continue }
+        r.hidden = !all && n >= 4
+        r.classList.toggle('brief-fade', !all && n === 3)
+        n++
+      }
+      if (more) more.hidden = all || n <= 3
+    }
+    for (var k = 0; k < tabs.length; k++) tabs[k].addEventListener('click', function () {
+      for (var j = 0; j < tabs.length; j++) tabs[j].setAttribute('aria-selected', tabs[j] === this ? 'true' : 'false')
+      show(this.getAttribute('data-tab'), false)
+    })
+    if (more) more.addEventListener('click', function () {
+      var on = tile.querySelector('.card-tab[aria-selected="true"]')
+      if (on) show(on.getAttribute('data-tab'), true)
+    })
+  })(tiles[t])
+})()
+</script><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
   <input type="text" id="proj-filter" placeholder="Filter projects…" autocomplete="off" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px;flex:1;min-width:200px;max-width:320px">
   <select id="type-filter" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px"><option value="">All types</option><option value="fixed price">Fixed Price</option><option value="pro bono">Pro Bono</option><option value="t&amp;m">T&amp;M</option></select>
   <select id="status-filter" style="font-size:0.9rem;padding:6px 10px;border:1px solid #ccc;border-radius:4px"><option value="">All statuses</option><option value="active" selected>active</option><option value="completed">completed</option></select>
