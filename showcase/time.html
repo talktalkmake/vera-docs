@@ -469,14 +469,37 @@ html.vera-privacy .pay-table, html.vera-privacy .pay { filter: blur(6px); user-s
    the only one. */
 .day-state { font-size: 0.68rem; font-weight: 600; margin-top: 0.15rem; line-height: 1.15; }
 .day-state-name { font-size: 0.68rem; font-weight: 600; line-height: 1.15; }
-.day-state-name.is-long { max-width: min(12ch, 100%); margin: 0 auto; overflow: hidden; white-space: nowrap; text-align: left; -webkit-mask-image: linear-gradient(to right, #000 60%, transparent); mask-image: linear-gradient(to right, #000 60%, transparent); }
 .day-cell.day-holiday .day-state-name { color: var(--vera-color-warning-800); }
+/* A day's labels are one line at every width (issue 3537, amendment 1):
+   "Holiday — Veterans Day". Centered when they fit; when they don't, they
+   start at the left, are clipped and fade out to the right. The auto
+   margins center the line without letting it overflow on the left. */
+.day-labels { display: flex; white-space: nowrap; overflow: hidden; margin-top: 0.15rem; -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); }
+.day-labels > * { flex: none; }
+.day-labels > :first-child { margin-left: auto; }
+.day-labels > :last-child { margin-right: auto; }
+.day-labels .day-state { margin-top: 0; }
+.day-state-name::before { content: "\00a0\2014\00a0"; }
 .day-cell.day-holiday { background: var(--vera-color-warning-100); border-color: var(--vera-color-warning-400); }
 .day-cell.day-holiday .day-state { color: var(--vera-color-warning-800); }
 .day-cell.day-nonworking { opacity: 0.55; }
 .day-cell.day-off-pto, .day-cell.day-off-sick, .day-cell.day-off-leave { background: var(--vera-color-brand-soft); border-color: var(--vera-color-brand-300); }
 .day-cell.day-off-pto .day-state, .day-cell.day-off-sick .day-state, .day-cell.day-off-leave .day-state { color: var(--vera-color-brand-700); }
 .day-cell.day-off-partial .day-state { color: var(--vera-color-text-muted); font-weight: 500; font-style: italic; }
+/* On a phone the day strip is a list of one-line rows (issue 3537): day,
+   labels, hours. The labels never wrap; when they are too wide they are cut
+   and fade out toward the right. A holiday reads "Holiday — <name>" on that
+   one line. */
+@media (max-width: 767px) {
+  .day-strip { flex-direction: column; flex-wrap: nowrap; gap: var(--vera-space-sm); min-width: 0; max-width: 100%; }
+  .day-strip .day-cell { display: flex; align-items: center; gap: var(--vera-space-sm); padding: var(--vera-space-sm); text-align: left; min-width: 0; width: 100%; flex: none; }
+  .day-strip .day-cell.selected { box-shadow: none; }
+  .day-strip .day-name { flex: 0 0 3rem; }
+  .day-strip .day-labels { flex: 1 1 auto; min-width: 0; margin-top: 0; }
+  .day-strip .day-labels > :first-child { margin-left: 0; }
+  .day-strip .day-state, .day-strip .day-state-name { margin: 0; }
+  .day-strip .day-hours { margin-left: auto; flex: none; }
+}
 .usage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 .color-swatch-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem; }
 .color-swatch-option { display: inline-flex; }
@@ -726,41 +749,41 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <strong>Week 24 · Jun 8 – Jun 14</strong>
   <a class="btn-secondary" data-inplace href="#">Next →</a>
   <a class="btn-secondary" data-inplace href="#" style="margin-left:auto">This week</a>
-</div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem">
+</div><div class="day-strip" style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem">
   <div class="day-cell" data-date="2026-06-08" role="button" tabindex="0" aria-label="Filter to Mon 2026-06-08">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Mon 8</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Mon 8</div>
     
-    <div style="font-weight:600;font-size:0.95rem">6h</div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">6h</div>
   </div>
   <div class="day-cell" data-date="2026-06-09" role="button" tabindex="0" aria-label="Filter to Tue 2026-06-09">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Tue 9</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Tue 9</div>
     
-    <div style="font-weight:600;font-size:0.95rem">7h</div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">7h</div>
   </div>
   <div class="day-cell" data-date="2026-06-10" role="button" tabindex="0" aria-label="Filter to Wed 2026-06-10">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Wed 10</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Wed 10</div>
     
-    <div style="font-weight:600;font-size:0.95rem">6h</div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">6h</div>
   </div>
   <div class="day-cell" data-date="2026-06-11" role="button" tabindex="0" aria-label="Filter to Thu 2026-06-11">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Thu 11</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Thu 11</div>
     
-    <div style="font-weight:600;font-size:0.95rem">7h</div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">7h</div>
   </div>
   <div class="day-cell" data-date="2026-06-12" role="button" tabindex="0" aria-label="Filter to Fri 2026-06-12">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Fri 12</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Fri 12</div>
     
-    <div style="font-weight:600;font-size:0.95rem">5h</div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">5h</div>
   </div>
   <div class="day-cell day-nonworking" data-date="2026-06-13" role="button" tabindex="0" aria-label="Filter to Sat 2026-06-13 — Non-working day">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Sat 13</div>
-    <div class="day-state">Non-working day</div>
-    <div style="font-weight:600;font-size:0.95rem">—</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Sat 13</div>
+    <div class="day-labels"><div class="day-state">Non-working day</div></div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">—</div>
   </div>
   <div class="day-cell day-nonworking" data-date="2026-06-14" role="button" tabindex="0" aria-label="Filter to Sun 2026-06-14 — Non-working day">
-    <div style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Sun 14</div>
-    <div class="day-state">Non-working day</div>
-    <div style="font-weight:600;font-size:0.95rem">—</div>
+    <div class="day-name" style="font-size:var(--vera-font-size-2xs);color:var(--vera-color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Sun 14</div>
+    <div class="day-labels"><div class="day-state">Non-working day</div></div>
+    <div class="day-hours" style="font-weight:600;font-size:0.95rem">—</div>
   </div>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.85rem;color:var(--vera-color-text-2);margin-bottom:1.25rem"><span>Week total: <strong>31h</strong> of 40h expected</span></div><div class="day-group" data-date="2026-06-12"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Fri Jun 12 — 5h</h3>

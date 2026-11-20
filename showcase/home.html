@@ -469,14 +469,37 @@ html.vera-privacy .pay-table, html.vera-privacy .pay { filter: blur(6px); user-s
    the only one. */
 .day-state { font-size: 0.68rem; font-weight: 600; margin-top: 0.15rem; line-height: 1.15; }
 .day-state-name { font-size: 0.68rem; font-weight: 600; line-height: 1.15; }
-.day-state-name.is-long { max-width: min(12ch, 100%); margin: 0 auto; overflow: hidden; white-space: nowrap; text-align: left; -webkit-mask-image: linear-gradient(to right, #000 60%, transparent); mask-image: linear-gradient(to right, #000 60%, transparent); }
 .day-cell.day-holiday .day-state-name { color: var(--vera-color-warning-800); }
+/* A day's labels are one line at every width (issue 3537, amendment 1):
+   "Holiday — Veterans Day". Centered when they fit; when they don't, they
+   start at the left, are clipped and fade out to the right. The auto
+   margins center the line without letting it overflow on the left. */
+.day-labels { display: flex; white-space: nowrap; overflow: hidden; margin-top: 0.15rem; -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); }
+.day-labels > * { flex: none; }
+.day-labels > :first-child { margin-left: auto; }
+.day-labels > :last-child { margin-right: auto; }
+.day-labels .day-state { margin-top: 0; }
+.day-state-name::before { content: "\00a0\2014\00a0"; }
 .day-cell.day-holiday { background: var(--vera-color-warning-100); border-color: var(--vera-color-warning-400); }
 .day-cell.day-holiday .day-state { color: var(--vera-color-warning-800); }
 .day-cell.day-nonworking { opacity: 0.55; }
 .day-cell.day-off-pto, .day-cell.day-off-sick, .day-cell.day-off-leave { background: var(--vera-color-brand-soft); border-color: var(--vera-color-brand-300); }
 .day-cell.day-off-pto .day-state, .day-cell.day-off-sick .day-state, .day-cell.day-off-leave .day-state { color: var(--vera-color-brand-700); }
 .day-cell.day-off-partial .day-state { color: var(--vera-color-text-muted); font-weight: 500; font-style: italic; }
+/* On a phone the day strip is a list of one-line rows (issue 3537): day,
+   labels, hours. The labels never wrap; when they are too wide they are cut
+   and fade out toward the right. A holiday reads "Holiday — <name>" on that
+   one line. */
+@media (max-width: 767px) {
+  .day-strip { flex-direction: column; flex-wrap: nowrap; gap: var(--vera-space-sm); min-width: 0; max-width: 100%; }
+  .day-strip .day-cell { display: flex; align-items: center; gap: var(--vera-space-sm); padding: var(--vera-space-sm); text-align: left; min-width: 0; width: 100%; flex: none; }
+  .day-strip .day-cell.selected { box-shadow: none; }
+  .day-strip .day-name { flex: 0 0 3rem; }
+  .day-strip .day-labels { flex: 1 1 auto; min-width: 0; margin-top: 0; }
+  .day-strip .day-labels > :first-child { margin-left: 0; }
+  .day-strip .day-state, .day-strip .day-state-name { margin: 0; }
+  .day-strip .day-hours { margin-left: auto; flex: none; }
+}
 .usage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 .color-swatch-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem; }
 .color-swatch-option { display: inline-flex; }
