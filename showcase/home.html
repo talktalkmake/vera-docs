@@ -468,6 +468,9 @@ html.vera-privacy .pay-table, html.vera-privacy .pay { filter: blur(6px); user-s
    text label built in _weekEntriesView; color here is a redundant cue, never
    the only one. */
 .day-state { font-size: 0.68rem; font-weight: 600; margin-top: 0.15rem; line-height: 1.15; }
+.day-state-name { font-size: 0.68rem; font-weight: 600; line-height: 1.15; }
+.day-state-name.is-long { max-width: min(12ch, 100%); margin: 0 auto; overflow: hidden; white-space: nowrap; text-align: left; -webkit-mask-image: linear-gradient(to right, #000 60%, transparent); mask-image: linear-gradient(to right, #000 60%, transparent); }
+.day-cell.day-holiday .day-state-name { color: var(--vera-color-warning-800); }
 .day-cell.day-holiday { background: var(--vera-color-warning-100); border-color: var(--vera-color-warning-400); }
 .day-cell.day-holiday .day-state { color: var(--vera-color-warning-800); }
 .day-cell.day-nonworking { opacity: 0.55; }
