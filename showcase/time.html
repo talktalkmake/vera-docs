@@ -1173,7 +1173,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
     <div class="form-group" style="flex:1;min-width:150px"><label>Hours</label><input type="number" name="hours" step="0.25" min="0.25" required></div>
   </div>
   <div class="form-group"><label>Project</label><select id="log-project-select" name="project_id" required><option value="">-- select --</option><option value="">Bellhaven Outdoors — Brand Refresh</option><option value="">Bellhaven Outdoors — Seasonal Lookbook</option><option value="">Kestrel Robotics — Launch Site</option><option value="">Solace Financial — Q3 Content Sprint</option><option disabled>──────── Internal ────────</option><option value="">Northline Studio — Internal Ops</option></select></div>
-  <div class="form-group" id="log-task-group"><label>Task</label><select id="log-task-select" name="task_name" required data-tasks="{&quot;byProject&quot;:{&quot;Bellhaven Outdoors — Brand Refresh&quot;:[&quot;Design&quot;,&quot;Project Management&quot;,&quot;Strategy&quot;],&quot;Solace Financial — Q3 Content Sprint&quot;:[&quot;Design&quot;,&quot;Development&quot;],&quot;Kestrel Robotics — Launch Site&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;Bellhaven Outdoors — Seasonal Lookbook&quot;:[&quot;Design&quot;]},&quot;all&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;Project Management&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;internal&quot;:[&quot;undefined&quot;],&quot;protected&quot;:[]}" data-default-task="Design"><option value="">-- select --</option></select></div>
+  <div class="form-group" id="log-task-group"><label>Task</label><select id="log-task-select" name="task_name" required data-tasks="{&quot;byProject&quot;:{&quot;Bellhaven Outdoors — Brand Refresh&quot;:[&quot;Design&quot;,&quot;Project Management&quot;,&quot;Strategy&quot;],&quot;Solace Financial — Q3 Content Sprint&quot;:[&quot;Design&quot;,&quot;Development&quot;],&quot;Kestrel Robotics — Launch Site&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;Bellhaven Outdoors — Seasonal Lookbook&quot;:[&quot;Design&quot;]},&quot;all&quot;:[&quot;Design&quot;,&quot;Development&quot;,&quot;Project Management&quot;,&quot;QA&quot;,&quot;Strategy&quot;],&quot;internal&quot;:[&quot;undefined&quot;],&quot;protected&quot;:[],&quot;notesRequired&quot;:[]}" data-default-task="Design"><option value="">-- select --</option></select></div>
   
   <div class="form-group task-links-editor" data-links-editor>
 <label>Task links <span class="optional-label">(optional)</span></label>
@@ -1182,7 +1182,7 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 <button type="button" class="btn-secondary" data-link-add>+ Add link</button>
 <template data-links-template><div class="task-link-row" style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.4rem"><input type="url" name="task_link" maxlength="2048" placeholder="https://app.asana.com/…" value="" style="flex:1 1 auto;min-width:0"><button type="button" class="btn-secondary" data-link-remove>Remove</button></div></template>
 </div>
-  <div class="form-group"><label>Notes <span class="optional-label">(optional)</span></label><input type="text" name="notes" maxlength="500"></div>
+  <div class="form-group"><label for="log-notes-input">Notes <span class="optional-label" id="log-notes-optional">(optional)</span></label><input type="text" id="log-notes-input" name="notes" maxlength="500"></div>
   <div class="form-actions"><button type="submit" class="btn-primary">Log time</button></div>
 </form></div>
   </div>
@@ -1273,10 +1273,18 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   (data.internal || []).forEach(function(n){ internal[n] = true; });
   var prot = {};
   (data.protected || []).forEach(function(n){ prot[n] = true; });
+  var notesReq = {};
+  (data.notesRequired || []).forEach(function(n){ notesReq[n] = true; });
+  var notesInput = document.getElementById('log-notes-input');
+  var notesOptional = document.getElementById('log-notes-optional');
   var taskGroup = document.getElementById('log-task-group');
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   var def = task.getAttribute('data-default-task') || '';
   function refill(){
+    // A project that requires a note (issue 3531) marks the Notes field required.
+    var needsNote = !!notesReq[proj.value];
+    if (notesInput) notesInput.required = needsNote;
+    if (notesOptional) notesOptional.textContent = needsNote ? '(required)' : '(optional)';
     // PTO, Sick and Leave take no task (issue 2745): hide the field and send nothing.
     var isProtected = !!prot[proj.value];
     if (taskGroup) taskGroup.style.display = isProtected ? 'none' : '';
