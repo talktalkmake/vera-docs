@@ -563,11 +563,13 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .console-sidebar { width: 200px; flex-shrink: 0; background: transparent; border-right: none; display: flex; flex-direction: column; padding: 0 0 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
 /* padding aligns the wordmark with the nav links: the logo's clear zone insets the letters 7.5px at the 30px height, so 0.75rem left lines them up with the links at 1.25rem, and 0.5rem top keeps the letters' top where the old logo's was. */
 .nav-brand { padding: 0.5rem 0 0 0.75rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
-.nav-brand:hover { color: var(--vera-color-brand); }
+.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { color: var(--vera-color-brand); }
 /* Clear zone (VERA logo 2026-11-21): the SVG carries half the cap height on every side, so the cap height is half the box height. 30px box → 15px cap height (matches the getvera.site nav). */
 .vera-logo { height: auto; width: auto; display: block; }
-.nav-brand .vera-logo { height: 30px; }
-.nav-console-label { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vera-color-text-2); line-height: 1.35; margin-bottom: 1.25rem; }
+/* The sidebar shows the V alone; hovering the V draws E, R and A open left to right (a curtain), and moving off closes it. The clip keeps the box full size so nothing moves; 69.35% hides everything right of the midpoint between the V and the E. clip-path also limits hit-testing, so only the V starts the reveal, and once open the whole word keeps it open. */
+.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 150ms linear, color 150ms linear; }
+.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { clip-path: inset(0 0 0 0); transition-duration: 200ms; }
+@media (prefers-reduced-motion: reduce) { .nav-brand .vera-logo { transition: none; } }
 .brand-lockup { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
 .brand-lockup .vera-logo { height: 40px; }
 .brand-lockup .brand-lockup-sub { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vera-color-text-2); }
@@ -725,7 +727,6 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
   <a href="#" class="nav-brand" aria-label="VERA Console"><svg class="vera-logo" viewBox="-48 -48 830.74 192" fill="none" role="img" aria-label="VERA" xmlns="http://www.w3.org/2000/svg"><path d="M 105.5 90 L 159.5 0 L 201 0 L 143.4 96 L 57.6 96 L 0 0 L 51.5 0 L 105.5 90 Z" fill="currentColor"/><path d="M 363.47 24.5 L 259.77 24.5 L 259.77 36.5 L 342.77 36.5 L 342.77 59.5 L 259.77 59.5 L 259.77 71.5 L 363.77 71.5 L 363.77 96 L 212.27 96 L 212.27 0 L 363.47 0 L 363.47 24.5 Z" fill="currentColor"/><path fill-rule="evenodd" d="M 503.29 0 C 512.39 0 520.54 1.14 527.74 3.43 C 535.04 5.6 540.79 9.29 544.99 14.51 C 549.29 19.73 551.44 26.85 551.44 35.87 C 551.44 41.85 550.44 46.79 548.44 50.71 C 546.44 54.62 543.69 57.66 540.19 59.84 C 536.69 62.01 532.69 63.59 528.19 64.56 C 523.69 65.54 518.99 66.14 514.09 66.36 L 549.5 96 L 507 96 L 481.92 75 L 434.84 75 L 434.84 96 L 387.34 96 L 387.34 0 L 503.29 0 Z M 434.84 51.5 L 493.29 51.5 C 496.29 51.5 498.79 50.55 500.79 48.65 C 502.89 46.75 503.94 43.14 503.94 37.82 C 503.94 32.88 502.89 29.56 500.79 27.85 C 498.79 25.95 496.29 25 493.29 25 L 434.84 25 L 434.84 51.5 Z" fill="currentColor"/><path fill-rule="evenodd" d="M 734.74 96 L 693.24 96 L 684.51 81.45 L 619.63 81.45 L 610.9 96 L 559.4 96 L 617 0 L 677.14 0 L 734.74 96 Z M 633.13 58.95 L 671.01 58.95 L 652.07 27.38 L 633.13 58.95 Z" fill="currentColor"/></svg></a>
   <div class="nav-links"><strong class="nav-link" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg><span>Time</span></strong></div>
   <div class="nav-footer">
-  <div class="nav-console-label">VERA<br>Console</div>
   <div class="nav-workspace">Northline Studio</div>
   <div class="nav-userline">Marcus Ade &middot; user</div>
   
