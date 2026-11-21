@@ -561,8 +561,8 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .cat-btn.active { background: var(--vera-color-brand); color: var(--vera-color-on-brand); }
 .console-layout { display: flex; min-height: 100vh; }
 .console-sidebar { width: 200px; flex-shrink: 0; background: transparent; border-right: none; display: flex; flex-direction: column; padding: 0 0 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
-/* padding: 46.5px on top puts the bottom of the V (22.5px into the 30px box) on the bottom line of the first card's tab bar at 69px (12px card margin + 1px border + 20px main padding + 36px tab bar); 0.75rem left lines the letters up with the links at 1.25rem (the clear zone insets them 7.5px); space-xl below makes the gap from the V to the first link match the gap between links (issue 3557). */
-.nav-brand { padding: 46.5px 0 var(--vera-space-xl) 0.75rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
+/* padding: space-2xl (32px) on top puts the bottom of the V (22.5px into the 30px box, so at 54.5px) level with the baseline of the first card's tab labels (about 54.9px: the tab text's line box starts at 41px, and the tabs are 14.4px with line-height 1.2); 0.75rem left lines the letters up with the links at 1.25rem (the clear zone insets them 7.5px); 1.25rem below puts the top of the first link level with the top of the first card under the tabs (93.3px: 69px tab bar + 24px margin), leaving 39px under the V, well over the 7.5px brand clear zone (issues 3557, 3559). */
+.nav-brand { padding: var(--vera-space-2xl) 0 1.25rem 0.75rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
 .nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { color: var(--vera-color-brand); }
 /* Clear zone (VERA logo 2026-11-21): the SVG carries half the cap height on every side, so the cap height is half the box height. 30px box → 15px cap height (matches the getvera.site nav). */
 .vera-logo { height: auto; width: auto; display: block; }
