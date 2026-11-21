@@ -567,8 +567,8 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 /* Clear zone (VERA logo 2026-11-21): the SVG carries half the cap height on every side, so the cap height is half the box height. 30px box → 15px cap height (matches the getvera.site nav). */
 .vera-logo { height: auto; width: auto; display: block; }
 /* The sidebar shows the V alone; hovering the V draws E, R and A open left to right (a curtain), and moving off closes it. The clip keeps the box full size so nothing moves; 69.35% hides everything right of the midpoint between the V and the E. clip-path also limits hit-testing, so only the V starts the reveal, and once open the whole word keeps it open. */
-.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 150ms linear, color 150ms linear; }
-.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { clip-path: inset(0 0 0 0); transition-duration: 200ms; }
+.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 70ms linear, color 70ms linear; }
+.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { clip-path: inset(0 0 0 0); transition-duration: 120ms; }
 @media (prefers-reduced-motion: reduce) { .nav-brand .vera-logo { transition: none; } }
 .brand-lockup { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
 .brand-lockup .vera-logo { height: 40px; }
