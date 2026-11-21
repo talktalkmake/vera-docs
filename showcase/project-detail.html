@@ -885,7 +885,13 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .fin-hours td.fin-num:nth-of-type(3)::before{content:"Used"}
 .fin-table td.fin-empty{text-align:left;padding:0.25rem 0}
 .fin-table td.fin-bar-cell{padding:0.35rem 0 0.75rem}
-}</style></div></div>
+}
+.fin-head{display:flex;gap:var(--vera-space-2xl);align-items:flex-start}
+.fin-head>*{flex:1 1 0;min-width:0}
+@media (max-width:767px){.fin-head{flex-direction:column;gap:var(--vera-space-lg)}}
+.fin-ceiling-item{margin:0 0 0.5rem}
+.fin-ceiling-line{display:flex;align-items:center;gap:var(--vera-space-sm)}
+.fin-ceiling-line strong{font-weight:600;color:var(--vera-color-text)}</style></div></div>
 <div id="config"><div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><h2 style="margin:0">Configuration</h2><button type="button" class="save-btn" onclick="document.getElementById('modal-config').classList.add('open')">Edit project</button></div>
 <dl class="dl-split">
