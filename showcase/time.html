@@ -619,6 +619,22 @@ span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
 .nav-more { color: var(--vera-color-text-muted); font-style: italic; }
 .nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
 .nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
+/* Switch workspace popover (issue 3554), after the shadcn Base UI popover. 288px = Figma layout/desktop/popover-width and 220px = layout/desktop/popover-list-max-height, raw until the layout tokens ship (#2570); 2px = Figma space/2xs (#2569). */
+.ws-switch-pop { position: fixed; z-index: 50; width: 288px; box-sizing: border-box; display: flex; flex-direction: column; padding: var(--vera-space-sm); background: var(--vera-color-surface); border: var(--vera-border-width-default) solid var(--vera-color-border); border-radius: var(--vera-radius-lg); box-shadow: var(--vera-shadow-card); text-align: left; opacity: 0; transform: translateY(8px) scale(0.95); transform-origin: bottom left; transition: opacity 100ms ease, transform 100ms ease; }
+.ws-switch-pop[data-open] { opacity: 1; transform: none; }
+.ws-switch-pop[hidden] { display: none; }
+.ws-switch-title { margin: 0; padding: var(--vera-space-xs) var(--vera-space-sm) 0; font-size: var(--vera-font-size-sm); font-weight: var(--vera-font-weight-medium); color: var(--vera-color-text); }
+.ws-switch-desc { margin: 2px 0 0; padding: 0 var(--vera-space-sm); font-size: var(--vera-font-size-xs); color: var(--vera-color-text-muted); }
+.ws-switch-list { display: flex; flex-direction: column; gap: 2px; max-height: 220px; overflow-y: auto; margin-top: var(--vera-space-sm); }
+.ws-option-form { margin: 0; }
+.ws-option { display: flex; align-items: center; gap: var(--vera-space-sm); width: 100%; box-sizing: border-box; padding: var(--vera-space-sm); border: 0; border-radius: var(--vera-radius-sm); background: transparent; color: var(--vera-color-text); font-family: var(--vera-font-sans); text-transform: none; letter-spacing: normal; text-align: left; cursor: pointer; }
+button.ws-option:hover, button.ws-option:focus-visible { background: var(--vera-color-brand-soft); }
+button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); outline-offset: -2px; }
+.ws-option-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--vera-font-size-sm); font-weight: var(--vera-font-weight-semibold); }
+.ws-option-role, .ws-option-current-label { flex: none; font-size: var(--vera-font-size-xs); color: var(--vera-color-text-muted); }
+.ws-option-current { cursor: default; }
+.ws-option-current .ws-option-name { color: var(--vera-color-brand); }
+@media (prefers-reduced-motion: reduce) { .ws-switch-pop { transition: none; } }
 .nav-workspace { font-weight: 600; color: var(--vera-color-text); margin-bottom: 0.75rem; }
 .nav-userline { margin-bottom: 0.75rem; }
 .nav-trial { margin-bottom: 0.75rem; color: var(--vera-color-text-2); font-size: var(--vera-font-size-sm); }
