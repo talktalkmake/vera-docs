@@ -758,6 +758,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 .atl-scroll { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: thin; }
 .atl-cal { display: grid; width: max-content; }
 .atl-lh { height: 20px; box-sizing: border-box; display: flex; align-items: center; padding: 0 var(--vera-space-md); font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-muted); }
+.atl-lh.atl-lh-split { justify-content: space-between; }
 .atl-rule { height: 1px; background: var(--vera-color-border); }
 .atl-rule.atl-now { background: var(--vera-color-brand); }
 .atl-lab { height: 40px; box-sizing: border-box; display: flex; align-items: center; gap: var(--vera-space-sm); padding: 0 var(--vera-space-md); min-width: 0; }
@@ -831,6 +832,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 <p style="font-size:0.8rem;color:var(--vera-color-text-muted);margin:0 0 0.75rem;max-width:70ch">
 <strong>Scheduled</strong> is the billing plan drawn on a Fixed Price project; <strong>Earned</strong> is revenue recognized from hours logged and percent complete. The gap between them is deferred revenue or unbilled work — not profit or loss. A project with no billing schedule shows &mdash; in Scheduled, not $0. For a T&amp;M project, <strong>Billable</strong> is what the PM approved for invoicing — it can diverge from Earned when hours were written down, and stays marked Pending approval until someone reviews the period on <a href="#">Time Approvals</a>.
 </p>
+
 <div class="table-scroll"><table id="billing-table">
 <thead><tr>
 <th data-sort-key="client" class="sortable">Client <span class="sort-caret"></span></th>
