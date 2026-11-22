@@ -426,6 +426,9 @@ table.week-entries tr.entries-total td { border-bottom: none; }
 table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); }
 table.week-entries td.entries-total-hours { font-weight: 600; }
 .week-total-table { margin-top: 0.75rem; }
+/* A table's add row (issue 3574, _tableAddRow): inputs fill their column. */
+tr.table-add-row td { vertical-align: middle; }
+tr.table-add-row input, tr.table-add-row select { width: 100%; box-sizing: border-box; margin: 0; }
 /* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
    that masking is on. Form controls and tables of individual pay blur whole. */
 .privacy-blur { filter: blur(5px); user-select: none; }
