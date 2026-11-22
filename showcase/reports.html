@@ -582,11 +582,11 @@ button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); te
 .console-sidebar { width: 200px; flex-shrink: 0; background: transparent; border-right: none; display: flex; flex-direction: column; padding: 0 0 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
 /* padding: space-2xl (32px) on top puts the bottom of the V (22.5px into the 30px box, so at 54.5px) level with the baseline of the first card's tab labels (about 54.9px: the tab text's line box starts at 41px, and the tabs are 14.4px with line-height 1.2); 0.75rem left lines the letters up with the links at 1.25rem (the clear zone insets them 7.5px); 1.25rem below puts the top of the first link level with the top of the first card under the tabs (93.3px: 69px tab bar + 24px margin), leaving 39px under the V, well over the 7.5px brand clear zone (issues 3557, 3559). */
 .nav-brand { padding: var(--vera-space-2xl) 0 1.25rem 0.75rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
-.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { color: var(--vera-color-brand); }
+/* The logo keeps its color on hover; only the wordmark reveals (issue 3584). */
 /* Clear zone (VERA logo 2026-11-21): the SVG carries half the cap height on every side, so the cap height is half the box height. 30px box → 15px cap height (matches the getvera.site nav). */
 .vera-logo { height: auto; width: auto; display: block; }
 /* The sidebar shows the V alone; hovering the V draws E, R and A open left to right (a curtain), and moving off closes it. The clip keeps the box full size so nothing moves; 69.35% hides everything right of the midpoint between the V and the E. clip-path also limits hit-testing, so only the V starts the reveal, and once open the whole word keeps it open. */
-.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 70ms linear, color 70ms linear; }
+.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 70ms linear; }
 .nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { clip-path: inset(0 0 0 0); transition-duration: 120ms; }
 @media (prefers-reduced-motion: reduce) { .nav-brand .vera-logo { transition: none; } }
 .brand-lockup { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
