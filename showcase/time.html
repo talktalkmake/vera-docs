@@ -418,6 +418,11 @@ details.outside-entries > ul > li { padding: 0.15rem 0; }
 table.week-entries tr[id] { scroll-margin-top: 5rem; }
 table.week-entries tr:target td { background: var(--vera-color-brand-50); }
 table.week-entries tr:target td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
+/* Day and week totals in the week of entries (issue 3572). */
+table.week-entries tr.entries-total td { border-bottom: none; }
+table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); }
+table.week-entries td.entries-total-hours { font-weight: 600; }
+.week-total-table { margin-top: 0.75rem; }
 /* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
    that masking is on. Form controls and tables of individual pay blur whole. */
 .privacy-blur { filter: blur(5px); user-select: none; }
@@ -977,7 +982,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
   </div>
 </div>
   </td>
-</tr></tbody>
+</tr></tbody><tfoot><tr class="entries-total"><td colspan="2"></td><td class="entries-total-label">Day total</td><td class="entries-total-hours">7h</td><td colspan="2"></td></tr></tfoot>
 </table></div></div>
 <div class="day-group" data-date="2026-06-10"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Wed Jun 10 — 6h</h3>
 <div class="table-scroll"><table class="week-entries">
@@ -1100,7 +1105,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
   </div>
 </div>
   </td>
-</tr></tbody>
+</tr></tbody><tfoot><tr class="entries-total"><td colspan="2"></td><td class="entries-total-label">Day total</td><td class="entries-total-hours">7h</td><td colspan="2"></td></tr></tfoot>
 </table></div></div>
 <div class="day-group" data-date="2026-06-08"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Mon Jun 8 — 6h</h3>
 <div class="table-scroll"><table class="week-entries">
@@ -1144,7 +1149,11 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </div>
   </td>
 </tr></tbody>
-</table></div></div><script>
+</table></div></div>
+<div class="table-scroll week-total-table"><table class="week-entries">
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<tbody><tr class="entries-total"><td colspan="2"></td><td class="entries-total-label">Week total</td><td class="entries-total-hours">31h</td><td colspan="2"></td></tr></tbody>
+</table></div><script>
 (function(){
   var cells = document.querySelectorAll('.day-cell');
   var groups = document.querySelectorAll('.day-group');

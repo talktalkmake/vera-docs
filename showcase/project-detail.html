@@ -418,6 +418,11 @@ details.outside-entries > ul > li { padding: 0.15rem 0; }
 table.week-entries tr[id] { scroll-margin-top: 5rem; }
 table.week-entries tr:target td { background: var(--vera-color-brand-50); }
 table.week-entries tr:target td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
+/* Day and week totals in the week of entries (issue 3572). */
+table.week-entries tr.entries-total td { border-bottom: none; }
+table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); }
+table.week-entries td.entries-total-hours { font-weight: 600; }
+.week-total-table { margin-top: 0.75rem; }
 /* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
    that masking is on. Form controls and tables of individual pay blur whole. */
 .privacy-blur { filter: blur(5px); user-select: none; }
