@@ -418,6 +418,9 @@ details.outside-entries > ul > li { padding: 0.15rem 0; }
 table.week-entries tr[id] { scroll-margin-top: 5rem; }
 table.week-entries tr:target td { background: var(--vera-color-brand-50); }
 table.week-entries tr:target td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
+/* The rows a timeline week points at (issue 3573): the same look as a targeted row. */
+table.week-entries tr.entry-hl td { background: var(--vera-color-brand-50); }
+table.week-entries tr.entry-hl td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
 /* Day and week totals in the week of entries (issue 3572). */
 table.week-entries tr.entries-total td { border-bottom: none; }
 table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); }
