@@ -543,6 +543,11 @@ td .save-btn, td .btn-primary, td .btn-secondary, td .btn-secondary-danger, td b
 /* A heading that opens its card has nothing above it to separate from, so it draws no rule (issue 2711). */
 .card > .section-head:first-child, .card > .settings-section:first-child > .section-head:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
 .form-stack { display: flex; flex-direction: column; gap: 1rem; }
+/* All text-like fields, selects and textareas in the console look the same (issue 3614): the
+   Log time modal's look, at zero specificity (:where), so a field's own rule still wins. */
+:where(input:not([type]), input[type="text"], input[type="number"], input[type="date"], input[type="time"], input[type="month"], input[type="url"], input[type="email"], input[type="search"], input[type="password"], input[type="tel"], select, textarea) {
+  font-family: inherit; font-size: 0.9rem; padding: 5px 8px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); box-sizing: border-box; background: var(--vera-color-surface); color: var(--vera-color-text);
+}
 .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
 .form-group label { font-size: 0.85rem; font-weight: 500; color: #444; }
 .form-group input[type="text"], .form-group input[type="number"], .form-group input[type="date"], .form-group select, .form-group textarea,
