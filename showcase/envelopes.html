@@ -1186,18 +1186,10 @@ function runScripts(region){
     o.parentNode.replaceChild(s, o);
   }
 }
-  document.addEventListener('click', function(e){
-    // Left-click, unmodified only. Cmd/Ctrl/Shift/Alt/middle-click (open in
-    // new tab/window) must fall through to the browser default.
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target && e.target.closest ? e.target.closest('a[data-inplace]') : null;
-    if (!a) return;
-    var region = regionOf(a);
-    if (!region || !region.id) return;
-    var href = a.getAttribute('href');
-    if (!href) return;
-    e.preventDefault();
-    var id = region.id, mine = ++seq;
+  function swapTo(href, id, push){
+    var region = document.getElementById(id);
+    if (!region) { window.location = href; return; }
+    var mine = ++seq;
     region.style.opacity = '0.5';
     fetch(href, { cache: 'no-store', headers: { 'Accept': 'text/html' } })
       .then(function(r){ return r.text(); })
@@ -1209,9 +1201,30 @@ function runScripts(region){
         region.innerHTML = next.innerHTML;
         runScripts(region);
         region.style.opacity = '';
-        history.replaceState(null, '', href);
+        if (push) history.pushState({ inplace: id }, '', href);
       })
       .catch(function(){ if (mine === seq) window.location = href; });
+  }
+  document.addEventListener('click', function(e){
+    // Left-click, unmodified only. Cmd/Ctrl/Shift/Alt/middle-click (open in
+    // new tab/window) must fall through to the browser default.
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[data-inplace]') : null;
+    if (!a) return;
+    var region = regionOf(a);
+    if (!region || !region.id) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    e.preventDefault();
+    // Stamp the entry the reader is leaving, so Back has somewhere to swap to (issue 3618).
+    if (!history.state || !history.state.inplace) history.replaceState({ inplace: region.id }, '', window.location.href);
+    swapTo(href, region.id, true);
+  });
+  // Back and Forward swap the entry's region the same way (issue 3618).
+  window.addEventListener('popstate', function(e){
+    var st = e.state;
+    if (!st || !st.inplace) return; // not ours (a hash change, another page's entry)
+    swapTo(window.location.href, st.inplace, false);
   });
 })();
 </script>
