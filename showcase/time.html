@@ -803,9 +803,45 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 
 
 .inv-pill { display: inline-flex; align-items: center; padding: 0 var(--vera-space-sm); border-radius: var(--vera-radius-pill); font-size: var(--vera-font-size-2xs); font-weight: var(--vera-font-weight-semibold); line-height: 1.6; text-transform: uppercase; white-space: nowrap; }
-.inv-pill-drafted { background: var(--vera-color-brand-200); color: var(--vera-color-text); }
+.inv-pill-drafted, .inv-pill-draft { background: var(--vera-color-brand-200); color: var(--vera-color-text); }
+.inv-pill-issued { background: var(--vera-color-brand-200); color: var(--vera-color-text); }
 .inv-pill-paid { background: var(--vera-color-success-700); color: var(--vera-color-on-brand); }
 .inv-pill-overdue { background: var(--vera-color-danger); color: var(--vera-color-on-brand); }
+.inv-pill-void { background: var(--vera-color-surface-alt); color: var(--vera-color-text-muted); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--vera-color-border); }
+.inv-paid-amount { color: var(--vera-color-success-700); }
+.inv-paid-none { color: var(--vera-color-text-muted); }
+
+
+.aging-draft, .inplay-seg-draft, .aging-pill-draft { --bucket-fill: var(--vera-color-brand-50); --bucket-text: var(--vera-color-brand-600); --bucket-border: var(--vera-color-brand-600); --bucket-empty: var(--vera-color-brand-200); --bucket-selected: var(--vera-color-brand-800); }
+.aging-current, .inplay-seg-current, .aging-pill-current { --bucket-fill: var(--vera-color-brand-100); --bucket-text: var(--vera-color-brand); --bucket-border: var(--vera-color-brand); --bucket-empty: var(--vera-color-brand); --bucket-selected: var(--vera-color-brand-900); }
+.aging-1-30, .inplay-seg-1-30, .aging-pill-1-30 { --bucket-fill: var(--vera-color-warning-100); --bucket-text: var(--vera-color-warning-800); --bucket-border: var(--vera-color-warning-800); --bucket-empty: var(--vera-color-warning-300); --bucket-selected: var(--vera-color-warning-900); }
+.aging-31-60, .inplay-seg-31-60, .aging-pill-31-60 { --bucket-fill: var(--vera-color-warning-300); --bucket-text: var(--vera-color-warning-900); --bucket-border: var(--vera-color-warning-900); --bucket-empty: var(--vera-color-warning-500); --bucket-selected: var(--vera-color-warning-950); }
+.aging-61-90, .inplay-seg-61-90, .aging-pill-61-90 { --bucket-fill: var(--vera-color-danger-200); --bucket-text: var(--vera-color-danger-800); --bucket-border: var(--vera-color-danger-800); --bucket-empty: var(--vera-color-danger-500); --bucket-selected: var(--vera-color-danger-900); }
+.aging-90plus, .inplay-seg-90plus, .aging-pill-90plus { --bucket-fill: var(--vera-color-danger-700); --bucket-text: var(--vera-color-on-brand); --bucket-border: var(--vera-color-danger-800); --bucket-empty: var(--vera-color-danger-700); --bucket-selected: var(--vera-color-text); }
+
+.inplay { display: grid; gap: var(--vera-space-sm); margin-bottom: var(--vera-space-md); }
+.inplay-bar { display: flex; height: var(--vera-space-md); border-radius: var(--vera-radius-sm); overflow: hidden; background: var(--vera-color-surface-alt); }
+.inplay-seg { display: block; flex-grow: 0; flex-shrink: 0; background: var(--bucket-empty); }
+.inplay-key { display: flex; flex-wrap: wrap; gap: var(--vera-space-xs) var(--vera-space-lg); list-style: none; margin: 0; padding: 0; font-size: var(--vera-font-size-sm); }
+.inplay-key li { display: inline-flex; align-items: center; gap: var(--vera-space-xs); }
+.inplay-sw { width: 10px; height: 10px; border-radius: var(--vera-radius-sm); display: inline-block; background: var(--bucket-empty); }
+
+.aging-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--vera-space-sm); }
+.aging-cell { display: block; text-decoration: none; border: 0; border-radius: var(--vera-radius-md); padding: 0.5rem 0.75rem; background: var(--bucket-fill); color: var(--bucket-text); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--bucket-border); }
+.aging-cell span, .aging-cell strong { color: inherit; }
+.aging-cell.is-empty { background: var(--vera-color-surface); color: var(--vera-color-text-muted); box-shadow: inset 0 0 0 var(--vera-border-width-emphasis) var(--bucket-empty); pointer-events: none; }
+.aging-cell.is-selected { box-shadow: inset 0 0 0 var(--vera-border-width-emphasis) var(--bucket-selected); }
+#invoice-filter { display: inline-flex; margin: 0.75rem 0; border: 1px solid var(--vera-color-brand); border-radius: 4px; overflow: hidden; }
+.inv-filter-select { display: none; width: 100%; margin: 0.75rem 0; }
+.inv-totals td { font-weight: var(--vera-font-weight-semibold); }
+@media (max-width: 767px) {
+  .aging-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #invoice-filter { display: none; }
+  .inv-filter-select { display: block; }
+}
+
+.aging-pill { display: inline-flex; align-items: center; padding: 0 var(--vera-space-sm); border-radius: var(--vera-radius-pill); font-size: var(--vera-font-size-2xs); font-weight: var(--vera-font-weight-semibold); line-height: 1.6; text-transform: uppercase; white-space: nowrap; background: var(--bucket-fill); color: var(--bucket-text); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--bucket-border); }
+.days-late { margin-left: var(--vera-space-xs); }
 
 </style>
 <script data-showcase-canceller>
