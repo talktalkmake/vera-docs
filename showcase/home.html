@@ -910,7 +910,10 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 .card-tab[aria-selected="true"] .count-pill { color:var(--vera-color-brand); border-color:var(--vera-color-brand); }
 .count-pill { display:inline-flex; align-items:center; line-height:1; }
 .count-pill-text { font-weight:700; font-size:var(--vera-font-size-xs); }
-.count-pill-pill { font-weight:600; font-size:var(--vera-font-size-2xs); padding:0 var(--vera-space-xs); border:var(--vera-border-width-default) solid currentColor; border-radius:var(--vera-radius-full); background:var(--vera-color-surface); }
+/* Issue 3652: the same space on all four sides. The figure is trimmed to its
+   cap height (text-box), the box is 18px tall and centers it, and a one-digit
+   count is a circle (min-width = height). */
+.count-pill-pill { box-sizing:border-box; justify-content:center; height:1.125rem; min-width:1.125rem; padding:0 var(--vera-space-xs); font-weight:600; font-size:var(--vera-font-size-xs); font-variant-numeric:tabular-nums; text-box:trim-both cap alphabetic; border:var(--vera-border-width-default) solid currentColor; border-radius:var(--vera-radius-full); background:var(--vera-color-surface); }
 .count-pill.tone-danger { color:var(--vera-color-danger-600); }
 .count-pill.tone-success { color:var(--vera-color-success-600); }
 .count-pill.tone-brand { color:var(--vera-color-brand); }
