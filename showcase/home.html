@@ -678,17 +678,18 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 @media (max-width: 767px) {
   .console-layout { display: block; }
   .nav-brand { padding-top: 0.5rem; }
-  .console-content { margin: 0.5rem; }
-  /* The menu button is fixed at the top right; page content starts below it
-     rather than under it (issue 2775). */
-  .console-content main { padding: 3.25rem .75rem 1.5rem; }
+  .console-content { margin: 3rem 0.5rem 0.5rem; }
+  /* Issue 3651: the menu button sits above the card, so content starts at the card's normal top padding. */
+  .console-content main { padding: var(--vera-space-lg) .75rem 1.5rem; }
   /* Issue 3451: a card's left and right padding is halved on a phone (space-md). */
   .card { padding-left: var(--vera-space-md); padding-right: var(--vera-space-md); }
   /* A zoomable chart keeps a readable size and scrolls inside its frame. */
   .chart-zoom-scroll > svg { min-width: 600px; }
   /* An empty table's message stays on screen when the table scrolls sideways. */
   .table-wrap tr[data-sort-skip] > td[colspan], .table-scroll tr[data-sort-skip] > td[colspan] { text-align: left !important; }
-  .nav-toggle { display: block; position: fixed; top: 0.6rem; right: 0.8rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
+  .nav-toggle { display: block; position: absolute; top: 0.5rem; right: 0.5rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
+  /* Issue 3651: while the menu is open, the button stays on screen so it can close it. */
+  body:has(.console-sidebar.open) .nav-toggle { position: fixed; }
   .console-sidebar { display: none; }
   .console-sidebar.open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 1050; background: var(--vera-color-bg); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
 }
