@@ -426,7 +426,10 @@ table.week-entries tr.entries-total td { border-bottom: none; }
 table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); text-align: right; }
 table.week-entries tr.calendar-event td { background: var(--vera-color-warning-50); }
 table.week-entries tr.calendar-event img { vertical-align: -3px; }
-table.week-entries .calendar-hours { width: 6rem; }
+table.week-entries .calendar-duration { display: inline-flex; align-items: center; gap: var(--vera-space-sm); white-space: nowrap; }
+table.week-entries .calendar-duration label { display: inline-flex; align-items: center; gap: var(--vera-space-xs); margin: 0; font-weight: var(--vera-font-weight-normal); }
+/* layout/calendar/duration-field-width (Figma); raw until #2570 */
+table.week-entries .calendar-duration input { width: 44px; text-align: right; }
 table.week-entries tr.calendar-event .notes-cell input { width: 100%; }
 table.week-entries tr.calendar-event select { width: 100%; max-width: 100%; box-sizing: border-box; }
 table.week-entries tr.calendar-event input { max-width: 100%; box-sizing: border-box; }
@@ -932,7 +935,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.85rem;color:var(--vera-color-text-2);margin-bottom:1.25rem"><span>Week total: <strong>31h</strong> of 40h expected</span></div><div class="day-group" data-date="2026-06-12"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Fri Jun 12 — 5h</h3>
 <div class="table-scroll"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <thead><tr><th>ID</th><th>Project</th><th>Task</th><th>Hours</th><th>Notes</th><th>Actions</th></tr></thead>
 <tbody><tr>
   <td>9007</td>
@@ -975,7 +978,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </table></div></div>
 <div class="day-group" data-date="2026-06-11"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Thu Jun 11 — 7h</h3>
 <div class="table-scroll"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <thead><tr><th>ID</th><th>Project</th><th>Task</th><th>Hours</th><th>Notes</th><th>Actions</th></tr></thead>
 <tbody><tr>
   <td>9006</td>
@@ -1055,7 +1058,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </table></div></div>
 <div class="day-group" data-date="2026-06-10"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Wed Jun 10 — 6h</h3>
 <div class="table-scroll"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <thead><tr><th>ID</th><th>Project</th><th>Task</th><th>Hours</th><th>Notes</th><th>Actions</th></tr></thead>
 <tbody><tr>
   <td>9004</td>
@@ -1098,7 +1101,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </table></div></div>
 <div class="day-group" data-date="2026-06-09"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Tue Jun 9 — 7h</h3>
 <div class="table-scroll"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <thead><tr><th>ID</th><th>Project</th><th>Task</th><th>Hours</th><th>Notes</th><th>Actions</th></tr></thead>
 <tbody><tr>
   <td>9003</td>
@@ -1178,7 +1181,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </table></div></div>
 <div class="day-group" data-date="2026-06-08"><h3 style="font-size:0.9rem;font-weight:600;margin:1.25rem 0 0.5rem">Mon Jun 8 — 6h</h3>
 <div class="table-scroll"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <thead><tr><th>ID</th><th>Project</th><th>Task</th><th>Hours</th><th>Notes</th><th>Actions</th></tr></thead>
 <tbody><tr>
   <td>9001</td>
@@ -1220,7 +1223,7 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 </tr></tbody>
 </table></div></div>
 <div class="table-scroll week-total-table"><table class="week-entries">
-<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:9%"><col style="width:28%"><col style="width:12%"></colgroup>
+<colgroup><col style="width:8%"><col style="width:27%"><col style="width:16%"><col style="width:12%"><col style="width:25%"><col style="width:12%"></colgroup>
 <tbody><tr class="entries-total"><td colspan="2"></td><td class="entries-total-label">Week total</td><td class="entries-total-hours">31h</td><td colspan="2"></td></tr></tbody>
 </table></div><script>
 (function(){

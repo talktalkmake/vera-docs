@@ -426,7 +426,10 @@ table.week-entries tr.entries-total td { border-bottom: none; }
 table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); text-align: right; }
 table.week-entries tr.calendar-event td { background: var(--vera-color-warning-50); }
 table.week-entries tr.calendar-event img { vertical-align: -3px; }
-table.week-entries .calendar-hours { width: 6rem; }
+table.week-entries .calendar-duration { display: inline-flex; align-items: center; gap: var(--vera-space-sm); white-space: nowrap; }
+table.week-entries .calendar-duration label { display: inline-flex; align-items: center; gap: var(--vera-space-xs); margin: 0; font-weight: var(--vera-font-weight-normal); }
+/* layout/calendar/duration-field-width (Figma); raw until #2570 */
+table.week-entries .calendar-duration input { width: 44px; text-align: right; }
 table.week-entries tr.calendar-event .notes-cell input { width: 100%; }
 table.week-entries tr.calendar-event select { width: 100%; max-width: 100%; box-sizing: border-box; }
 table.week-entries tr.calendar-event input { max-width: 100%; box-sizing: border-box; }
