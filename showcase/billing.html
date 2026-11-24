@@ -423,7 +423,11 @@ table.week-entries tr.entry-hl td { background: var(--vera-color-brand-50); }
 table.week-entries tr.entry-hl td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
 /* Day and week totals in the week of entries (issue 3572). */
 table.week-entries tr.entries-total td { border-bottom: none; }
-table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); }
+table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); text-align: right; }
+table.week-entries tr.calendar-event td { background: var(--vera-color-warning-50); }
+table.week-entries tr.calendar-event img { vertical-align: -3px; }
+table.week-entries .calendar-hours { width: 6rem; }
+table.week-entries tr.calendar-event .notes-cell input { width: 100%; }
 table.week-entries td.entries-total-hours { font-weight: 600; }
 .week-total-table { margin-top: 0.75rem; }
 /* A table's add row (issue 3574, _tableAddRow): inputs fill their column. */
