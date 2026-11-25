@@ -818,6 +818,9 @@ button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); out
 .atl-tot.atl-full { color: var(--vera-color-warning-text); font-weight: var(--vera-font-weight-semibold); }
 .atl-tot.atl-overcap { color: var(--vera-color-danger-text); background: var(--vera-color-danger-soft); font-weight: var(--vera-font-weight-semibold); }
 .atl-tot.atl-now { background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-weight: var(--vera-font-weight-semibold); border: var(--vera-border-width-emphasis) solid var(--vera-color-brand); border-top: 0; }
+.atl-body { position: relative; }
+.atl-fixed, .atl-scroll { position: relative; }
+.atl-body.is-linked::before { content: ""; position: absolute; left: 0; right: 0; top: var(--atl-hl-top, 0); height: 40px; background: var(--vera-color-warning-50); pointer-events: none; }
 
 
 .inv-pill { display: inline-flex; align-items: center; padding: 0 var(--vera-space-sm); border-radius: var(--vera-radius-pill); font-size: var(--vera-font-size-2xs); font-weight: var(--vera-font-weight-semibold); line-height: 1.6; text-transform: uppercase; white-space: nowrap; }
