@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allocations — VERA Console</title>
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Roboto+Condensed:wght@400&display=swap">
+<style>
+/* Inlined from public/tokens.css by scripts/build-showcase.js — do not edit by hand */
+/* GENERATED from docs/design/design-tokens.md — do not edit by hand. Run: node scripts/build-tokens.js */
+:root {
+  --vera-color-brand-hsl: 219, 87%, 33%;
+  --vera-color-brand: hsla(var(--vera-color-brand-hsl), 1);
+  --vera-color-brand-hover-hsl: 219, 88%, 25%;
+  --vera-color-brand-hover: hsla(var(--vera-color-brand-hover-hsl), 1);
+  --vera-color-brand-soft-hsl: 220, 43%, 93%;
+  --vera-color-brand-soft: hsla(var(--vera-color-brand-soft-hsl), 1);
+  --vera-color-on-brand-hsl: 0, 0%, 100%;
+  --vera-color-on-brand: hsla(var(--vera-color-on-brand-hsl), 1);
+  --vera-color-bg-hsl: 220, 23%, 97%;
+  --vera-color-bg: hsla(var(--vera-color-bg-hsl), 1);
+  --vera-color-surface-hsl: 0, 0%, 100%;
+  --vera-color-surface: hsla(var(--vera-color-surface-hsl), 1);
+  --vera-color-surface-alt-hsl: 0, 0%, 94%;
+  --vera-color-surface-alt: hsla(var(--vera-color-surface-alt-hsl), 1);
+  --vera-color-surface-warm-hsl: 49, 26%, 87%;
+  --vera-color-surface-warm: hsla(var(--vera-color-surface-warm-hsl), 1);
+  --vera-color-border-hsl: 0, 0%, 88%;
+  --vera-color-border: hsla(var(--vera-color-border-hsl), 1);
+  --vera-color-border-soft-hsl: 0, 0%, 94%;
+  --vera-color-border-soft: hsla(var(--vera-color-border-soft-hsl), 1);
+  --vera-color-text-hsl: 0, 0%, 10%;
+  --vera-color-text: hsla(var(--vera-color-text-hsl), 1);
+  --vera-color-text-2-hsl: 0, 0%, 33%;
+  --vera-color-text-2: hsla(var(--vera-color-text-2-hsl), 1);
+  --vera-color-text-muted-hsl: 0, 0%, 53%;
+  --vera-color-text-muted: hsla(var(--vera-color-text-muted-hsl), 1);
+  --vera-color-success-hsl: 142, 71%, 45%;
+  --vera-color-success: hsla(var(--vera-color-success-hsl), 1);
+  --vera-color-success-soft-hsl: 141, 84%, 93%;
+  --vera-color-success-soft: hsla(var(--vera-color-success-soft-hsl), 1);
+  --vera-color-success-text-hsl: 143, 64%, 24%;
+  --vera-color-success-text: hsla(var(--vera-color-success-text-hsl), 1);
+  --vera-color-warning-hsl: 38, 92%, 50%;
+  --vera-color-warning: hsla(var(--vera-color-warning-hsl), 1);
+  --vera-color-warning-soft-hsl: 46, 100%, 90%;
+  --vera-color-warning-soft: hsla(var(--vera-color-warning-soft-hsl), 1);
+  --vera-color-warning-text-hsl: 23, 83%, 31%;
+  --vera-color-warning-text: hsla(var(--vera-color-warning-text-hsl), 1);
+  --vera-color-danger-hsl: 6, 63%, 46%;
+  --vera-color-danger: hsla(var(--vera-color-danger-hsl), 1);
+  --vera-color-danger-hover-hsl: 5, 63%, 41%;
+  --vera-color-danger-hover: hsla(var(--vera-color-danger-hover-hsl), 1);
+  --vera-color-danger-soft-hsl: 0, 93%, 94%;
+  --vera-color-danger-soft: hsla(var(--vera-color-danger-soft-hsl), 1);
+  --vera-color-danger-text-hsl: 0, 74%, 42%;
+  --vera-color-danger-text: hsla(var(--vera-color-danger-text-hsl), 1);
+  --vera-color-info-soft-hsl: 189, 53%, 88%;
+  --vera-color-info-soft: hsla(var(--vera-color-info-soft-hsl), 1);
+  --vera-color-info-text-hsl: 189, 78%, 21%;
+  --vera-color-info-text: hsla(var(--vera-color-info-text-hsl), 1);
+  --vera-color-brand-50-hsl: 223, 58%, 95%;
+  --vera-color-brand-50: hsla(var(--vera-color-brand-50-hsl), 1);
+  --vera-color-brand-100-hsl: 221, 54%, 89%;
+  --vera-color-brand-100: hsla(var(--vera-color-brand-100-hsl), 1);
+  --vera-color-brand-200-hsl: 219, 55%, 78%;
+  --vera-color-brand-200: hsla(var(--vera-color-brand-200-hsl), 1);
+  --vera-color-brand-300-hsl: 220, 53%, 65%;
+  --vera-color-brand-300: hsla(var(--vera-color-brand-300-hsl), 1);
+  --vera-color-brand-400-hsl: 219, 51%, 51%;
+  --vera-color-brand-400: hsla(var(--vera-color-brand-400-hsl), 1);
+  --vera-color-brand-500-hsl: 218, 72%, 39%;
+  --vera-color-brand-500: hsla(var(--vera-color-brand-500-hsl), 1);
+  --vera-color-brand-600-hsl: 219, 87%, 33%;
+  --vera-color-brand-600: hsla(var(--vera-color-brand-600-hsl), 1);
+  --vera-color-brand-700-hsl: 219, 88%, 25%;
+  --vera-color-brand-700: hsla(var(--vera-color-brand-700-hsl), 1);
+  --vera-color-brand-800-hsl: 218, 82%, 21%;
+  --vera-color-brand-800: hsla(var(--vera-color-brand-800-hsl), 1);
+  --vera-color-brand-900-hsl: 217, 74%, 18%;
+  --vera-color-brand-900: hsla(var(--vera-color-brand-900-hsl), 1);
+  --vera-color-brand-950-hsl: 218, 74%, 11%;
+  --vera-color-brand-950: hsla(var(--vera-color-brand-950-hsl), 1);
+  --vera-color-violet-100-hsl: 251, 91%, 95%;
+  --vera-color-violet-100: hsla(var(--vera-color-violet-100-hsl), 1);
+  --vera-color-violet-200-hsl: 251, 95%, 92%;
+  --vera-color-violet-200: hsla(var(--vera-color-violet-200-hsl), 1);
+  --vera-color-violet-400-hsl: 255, 92%, 76%;
+  --vera-color-violet-400: hsla(var(--vera-color-violet-400-hsl), 1);
+  --vera-color-violet-600-hsl: 262, 83%, 58%;
+  --vera-color-violet-600: hsla(var(--vera-color-violet-600-hsl), 1);
+  --vera-color-neutral-50-hsl: 220, 23%, 97%;
+  --vera-color-neutral-50: hsla(var(--vera-color-neutral-50-hsl), 1);
+  --vera-color-neutral-100-hsl: 216, 17%, 94%;
+  --vera-color-neutral-100: hsla(var(--vera-color-neutral-100-hsl), 1);
+  --vera-color-neutral-200-hsl: 217, 15%, 90%;
+  --vera-color-neutral-200: hsla(var(--vera-color-neutral-200-hsl), 1);
+  --vera-color-neutral-300-hsl: 217, 15%, 83%;
+  --vera-color-neutral-300: hsla(var(--vera-color-neutral-300-hsl), 1);
+  --vera-color-neutral-400-hsl: 218, 10%, 64%;
+  --vera-color-neutral-400: hsla(var(--vera-color-neutral-400-hsl), 1);
+  --vera-color-neutral-500-hsl: 219, 8%, 48%;
+  --vera-color-neutral-500: hsla(var(--vera-color-neutral-500-hsl), 1);
+  --vera-color-neutral-600-hsl: 0, 0%, 33%;
+  --vera-color-neutral-600: hsla(var(--vera-color-neutral-600-hsl), 1);
+  --vera-color-neutral-700-hsl: 219, 10%, 27%;
+  --vera-color-neutral-700: hsla(var(--vera-color-neutral-700-hsl), 1);
+  --vera-color-neutral-800-hsl: 218, 12%, 18%;
+  --vera-color-neutral-800: hsla(var(--vera-color-neutral-800-hsl), 1);
+  --vera-color-neutral-900-hsl: 0, 0%, 10%;
+  --vera-color-neutral-900: hsla(var(--vera-color-neutral-900-hsl), 1);
+  --vera-color-neutral-950-hsl: 216, 16%, 6%;
+  --vera-color-neutral-950: hsla(var(--vera-color-neutral-950-hsl), 1);
+  --vera-color-success-50-hsl: 138, 76%, 97%;
+  --vera-color-success-50: hsla(var(--vera-color-success-50-hsl), 1);
+  --vera-color-success-100-hsl: 141, 84%, 93%;
+  --vera-color-success-100: hsla(var(--vera-color-success-100-hsl), 1);
+  --vera-color-success-200-hsl: 141, 79%, 85%;
+  --vera-color-success-200: hsla(var(--vera-color-success-200-hsl), 1);
+  --vera-color-success-300-hsl: 142, 77%, 73%;
+  --vera-color-success-300: hsla(var(--vera-color-success-300-hsl), 1);
+  --vera-color-success-400-hsl: 142, 69%, 58%;
+  --vera-color-success-400: hsla(var(--vera-color-success-400-hsl), 1);
+  --vera-color-success-500-hsl: 142, 71%, 45%;
+  --vera-color-success-500: hsla(var(--vera-color-success-500-hsl), 1);
+  --vera-color-success-600-hsl: 142, 76%, 36%;
+  --vera-color-success-600: hsla(var(--vera-color-success-600-hsl), 1);
+  --vera-color-success-700-hsl: 142, 72%, 29%;
+  --vera-color-success-700: hsla(var(--vera-color-success-700-hsl), 1);
+  --vera-color-success-800-hsl: 143, 64%, 24%;
+  --vera-color-success-800: hsla(var(--vera-color-success-800-hsl), 1);
+  --vera-color-success-900-hsl: 144, 61%, 20%;
+  --vera-color-success-900: hsla(var(--vera-color-success-900-hsl), 1);
+  --vera-color-success-950-hsl: 145, 80%, 10%;
+  --vera-color-success-950: hsla(var(--vera-color-success-950-hsl), 1);
+  --vera-color-warning-50-hsl: 48, 100%, 96%;
+  --vera-color-warning-50: hsla(var(--vera-color-warning-50-hsl), 1);
+  --vera-color-warning-100-hsl: 48, 96%, 89%;
+  --vera-color-warning-100: hsla(var(--vera-color-warning-100-hsl), 1);
+  --vera-color-warning-200-hsl: 48, 97%, 77%;
+  --vera-color-warning-200: hsla(var(--vera-color-warning-200-hsl), 1);
+  --vera-color-warning-300-hsl: 45, 96%, 64%;
+  --vera-color-warning-300: hsla(var(--vera-color-warning-300-hsl), 1);
+  --vera-color-warning-400-hsl: 41, 95%, 56%;
+  --vera-color-warning-400: hsla(var(--vera-color-warning-400-hsl), 1);
+  --vera-color-warning-500-hsl: 38, 92%, 50%;
+  --vera-color-warning-500: hsla(var(--vera-color-warning-500-hsl), 1);
+  --vera-color-warning-600-hsl: 37, 86%, 39%;
+  --vera-color-warning-600: hsla(var(--vera-color-warning-600-hsl), 1);
+  --vera-color-warning-700-hsl: 34, 83%, 35%;
+  --vera-color-warning-700: hsla(var(--vera-color-warning-700-hsl), 1);
+  --vera-color-warning-800-hsl: 23, 83%, 31%;
+  --vera-color-warning-800: hsla(var(--vera-color-warning-800-hsl), 1);
+  --vera-color-warning-900-hsl: 22, 78%, 26%;
+  --vera-color-warning-900: hsla(var(--vera-color-warning-900-hsl), 1);
+  --vera-color-warning-950-hsl: 24, 84%, 15%;
+  --vera-color-warning-950: hsla(var(--vera-color-warning-950-hsl), 1);
+  --vera-color-danger-50-hsl: 0, 86%, 97%;
+  --vera-color-danger-50: hsla(var(--vera-color-danger-50-hsl), 1);
+  --vera-color-danger-100-hsl: 0, 93%, 94%;
+  --vera-color-danger-100: hsla(var(--vera-color-danger-100-hsl), 1);
+  --vera-color-danger-200-hsl: 0, 96%, 89%;
+  --vera-color-danger-200: hsla(var(--vera-color-danger-200-hsl), 1);
+  --vera-color-danger-300-hsl: 0, 94%, 82%;
+  --vera-color-danger-300: hsla(var(--vera-color-danger-300-hsl), 1);
+  --vera-color-danger-400-hsl: 0, 91%, 71%;
+  --vera-color-danger-400: hsla(var(--vera-color-danger-400-hsl), 1);
+  --vera-color-danger-500-hsl: 0, 84%, 60%;
+  --vera-color-danger-500: hsla(var(--vera-color-danger-500-hsl), 1);
+  --vera-color-danger-600-hsl: 6, 63%, 46%;
+  --vera-color-danger-600: hsla(var(--vera-color-danger-600-hsl), 1);
+  --vera-color-danger-700-hsl: 0, 74%, 42%;
+  --vera-color-danger-700: hsla(var(--vera-color-danger-700-hsl), 1);
+  --vera-color-danger-800-hsl: 0, 70%, 35%;
+  --vera-color-danger-800: hsla(var(--vera-color-danger-800-hsl), 1);
+  --vera-color-danger-900-hsl: 0, 63%, 31%;
+  --vera-color-danger-900: hsla(var(--vera-color-danger-900-hsl), 1);
+  --vera-color-danger-950-hsl: 0, 75%, 15%;
+  --vera-color-danger-950: hsla(var(--vera-color-danger-950-hsl), 1);
+  --vera-color-accent-green-hsl: 110, 100%, 59%;
+  --vera-color-accent-green: hsla(var(--vera-color-accent-green-hsl), 1);
+  --vera-color-accent-lime-hsl: 62, 86%, 63%;
+  --vera-color-accent-lime: hsla(var(--vera-color-accent-lime-hsl), 1);
+  --vera-color-accent-yellow-hsl: 62, 100%, 50%;
+  --vera-color-accent-yellow: hsla(var(--vera-color-accent-yellow-hsl), 1);
+  --vera-color-accent-butter-hsl: 60, 96%, 79%;
+  --vera-color-accent-butter: hsla(var(--vera-color-accent-butter-hsl), 1);
+  --vera-color-accent-orange-hsl: 35, 100%, 50%;
+  --vera-color-accent-orange: hsla(var(--vera-color-accent-orange-hsl), 1);
+  --vera-color-accent-azure-hsl: 212, 100%, 51%;
+  --vera-color-accent-azure: hsla(var(--vera-color-accent-azure-hsl), 1);
+  --vera-color-accent-cobalt-hsl: 219, 87%, 33%;
+  --vera-color-accent-cobalt: hsla(var(--vera-color-accent-cobalt-hsl), 1);
+  --vera-color-accent-charcoal-hsl: 80, 4%, 17%;
+  --vera-color-accent-charcoal: hsla(var(--vera-color-accent-charcoal-hsl), 1);
+  --vera-color-accent-violet-hsl: 262, 83%, 58%;
+  --vera-color-accent-violet: hsla(var(--vera-color-accent-violet-hsl), 1);
+  --vera-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vera-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --vera-font-headline: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --vera-font-button: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --vera-font-size-3xs: 0.5rem;
+  --vera-font-size-2xs: 0.7rem;
+  --vera-font-size-xs: 0.8rem;
+  --vera-font-size-sm: 0.85rem;
+  --vera-font-size-base: 0.9rem;
+  --vera-font-size-md: 1rem;
+  --vera-font-size-lg: 1.1rem;
+  --vera-font-size-xl: 1.25rem;
+  --vera-font-size-2xl: 1.5rem;
+  --vera-font-weight-normal: 400;
+  --vera-font-weight-medium: 500;
+  --vera-font-weight-semibold: 600;
+  --vera-font-logo: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --vera-font-weight-extrabold: 800;
+  --vera-font-size-hero: 3rem;
+  --vera-space-xs: 4px;
+  --vera-space-sm: 8px;
+  --vera-space-md: 12px;
+  --vera-space-lg: 16px;
+  --vera-space-xl: 24px;
+  --vera-space-2xl: 32px;
+  --vera-space-3xl: 48px;
+  --vera-radius-sm: 4px;
+  --vera-radius-md: 6px;
+  --vera-radius-lg: 8px;
+  --vera-radius-pill: 12px;
+  --vera-radius-full: 999px;
+  --vera-border-width-default: 1px;
+  --vera-border-width-emphasis: 2px;
+  --vera-border-width-accent: 3px;
+  --vera-icon-size: 16px;
+  --vera-shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+  --vera-shadow-modal: 0 8px 32px rgba(0,0,0,0.2);
+  --vera-shadow-toast: 0 2px 12px rgba(0,0,0,0.15);
+  --vera-z-nav: 1050;
+  --vera-z-toast: 1000;
+  --vera-z-modal: 1200;
+}
+
+
+* { box-sizing: border-box; }
+body { font-family: var(--vera-font-sans); font-size: var(--vera-font-size-base); margin: 0; padding: 0; background: var(--vera-color-bg); color: var(--vera-color-text); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--vera-font-sans); }
+main { padding: 1.5rem; max-width: 960px; margin: 0 auto; }
+.bar-marker-ping { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 2px solid var(--vera-color-accent-orange); background: transparent; opacity: 0; pointer-events: none; animation: barMarkerPing 3s ease-out infinite; }
+/* 3s cycle = a ~2s pulse (your keyframes, mapped into the first two-thirds) + a 1s
+   held-invisible pause before it repeats (CSS can't delay between iterations). */
+@keyframes barMarkerPing { 0% { width: 12px; height: 12px; margin: -6px 0 0 -6px; opacity: 0; } 16.7% { opacity: 0.6; } 46.7% { opacity: 0; } 66.7% { width: 64px; height: 64px; margin: -32px 0 0 -32px; opacity: 0; } 100% { width: 64px; height: 64px; margin: -32px 0 0 -32px; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .bar-marker-ping { animation: none; opacity: 0; } }
+table { width: 100%; border-collapse: collapse; background: var(--vera-color-surface); border-radius: var(--vera-radius-md); overflow: hidden; border: 1px solid var(--vera-color-border); }
+th { background: var(--vera-color-surface-alt); text-align: left; padding: 0.6rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--vera-color-text-2); border-bottom: 1px solid var(--vera-color-border); }
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--vera-color-text); }
+.sort-caret { font-size: 0.7rem; }
+.chart-zoom-frame { position: relative; }
+.chart-zoom-controls { display: flex; gap: 0.35rem; justify-content: flex-end; margin-bottom: 0.35rem; }
+.chart-zoom-btn { padding: 0.15rem 0.55rem; line-height: 1.4; font-size: 0.85rem; }
+/* Shared "pressed" look (issue #1992) — a real click and the wheel-triggered
+   flash (data-zoom-active) render identically, so there is exactly one
+   pressed appearance, not a bespoke second one invented for the flash. */
+.chart-zoom-btn:active, .chart-zoom-btn[data-zoom-active="1"] { background: var(--vera-color-surface-alt); border-color: var(--vera-color-brand); }
+.chart-zoom-scroll { overflow: auto; max-width: 100%; max-height: 70vh; }
+/* A chart fitted narrower than its box sits centered in it (issue 2826). */
+.chart-zoom-scroll > svg { display: block; margin: 0 auto; }
+/* max-height (issue #2000) is what actually makes vertical panning and
+   vertical zoom-anchoring work: without a height bound the scroller simply
+   grows to whatever height the zoomed SVG needs, so scrollHeight ===
+   clientHeight, there is never vertical overflow, and scrollTop is
+   permanently clamped to 0 no matter what the drag handler or anchorScroll
+   assign to it. max-width already did the equivalent job horizontally. A
+   chart at rest (level 1) is comfortably inside 70vh on any ordinary
+   screen; a very wide monitor can exceed it at level 1, in which case the
+   chart scrolls within its own frame instead of pushing the page down.
+   Drag-to-pan cursor affordance (issue #1998) — attributes, not classes,
+   since mini-dom has no classList. data-pannable is set whenever the
+   scroller actually overflows; data-panning is set only while a drag is
+   in progress. */
+.chart-zoom-scroll[data-pannable="1"] { cursor: grab; }
+.chart-zoom-scroll[data-panning="1"]  { cursor: grabbing; }
+/* No chart ever shows a scrollbar (issue 2908): panning is by drag,
+   trackpad or shift+wheel. At rest on a desktop screen the box cannot
+   scroll at all; phones keep sideways scrolling (issue 2775). */
+.chart-zoom-scroll { scrollbar-width: none; }
+.chart-zoom-scroll::-webkit-scrollbar { display: none; }
+@media (min-width: 768px) {
+  .chart-zoom-scroll[data-zoom-level="1"] { overflow: hidden; }
+}
+td { padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--vera-color-border-soft); font-size: 0.9rem; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+td a { color: var(--vera-color-brand); text-decoration: none; }
+td a:hover { text-decoration: underline; }
+.card { background: var(--vera-color-surface); border-radius: var(--vera-radius-md); border: 1px solid var(--vera-color-border); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+.card h2 { margin: 0 0 1rem; font-size: 0.95rem; font-weight: 600; color: var(--vera-color-text); }
+.page-heading { font-size: 0.95rem; font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-text); margin-bottom: var(--vera-space-md); } /* 0.95rem: no token yet — pending type-scale pass */
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1.5rem; margin: 0; }
+.dl-split { grid-template-columns: max-content 1fr; }
+@media (min-width: 900px) {
+	.dl-split { grid-template-columns: repeat(2, max-content 1fr); }
+}
+dt { font-size: 0.85rem; color: #666; font-weight: 500; align-self: start; padding-top: 1px; }
+dd { margin: 0; font-size: 0.9rem; }
+:where(a) { color: var(--vera-color-brand); }
+:where(a):visited { color: var(--vera-color-brand); }
+:where(a):hover { text-decoration: underline; }
+.back { font-size: 0.85rem; color: var(--vera-color-brand); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+ul.task-list { margin: 0; padding: 0 0 0 1.2rem; font-size: 0.9rem; }
+ul.task-list li { margin-bottom: 0.2rem; }
+.task-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; }
+.task-pill { display: inline-flex; align-items: center; padding: 0.4rem 0.85rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-pill); background: var(--vera-color-surface); color: var(--vera-color-text); font-size: 0.85rem; line-height: 1.2; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: var(--vera-radius-pill); font-size: 0.75rem; font-weight: 500; }
+.cell-clip { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+.cell-clip-project { max-width: 32ch; }
+.cell-clip-client { max-width: 24ch; }
+.pm-you { display: inline-block; margin-left: 0.4rem; padding: 1px 7px; border-radius: var(--vera-radius-pill); background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle; }
+.ler-pill, .plan-accuracy-pill { display: inline-block; padding: 1px 8px; border-radius: var(--vera-radius-pill); font-size: 0.8125rem; font-weight: 600; }
+.badge-active    { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); }
+.badge-cancelled { background: var(--vera-color-danger-soft); color: var(--vera-color-danger-text); }
+.badge-completed { background: var(--vera-color-info-soft); color: var(--vera-color-info-text); }
+.badge-default   { background: var(--vera-color-neutral-200); color: var(--vera-color-neutral-700); }
+.badge-pending   { background: var(--vera-color-warning-soft); color: var(--vera-color-warning-text); }
+.center-wrap { display: flex; align-items: center; justify-content: center; min-height: 70vh; }
+.box { background: var(--vera-color-surface); border-radius: var(--vera-radius-lg); box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 2.5rem 3rem; text-align: center; max-width: 420px; width: 100%; }
+.box h2 { margin: 0 0 1rem; }
+.box p { color: var(--vera-color-text-2); margin: 0 0 1.5rem; line-height: 1.6; }
+code { background: var(--vera-color-neutral-100); padding: 2px 6px; border-radius: 3px; font-family: var(--vera-font-mono); }
+@media (max-width: 600px) { main { padding: 1rem; } th, td { padding: 0.5rem 0.6rem; }
+  /* Phones (issue 2775): a label column beside its value leaves the value a
+     sliver, so each label sits above its value instead. */
+  dl, .dl-split { grid-template-columns: 1fr; gap: 0 }
+  dt { margin-top: 0.6rem } dd { margin-bottom: 0.1rem } }
+.banner { padding: 0.65rem 1rem; border-radius: 5px; margin-bottom: 1rem; font-size: 0.9rem; }
+.banner-success { background: var(--vera-color-success-soft); color: var(--vera-color-success-text); border: 1px solid var(--vera-color-success-200); }
+.banner-warn    { background: var(--vera-color-warning-soft); color: var(--vera-color-warning-text); border: 1px solid var(--vera-color-warning-200); }
+.banner-error   { background: var(--vera-color-danger-soft); color: var(--vera-color-danger-text); border: 1px solid var(--vera-color-danger-200); }
+/* Success is a transient event — floats bottom-center, fades in/out, auto-dismisses (issue
+   #1884). Error and warning describe a persistent state and are never toasted — see
+   _noticeBanner. Bottom-center (not top): top overlaps the page heading, the "All projects"
+   back-link, and (on mobile) .nav-toggle; bottom-center overlaps none of that. z-index 1000
+   is deliberately below .console-sidebar.open (1050) and .nav-toggle (1100) — the mobile
+   menu, a modal-ish surface, should cover a toast, not the other way round — and below
+   .modal-overlay (1200), so an open modal always wins. --toast-slide is zeroed under
+   reduced motion so the toast still fades but never slides. */
+.banner-toast { position: fixed; bottom: 1.25rem; left: 50%; --toast-slide: 8px; transform: translate(-50%, 0); z-index: 1000; box-shadow: var(--vera-shadow-toast); max-width: 90vw; animation: vera-toast-in 200ms ease-out; }
+.banner-toast.toast-leaving { animation: vera-toast-out 300ms ease-in forwards; }
+@keyframes vera-toast-in  { from { opacity: 0; transform: translate(-50%, var(--toast-slide)); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes vera-toast-out { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, var(--toast-slide)); } }
+@media (prefers-reduced-motion: reduce) { .banner-toast { --toast-slide: 0px; } }
+.table-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+/* A table that fits on a desktop but may be wider than a phone or a tablet beside
+   the sidebar (issue 2775): it scrolls inside its own box there, and keeps its
+   ordinary wrapping layout everywhere it fits. */
+.table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+/* Charts that are not zoomable (issue 2777): readable on phones and tablets. */
+@media (max-width: 900px) {
+  .chart-phone-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+  .chart-phone-scroll > svg { min-width: 600px; }
+}
+.pm-acc { border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); margin-bottom: 0.5rem; background: var(--vera-color-surface); overflow: hidden; }
+.pm-acc > summary { list-style: none; cursor: pointer; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.pm-acc > summary::-webkit-details-marker { display: none; }
+.pm-acc > summary:hover { background: var(--vera-color-surface-alt); }
+.pm-acc[open] > summary { border-bottom: 1px solid var(--vera-color-border); }
+.pm-acc .pm-detail { padding: 0.5rem 1rem 1rem; }
+.pm-acc .pm-col-r { text-align: right; }
+.pm-acc[open] > summary .pm-sum-profit { display: none; }
+/* Fixed column geometry so every PM's detail table lines up for easy scanning. */
+.pm-detail table { table-layout: fixed; }
+/* A wrapped table renders at its natural (content) width and scrolls inside its
+   .table-scroll box, instead of compressing/wrapping/overlapping columns to fit. */
+.table-scroll > table { min-width: max-content; table-layout: auto; }
+.table-scroll th, .table-scroll td { white-space: nowrap; }
+/* Week-entry tables (time / person-time / activity) are the exception to the
+   two .table-scroll rules above: the Notes column is free text and must WRAP,
+   not stretch the table into a horizontal scroller. table-layout:fixed + the
+   shared <colgroup> keeps columns aligned across the stacked per-day tables. */
+.table-scroll > table.week-entries { min-width: 100%; table-layout: fixed; }
+.table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+/* Task tables (/console/tasks, issue #2463): the two tables share one <colgroup> so every column lines up down the page. Same pattern
+   as week-entries above; task names wrap instead of stretching the table. */
+.table-scroll > table.task-table { min-width: 100%; table-layout: fixed; }
+.table-scroll table.task-table th, .table-scroll table.task-table td { white-space: normal; overflow-wrap: anywhere; }
+/* Project Envelopes card (issue 2503): the envelopes table and the time-outside-envelopes table share one <colgroup>, so their
+   columns line up. Same pattern as task-table above. */
+.table-scroll > table.env-table { min-width: 100%; table-layout: fixed; }
+.table-scroll table.env-table th, .table-scroll table.env-table td { white-space: normal; overflow-wrap: anywhere; }
+.table-scroll table.env-table th { white-space: nowrap; overflow-wrap: normal; }
+/* An ID never breaks inside its number (issue 3368); a pair tag after it may
+   still wrap to its own line. */
+.table-scroll table.env-table td:first-child { overflow-wrap: normal; }
+/* Project Managers detail tables (issue 2825): fixed columns so the Project
+   column can't push Profit off the screen; long names fade (.cell-name-fade). */
+.table-scroll > table.pm-table { min-width: 100%; table-layout: fixed; }
+.table-scroll table.pm-table td { overflow: hidden; }
+/* Buttons in a table's Actions cell (issue 3197, _rowActions): two sit side by
+   side and three or more stack, always with a gap, so none touches another.
+   The envelope table's columns are fixed, so there the pair may wrap rather
+   than run past the table's edge (issue 2775). Below desktop any pair may wrap. */
+.row-actions { display: flex; flex-wrap: nowrap; gap: 0.5rem; align-items: center; }
+.row-actions-stack { flex-direction: column; align-items: flex-start; }
+.row-actions button, .row-actions a { white-space: nowrap; }
+table.env-table .row-actions { flex-wrap: wrap; }
+@media (max-width: 899px) { .row-actions { flex-wrap: wrap; } }
+tr.outside-envelope-row td { color: var(--vera-color-text-muted); }
+details.outside-envelopes > summary { list-style: none; display: inline-block; margin: 0 0 0.5rem; }
+details.outside-envelopes > summary::-webkit-details-marker { display: none; }
+details.outside-envelopes > summary .outside-hide { display: none; }
+details.outside-envelopes[open] > summary .outside-show { display: none; }
+details.outside-envelopes[open] > summary .outside-hide { display: inline; }
+/* The entries in a row of time outside envelopes (issue 3198). */
+details.outside-entries > summary { cursor: pointer; }
+details.outside-entries > ul { list-style: none; margin: 0.35rem 0 0; padding: 0; max-height: 16rem; overflow-y: auto; }
+details.outside-entries > ul > li { padding: 0.15rem 0; }
+/* The entry a link points at, on a person's time page (issue 3198). */
+table.week-entries tr[id] { scroll-margin-top: 5rem; }
+table.week-entries tr:target td { background: var(--vera-color-brand-50); }
+table.week-entries tr:target td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
+/* The rows a timeline week points at (issue 3573): the same look as a targeted row. */
+table.week-entries tr.entry-hl td { background: var(--vera-color-brand-50); }
+table.week-entries tr.entry-hl td:first-child { box-shadow: inset 3px 0 0 var(--vera-color-brand); }
+/* Day and week totals in the week of entries (issue 3572). */
+table.week-entries tr.entries-total td { border-bottom: none; }
+table.week-entries td.entries-total-label { color: var(--vera-color-text-muted); text-align: right; }
+table.week-entries tr.calendar-event td { background: var(--vera-color-warning-50); }
+/* layout/calendar/event-icon-size (Figma, 24); raw until #2570 */
+table.week-entries tr.calendar-event img { vertical-align: middle; }
+table.week-entries .calendar-duration { display: inline-flex; align-items: center; gap: var(--vera-space-sm); white-space: nowrap; }
+table.week-entries .calendar-duration label { display: inline-flex; align-items: center; gap: var(--vera-space-xs); margin: 0; font-weight: var(--vera-font-weight-normal); }
+/* layout/calendar/duration-field-width (Figma); raw until #2570 */
+table.week-entries .calendar-duration input { width: 44px; text-align: right; }
+table.week-entries tr.calendar-event .notes-cell input { width: 100%; }
+table.week-entries tr.calendar-event select { width: 100%; max-width: 100%; box-sizing: border-box; }
+table.week-entries tr.calendar-event input { max-width: 100%; box-sizing: border-box; }
+table.week-entries td.entries-total-hours { font-weight: 600; }
+.week-total-table { margin-top: 0.75rem; }
+/* A table's add row (issue 3574, _tableAddRow): inputs fill their column. */
+tr.table-add-row td { vertical-align: middle; }
+tr.table-add-row input, tr.table-add-row select { width: 100%; box-sizing: border-box; margin: 0; }
+/* Privacy mode (issue 2513): names are blurred, never replaced, so it is plain
+   that masking is on. Form controls and tables of individual pay blur whole. */
+.privacy-blur { filter: blur(5px); user-select: none; }
+html.vera-privacy input:not([type=hidden]), html.vera-privacy select, html.vera-privacy textarea { filter: blur(4px); }
+html.vera-privacy .pay-table, html.vera-privacy .pay { filter: blur(6px); user-select: none; }
+@media (max-width: 767px) {
+  /* Phones: fixed % columns would crush — fall back to the #1608 scroll
+     pattern, but cap the notes column so one long note stays readable. */
+  .table-scroll > table.week-entries { min-width: max-content; table-layout: auto; }
+  .table-scroll table.week-entries th, .table-scroll table.week-entries td { white-space: nowrap; }
+  .table-scroll > table.task-table { min-width: max-content; table-layout: auto; }
+  .table-scroll table.task-table th, .table-scroll table.task-table td { white-space: nowrap; }
+  .table-scroll > table.env-table { min-width: max-content; table-layout: auto; }
+  .table-scroll table.env-table th, .table-scroll table.env-table td { white-space: nowrap; }
+  .table-scroll > table.pm-table { min-width: max-content; table-layout: auto; }
+  .table-scroll table.week-entries td.notes-cell { white-space: normal; overflow-wrap: anywhere; min-width: 14rem; max-width: 18rem; }
+}
+/* Wage-refresh proposals table: the Occupation, Current and Proposed columns
+   are wide (long occupation titles; five dollar amounts each). Let those cells
+   wrap so the table fits the viewport instead of scrolling the Proposed column
+   off-screen. Individual dollar amounts still never break mid-number — each is
+   wrapped in a nowrap span at render time. */
+.table-scroll > table.ladder-proposals { min-width: 0; }
+.table-scroll table.ladder-proposals td.wrap-cell { white-space: normal; }
+.table-scroll table.ladder-proposals td.ladder-cell { white-space: normal; max-width: 16rem; }
+.pm-detail td:first-child { overflow: hidden; text-overflow: ellipsis; }
+/* Shared chevron treatment (#1852) — one affordance, one style, used by both
+   the pm-acc panel accordion and the rate-acc inline accordion. Brand-colored
+   because this is a control, not chrome; each accordion still owns its own
+   rotate-on-open rule since they key off different open selectors. */
+.pm-chevron, .rate-acc-chevron { display: inline-block; color: var(--vera-color-brand); font-size: 0.85rem; transition: transform .15s ease; }
+.pm-acc[open] > summary .pm-chevron { transform: rotate(90deg); }
+.pm-total td { font-weight: 600; border-top: 2px solid var(--vera-color-border); }
+/* Rates tab per-person rate-history accordion (#1849) — a native <details>
+   nested inside the Person cell, not a second <tr>: the Rates table's sort
+   script reorders <tr> elements (a detail row would be torn from its parent
+   on the first sort) and the shared people filter selects tbody
+   tr[data-labor] (a second row would filter independently or be orphaned).
+   Row count never changes, so sorting/filtering need no changes. */
+.rate-acc > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; }
+.rate-acc > summary::-webkit-details-marker { display: none; }
+.rate-acc > summary:hover { color: var(--vera-color-brand); }
+.rate-acc[open] > summary .rate-acc-chevron { transform: rotate(90deg); }
+.rate-acc-detail { margin-top: 0.5rem; padding: 0.5rem 0.6rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-md); background: var(--vera-color-surface-alt); }
+.rate-acc-detail table { width: 100%; }
+.rate-acc-superseded { color: var(--vera-color-text-muted); font-size: 0.75rem; font-style: italic; margin-left: 0.35rem; }
+.day-cell { flex: 1; min-width: 80px; border: var(--vera-border-width-default) solid var(--vera-color-border); border-radius: var(--vera-radius-md); padding: 0.5rem; text-align: center; cursor: pointer; box-sizing: border-box; transition: box-shadow .1s, border-color .1s; }
+.day-cell:hover { border-color: var(--vera-color-brand); }
+/* Today = a brand ring with no fill (calendar convention); selected = filled.
+   When today is also selected, .selected (declared after) wins → filled style. */
+.day-cell.today { border-color: var(--vera-color-brand); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--vera-color-brand); } /* keeping 1px (width-default) to stay zero-visual-change; bumping to width-emphasis is a deliberate follow-up design tweak */
+.day-cell.selected { border-color: var(--vera-color-brand); background: var(--vera-color-brand-soft); box-shadow: inset 0 calc(-1 * var(--vera-border-width-accent)) 0 var(--vera-color-brand); }
+/* Day-cell state (issue #1939) — a holiday, a non-working day, a time-off
+   day, and a working day with nothing logged must be distinguishable to
+   someone who can't see color, so every state also carries the .day-state
+   text label built in _weekEntriesView; color here is a redundant cue, never
+   the only one. */
+.day-state { font-size: 0.68rem; font-weight: 600; margin-top: 0.15rem; line-height: 1.15; }
+.day-state-name { font-size: 0.68rem; font-weight: 600; line-height: 1.15; }
+.day-cell.day-holiday .day-state-name { color: var(--vera-color-warning-800); }
+/* A day's labels are one line at every width (issue 3537, amendment 1):
+   "Holiday — Veterans Day". Centered when they fit; when they don't, they
+   start at the left, are clipped and fade out to the right. The auto
+   margins center the line without letting it overflow on the left. */
+.day-labels { display: flex; white-space: nowrap; overflow: hidden; margin-top: 0.15rem; -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); }
+.day-labels > * { flex: none; }
+.day-labels > :first-child { margin-left: auto; }
+.day-labels > :last-child { margin-right: auto; }
+.day-labels .day-state { margin-top: 0; }
+.day-state-name::before { content: "\00a0\2014\00a0"; }
+.day-cell.day-holiday { background: var(--vera-color-warning-100); border-color: var(--vera-color-warning-400); }
+.day-cell.day-holiday .day-state { color: var(--vera-color-warning-800); }
+.day-cell.day-nonworking { opacity: 0.55; }
+.day-cell.day-off-pto, .day-cell.day-off-sick, .day-cell.day-off-leave { background: var(--vera-color-brand-soft); border-color: var(--vera-color-brand-300); }
+.day-cell.day-off-pto .day-state, .day-cell.day-off-sick .day-state, .day-cell.day-off-leave .day-state { color: var(--vera-color-brand-700); }
+.day-cell.day-off-partial .day-state { color: var(--vera-color-text-muted); font-weight: 500; font-style: italic; }
+/* On a phone the day strip is a list of one-line rows (issue 3537): day,
+   labels, hours. The labels never wrap; when they are too wide they are cut
+   and fade out toward the right. A holiday reads "Holiday — <name>" on that
+   one line. */
+@media (max-width: 767px) {
+  .day-strip { flex-direction: column; flex-wrap: nowrap; gap: var(--vera-space-sm); min-width: 0; max-width: 100%; }
+  .day-strip .day-cell { display: flex; align-items: center; gap: var(--vera-space-sm); padding: var(--vera-space-sm); text-align: left; min-width: 0; width: 100%; flex: none; }
+  .day-strip .day-cell.selected { box-shadow: none; }
+  .day-strip .day-name { flex: 0 0 3rem; }
+  .day-strip .day-labels { flex: 1 1 auto; min-width: 0; margin-top: 0; }
+  .day-strip .day-labels > :first-child { margin-left: 0; }
+  .day-strip .day-state, .day-strip .day-state-name { margin: 0; }
+  .day-strip .day-hours { margin-left: auto; flex: none; }
+}
+.usage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.color-swatch-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem; }
+.color-swatch-option { display: inline-flex; }
+.color-swatch-option input { position: absolute; opacity: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; margin: -1px; }
+.color-swatch { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid var(--vera-color-border); box-sizing: border-box; font-size: 0.65rem; color: var(--vera-color-text-muted); background: var(--vera-color-neutral-200); }
+.color-swatch-option input:checked + .color-swatch { border-color: var(--vera-color-text); box-shadow: 0 0 0 2px var(--vera-color-brand); }
+.color-swatch-option input:focus-visible + .color-swatch { outline: 2px solid var(--vera-color-brand); outline-offset: 2px; }
+dd input[type="date"],
+dd input[type="number"],
+dd select { font-size: 0.9rem; padding: 3px 6px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); }
+dd textarea { font-size: 0.9rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); width: 100%; max-width: 480px; min-height: 60px; resize: vertical; }
+.save-btn { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); background: var(--vera-color-brand); color: var(--vera-color-on-brand); cursor: pointer; margin-top: 1rem; }
+.save-btn:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); }
+td .save-btn, td .btn-primary, td .btn-secondary, td .btn-secondary-danger, td button { margin-top: 0; padding: 0.25rem 0.7rem; line-height: 1.2; }
+.save-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary:disabled:hover { background: var(--vera-color-brand); border-color: var(--vera-color-brand); }
+/* A text-styled real <button> (issue #2451), for an action that sits inside a read-only row. Works with _modalTrigger and inside a POST form. */
+.btn-link { border: none; background: none; color: var(--vera-color-brand); text-decoration: underline; font: inherit; text-transform: none; letter-spacing: normal; text-indent: 0; padding: 0; margin: 0; cursor: pointer; }
+.btn-link:hover { text-decoration: underline; }
+.btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-secondary:disabled:hover { border-color: var(--vera-color-border); }
+.section-head { font-size: 0.9rem; font-weight: 600; color: var(--vera-color-text); margin: 1.25rem 0 0.5rem; border-top: var(--vera-border-width-default) solid var(--vera-color-border-soft); padding-top: 1rem; }
+/* A heading that opens its card has nothing above it to separate from, so it draws no rule (issue 2711). */
+.card > .section-head:first-child, .card > .settings-section:first-child > .section-head:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+.form-stack { display: flex; flex-direction: column; gap: 1rem; }
+/* All text-like fields, selects and textareas in the console look the same (issue 3614): the
+   Log time modal's look, at zero specificity (:where), so a field's own rule still wins. */
+:where(input:not([type]), input[type="text"], input[type="number"], input[type="date"], input[type="time"], input[type="month"], input[type="url"], input[type="email"], input[type="search"], input[type="password"], input[type="tel"], select, textarea) {
+  font-family: inherit; font-size: 0.9rem; padding: 5px 8px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); box-sizing: border-box; background: var(--vera-color-surface); color: var(--vera-color-text);
+}
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-group label { font-size: 0.85rem; font-weight: 500; color: #444; }
+.form-group input[type="text"], .form-group input[type="number"], .form-group input[type="date"], .form-group select, .form-group textarea,
+.wl-log input[type="date"], .wl-log select { font-size: 0.9rem; padding: 5px 8px; border: 1px solid #ccc; border-radius: var(--vera-radius-sm); width: 100%; max-width: 480px; }
+.form-group textarea { min-height: 60px; resize: vertical; }
+/* Inside the time log card, inputs fill the card width so every field's right edge aligns. */
+.log-card .form-group input, .log-card .form-group select, .log-card .form-group textarea { max-width: none; }
+.form-actions { padding-top: 0.5rem; }
+/* A lone save button in a modal sits bottom-right. */
+.modal-box .form-actions { display: flex; justify-content: flex-end; }
+.btn-primary { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); background: var(--vera-color-brand); color: var(--vera-color-on-brand); cursor: pointer; }
+.btn-primary:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); }
+.btn-secondary { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-full); background: var(--vera-color-surface); color: var(--vera-color-brand); cursor: pointer; }
+.btn-secondary:hover { border-color: var(--vera-color-brand); }
+th .ladder-head { padding: 0; margin: 0; border: none; background: none; font: inherit; color: var(--vera-color-brand); cursor: pointer; text-align: left; text-transform: inherit; letter-spacing: inherit; }
+th .ladder-head:hover { text-decoration: underline; }
+.btn-secondary-danger { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: 1px solid var(--vera-color-danger); border-radius: var(--vera-radius-full); background: var(--vera-color-surface); color: var(--vera-color-danger); cursor: pointer; }
+.btn-secondary-danger:hover { background: var(--vera-color-danger); color: var(--vera-color-on-brand); border-color: var(--vera-color-danger); }
+/* No underlines on anything that looks like a button (incl. link-buttons). */
+button, .btn-primary, .btn-secondary, .btn-secondary-danger, .save-btn, .cat-btn, .new-project-link, .oauth-btn { text-decoration: none; }
+button:hover, .btn-primary:hover, .btn-secondary:hover, .btn-secondary-danger:hover, .save-btn:hover, .cat-btn:hover, .new-project-link:hover, .oauth-btn:hover { text-decoration: none; }
+/* Buttons (#1227): Roboto Condensed, uppercase, regular weight, ~5% tracking.
+   Covers every <button> plus the <a>-styled button classes. text-indent matches
+   letter-spacing so the trailing space after the last letter is balanced by an
+   equal lead-in, keeping the label centered. Icon-only buttons reset below so
+   the glyphs stay centered. */
+button, .new-project-link, .oauth-btn { font-family: var(--vera-font-button); text-transform: uppercase; font-weight: var(--vera-font-weight-normal); letter-spacing: 0.05em; text-indent: 0.05em; }
+.nav-toggle, .modal-close { text-transform: none; letter-spacing: normal; text-indent: 0; }
+.optional-label { font-size: 0.8rem; color: var(--vera-color-text-muted); font-weight: 400; margin-left: 4px; }
+.required-mark { color: var(--vera-color-danger-500); font-weight: 700; margin-left: 2px; }
+.new-project-link { font-size: 0.8125rem; padding: 0.375rem 0.75rem; background: var(--vera-color-brand); color: var(--vera-color-on-brand); text-decoration: none; border: 1px solid var(--vera-color-brand); border-radius: var(--vera-radius-full); white-space: nowrap; display: inline-block; }
+.new-project-link:hover { background: var(--vera-color-brand-hover); border-color: var(--vera-color-brand-hover); text-decoration: none; }
+.cat-btn { font-size: 0.8125rem; padding: 0.375rem 0.75rem; border: none; background: var(--vera-color-surface); color: var(--vera-color-brand); cursor: pointer; text-decoration: none; display: inline-block; }
+.cat-btn + .cat-btn { border-left: 1px solid var(--vera-color-brand); }
+.cat-btn.active { background: var(--vera-color-brand); color: var(--vera-color-on-brand); }
+.console-layout { display: flex; min-height: 100vh; }
+.console-sidebar { width: 200px; flex-shrink: 0; background: transparent; border-right: none; display: flex; flex-direction: column; padding: 0 0 1rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+/* padding: space-2xl (32px) on top puts the bottom of the V (22.5px into the 30px box, so at 54.5px) level with the baseline of the first card's tab labels (about 54.9px: the tab text's line box starts at 41px, and the tabs are 14.4px with line-height 1.2); 0.75rem left lines the letters up with the links at 1.25rem (the clear zone insets them 7.5px); 1.25rem below puts the top of the first link level with the top of the first card under the tabs (93.3px: 69px tab bar + 24px margin), leaving 39px under the V, well over the 7.5px brand clear zone (issues 3557, 3559). */
+.nav-brand { padding: var(--vera-space-2xl) 0 1.25rem 0.75rem; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
+/* The logo keeps its color on hover; only the wordmark reveals (issue 3584). */
+/* Clear zone (VERA logo 2026-11-21): the SVG carries half the cap height on every side, so the cap height is half the box height. 30px box → 15px cap height (matches the getvera.site nav). */
+.vera-logo { height: auto; width: auto; display: block; }
+/* The sidebar shows the V alone; hovering the V draws E, R and A open left to right (a curtain), and moving off closes it. The clip keeps the box full size so nothing moves; 69.35% hides everything right of the midpoint between the V and the E. clip-path also limits hit-testing, so only the V starts the reveal, and once open the whole word keeps it open. */
+.nav-brand .vera-logo { height: 30px; clip-path: inset(0 69.35% 0 0); transition: clip-path 70ms linear; }
+.nav-brand .vera-logo:hover, .nav-brand:focus-visible .vera-logo { clip-path: inset(0 0 0 0); transition-duration: 120ms; }
+@media (prefers-reduced-motion: reduce) { .nav-brand .vera-logo { transition: none; } }
+.brand-lockup { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.brand-lockup .vera-logo { height: 40px; }
+.brand-lockup .brand-lockup-sub { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vera-color-text-2); }
+.nav-links { display: flex; flex-direction: column; }
+.nav-icon { width: var(--vera-icon-size); height: var(--vera-icon-size); flex-shrink: 0; }
+.nav-link { display: flex; align-items: center; gap: var(--vera-space-sm); padding: 0.7rem 1.25rem; color: var(--vera-color-text-2); text-decoration: none; font-size: 0.9rem; }
+.nav-link:hover { background: var(--vera-color-brand-50); }
+.nav-link[aria-current] { color: var(--vera-color-brand); border-left: 3px solid var(--vera-color-brand); padding-left: calc(1.25rem - 3px); font-weight: 700; }
+.nav-divider { height: 1px; background: var(--vera-color-border); margin: 0.5rem 1.25rem; }
+.nav-group-label { padding: 0 1.25rem; margin-bottom: 0.35rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vera-color-text-muted); }
+.nav-subitem { font-size: 0.85rem; }
+/* Needs you badge (issue 2582): how many items wait on the Needs you All tab.
+   _NEEDS_YOU_BADGE_SCRIPT fills it after the page loads; it stays hidden until
+   then. At zero the badge hides and the link fades (data-quiet). */
+.nav-badge { margin-left: auto; min-width: 1.6em; padding: 0 0.45em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.6; text-align: center; }
+.nav-badge[hidden] { display: none; }
+.nav-toggle[data-count]::after { content: attr(data-count); position: absolute; top: 50%; right: calc(100% + var(--vera-space-sm)); transform: translateY(-50%); white-space: nowrap; min-width: 1.5em; padding: 0 0.4em; border-radius: 999px; background: var(--vera-color-danger-600); color: var(--vera-color-on-brand); font-size: var(--vera-font-size-2xs); font-weight: 700; line-height: 1.5; text-align: center; }
+.nav-link[data-quiet] { opacity: 0.5; }
+/* Contractor-liability marker (issue 2593): beside a contractor's name on a
+   liability row. The title explains what a contractor's liability does. */
+.pair-tag { margin-left: 0.1em; font-size: var(--vera-font-size-sm); white-space: nowrap; }
+span.pair-tag { color: var(--vera-color-text-2); cursor: help; }
+.liab-marker { display: inline-block; margin-left: 0.4rem; padding: 0 0.45em; border: 1px solid var(--vera-color-border); border-radius: 999px; font-size: var(--vera-font-size-2xs); font-weight: 600; line-height: 1.6; color: var(--vera-color-text-2); white-space: nowrap; cursor: help; }
+/* Sidebar My-projects pill + name fade (issue #2093). .nav-link is already
+   a flex row (display:flex;align-items:center;gap), so .nav-subitem-name just
+   needs to flex/truncate while the pill (.ler-pill, when present) stays
+   fixed-width and never shrinks. The name fades into the pill via a CSS mask
+   rather than wrapping or colliding with it -- a solid-color gradient overlay
+   was rejected because it would have to hard-code the sidebar background,
+   which is a design token, not a fixed color. Applies to every row for visual
+   consistency, including rows with no pill -- a short name simply never
+   reaches the faded region. The full name is preserved in the row's title
+   attribute for hover and assistive tech even when the visible text fades or
+   truncates. */
+.nav-subitem-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
+.nav-subitem .ler-pill { flex: 0 0 auto; }
+/* Hover-to-reveal (issue #2465): the inner span is what slides; the outer
+   .nav-subitem-name keeps clipping it. Transform/transition are set inline by
+   _NAV_NAME_SLIDE_SCRIPT on hover and cleared on leave (a snap, not a slide). */
+.nav-subitem-name-text { display: inline-block; }
+/* Table-cell variant of the sidebar name fade (#2093). Fixed width, not
+   max-width: the mask is relative to the element's own box, so a shrink-to-fit
+   element would fade the tail of every name, including short ones that never
+   needed clipping. At a fixed width a short name never reaches the faded
+   region, matching the sidebar's behavior. */
+.cell-name-fade { display: inline-block; width: 22ch; overflow: hidden; white-space: nowrap; vertical-align: bottom; -webkit-mask-image: linear-gradient(to right, #000 70%, transparent); mask-image: linear-gradient(to right, #000 70%, transparent); }
+.nav-more { color: var(--vera-color-text-muted); font-style: italic; }
+.nav-footer { margin-top: auto; padding: 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: var(--vera-color-text-muted); }
+.nav-footer a { color: var(--vera-color-brand); text-decoration: none; }
+/* Switch workspace popover (issue 3554), after the shadcn Base UI popover. 288px = Figma layout/desktop/popover-width and 220px = layout/desktop/popover-list-max-height, raw until the layout tokens ship (#2570); 2px = Figma space/2xs (#2569). */
+.ws-switch-pop { position: fixed; z-index: 50; width: 288px; box-sizing: border-box; display: flex; flex-direction: column; padding: var(--vera-space-sm); background: var(--vera-color-surface); border: var(--vera-border-width-default) solid var(--vera-color-border); border-radius: var(--vera-radius-lg); box-shadow: var(--vera-shadow-card); text-align: left; opacity: 0; transform: translateY(8px) scale(0.95); transform-origin: bottom left; transition: opacity 100ms ease, transform 100ms ease; }
+.ws-switch-pop[data-open] { opacity: 1; transform: none; }
+.ws-switch-pop[hidden] { display: none; }
+.ws-switch-title { margin: 0; padding: var(--vera-space-xs) var(--vera-space-sm) 0; font-size: var(--vera-font-size-sm); font-weight: var(--vera-font-weight-medium); color: var(--vera-color-text); }
+.ws-switch-desc { margin: 2px 0 0; padding: 0 var(--vera-space-sm); font-size: var(--vera-font-size-xs); color: var(--vera-color-text-muted); }
+.ws-switch-list { display: flex; flex-direction: column; gap: 2px; max-height: 220px; overflow-y: auto; margin-top: var(--vera-space-sm); }
+.ws-option-form { margin: 0; }
+.ws-option { display: flex; align-items: center; gap: var(--vera-space-sm); width: 100%; box-sizing: border-box; padding: var(--vera-space-sm); border: 0; border-radius: var(--vera-radius-sm); background: transparent; color: var(--vera-color-text); font-family: var(--vera-font-sans); text-transform: none; letter-spacing: normal; text-align: left; cursor: pointer; }
+button.ws-option:hover, button.ws-option:focus-visible { background: var(--vera-color-brand-soft); }
+button.ws-option:focus-visible { outline: 2px solid var(--vera-color-brand); outline-offset: -2px; }
+.ws-option-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--vera-font-size-sm); font-weight: var(--vera-font-weight-semibold); }
+.ws-option-role, .ws-option-current-label { flex: none; font-size: var(--vera-font-size-xs); color: var(--vera-color-text-muted); }
+.ws-option-current { cursor: default; }
+.ws-option-current .ws-option-name { color: var(--vera-color-brand); }
+@media (prefers-reduced-motion: reduce) { .ws-switch-pop { transition: none; } }
+.nav-workspace { font-weight: 600; color: var(--vera-color-text); margin-bottom: 0.75rem; }
+.nav-userline { margin-bottom: 0.75rem; }
+.nav-trial { margin-bottom: 0.75rem; color: var(--vera-color-text-2); font-size: var(--vera-font-size-sm); }
+.nav-action { margin-bottom: 0.5rem; }
+.nav-status { display: inline-flex; align-items: center; white-space: nowrap; gap: 0.4rem; margin-bottom: 0.75rem; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; text-decoration: none; background: var(--vera-color-neutral-100); color: var(--vera-color-text-muted); }
+.nav-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vera-color-neutral-400); flex: 0 0 auto; }
+.nav-status[data-status="green"] { background: var(--vera-color-success-100); color: var(--vera-color-success-800); }
+.nav-status[data-status="green"] .nav-status-dot { background: var(--vera-color-success-600); }
+.nav-status[data-status="amber"] { background: var(--vera-color-warning-100); color: var(--vera-color-warning-800); }
+.nav-status[data-status="amber"] .nav-status-dot { background: var(--vera-color-warning-600); }
+.nav-status[data-status="red"] { background: var(--vera-color-danger-100); color: var(--vera-color-danger-700); }
+.nav-status[data-status="red"] .nav-status-dot { background: var(--vera-color-danger-500); }
+.console-content { flex: 1; min-width: 0; background: var(--vera-color-surface); border: 1px solid var(--vera-color-border); border-radius: var(--vera-radius-lg); box-shadow: var(--vera-shadow-card); margin: 0.75rem 0.75rem 0.75rem 0; }
+/* top padding matches the wordmark's clear-zone gap so page content lines up with the logo */
+.console-content main { padding: 1.25rem 1.5rem 1.5rem; max-width: 1400px; margin: 0; }
+.nav-toggle { display: none; }
+@media (max-width: 767px) {
+  .console-layout { display: block; }
+  .nav-brand { padding-top: 0.5rem; }
+  .console-content { margin: 3rem 0.5rem 0.5rem; }
+  /* Issue 3651: the menu button sits above the card, so content starts at the card's normal top padding. */
+  .console-content main { padding: var(--vera-space-lg) .75rem 1.5rem; }
+  /* Issue 3451: a card's left and right padding is halved on a phone (space-md). */
+  .card { padding-left: var(--vera-space-md); padding-right: var(--vera-space-md); }
+  /* A zoomable chart keeps a readable size and scrolls inside its frame. */
+  .chart-zoom-scroll > svg { min-width: 600px; }
+  /* An empty table's message stays on screen when the table scrolls sideways. */
+  .table-wrap tr[data-sort-skip] > td[colspan], .table-scroll tr[data-sort-skip] > td[colspan] { text-align: left !important; }
+  .nav-toggle { display: block; position: absolute; top: 0.5rem; right: 0.5rem; z-index: 1100; font-size: 1.3rem; line-height: 1; background: var(--vera-color-surface); border: 1px solid #ccc; border-radius: var(--vera-radius-sm); padding: 4px 10px; cursor: pointer; }
+  /* Issue 3651: while the menu is open, the button stays on screen so it can close it. */
+  body:has(.console-sidebar.open) .nav-toggle { position: fixed; }
+  .console-sidebar { display: none; }
+  .console-sidebar.open { display: flex; position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 1050; background: var(--vera-color-bg); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+}
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1200; align-items:flex-start; justify-content:center; padding:4rem 1rem; overflow-y:auto; }
+.modal-overlay.open { display:flex; }
+.modal-box { background:var(--vera-color-surface); border-radius:var(--vera-radius-lg); max-width:520px; width:100%; box-shadow:var(--vera-shadow-modal); }
+.modal-head { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid #eee; }
+.modal-head h3 { margin:0; font-size:1rem; font-weight:600; }
+.modal-close { background:none; border:none; font-size:1.6rem; line-height:1; cursor:pointer; color:var(--vera-color-text-muted); padding:0 0.25rem; }
+.modal-close:hover { color:var(--vera-color-text); }
+.modal-body { padding:1.25rem; }
+.save-btn-danger { background:var(--vera-color-danger); border-color:var(--vera-color-danger); }
+.save-btn-danger:hover { background:var(--vera-color-danger-hover); border-color:var(--vera-color-danger-hover); }
+/* Edit-modal footer (#1230): primary Save on the left, destructive action on
+   the right, so a row never needs to show two buttons. */
+.modal-actions-split { display:flex; flex-direction:row-reverse; justify-content:space-between; align-items:center; gap:1rem; padding-top:0.75rem; }
+.modal-actions-split form { display:inline; margin:0; }
+.modal-status-action { margin-top:1rem; padding-top:0.75rem; border-top:1px solid #eee; }
+.modal-status-action form { margin:0; }
+/* Shared segmented magnitude cell (#1882) — small in-cell bars are ticked,
+   not solid, so a reader counts rather than estimates. Large progress bars
+   (envelope/liability/forecast) use a different device, a tick rail beside a
+   solid fill (#1885): their fill already carries its own color meaning and
+   isn't always scaled 0–100%, so segmenting the fill itself would fight that
+   color code. This bar has neither constraint, so chopping it is free.
+   Fixed small width so a filled column never forces a .table-scroll table
+   wider than its own text.
+   align-items:flex-end is load-bearing (#1930): the cell is inline-flex, so it
+   shrinks to its widest child — the nowrap value text, whose width varies per
+   row. Without it the fixed-width bar lands at the cell's LEFT edge, which is
+   (aligned right edge - this row's text width), and a column of bars comes out
+   ragged. Pinning the bar to the cell's right edge lines it up under the
+   right-aligned figures. Do not remove it as redundant. */
+.magnitude-cell { display: inline-flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+.magnitude-cell-value { white-space: nowrap; }
+.magnitude-cell-bar { display: flex; gap: 1px; width: 60px; }
+.magnitude-tick { flex: 1 1 0; height: 8px; min-width: 1px; border-radius: 1px; background: var(--vera-color-neutral-200); }
+/* Compact sibling (#2139) — row direction so it stays on one line, for a
+   table row that must not grow taller (e.g. /console/envelopes). */
+.magnitude-cell-compact { display: inline-flex; flex-direction: row; align-items: center; gap: 6px; }
+.magnitude-cell-compact .magnitude-cell-bar { width: 36px; }
+/* Tick rail (#1885) — the sibling large-bar device to the magnitude cell
+   above: a countable scale sitting BESIDE the fill rather than segmenting
+   it, since these bars' fills already carry their own color meaning
+   (envelopes vs vendors vs overflow) and their domain isn't always 0-100%
+   (an over-budget bar rescales to the total committed). No new token —
+   reuses the existing border color at both mark heights, low emphasis by
+   design. Full (decile) and reduced (quarter) mark sets are both always
+   rendered; the media query below picks one, so no JS is needed. */
+.bar-scale { position: relative; height: 5px; margin-top: 1px; }
+.bar-scale-mark { position: absolute; top: 0; width: 1px; height: 3px; background: var(--vera-color-border); transform: translateX(-50%); }
+.bar-scale-mark-tall { height: 5px; }
+.bar-scale-reduced { display: none; }
+@media (max-width: 767px) {
+  /* Phones: ten decile marks on a short bar read as clutter — drop to
+     25/50/75/100 rather than hiding the rail outright (same phone
+     breakpoint as the week-entries table above). */
+  .bar-scale-full { display: none; }
+  .bar-scale-reduced { display: block; }
+}
+
+.atl { background: var(--vera-color-surface); border: var(--vera-border-width-default) solid var(--vera-color-border); border-radius: var(--vera-radius-lg); padding: var(--vera-space-lg) 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--vera-space-md); min-width: 0; margin-bottom: 1.25rem; }
+.atl-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--vera-space-xs) var(--vera-space-xl); padding: 0 var(--vera-space-lg); }
+.atl-title { font-size: var(--vera-font-size-base); font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-text); }
+.atl-title a { color: var(--vera-color-brand); text-decoration: none; }
+.atl-sub { margin-left: var(--vera-space-sm); font-size: var(--vera-font-size-xs); font-weight: var(--vera-font-weight-normal); color: var(--vera-color-text-muted); }
+.atl-summary { font-size: var(--vera-font-size-xs); color: var(--vera-color-text-2); }
+.atl-summary b { color: var(--vera-color-text); font-weight: var(--vera-font-weight-semibold); }
+.atl-empty { margin: 0; padding: 0 var(--vera-space-lg); font-size: var(--vera-font-size-xs); color: var(--vera-color-text-muted); }
+.atl-body { display: flex; border-top: var(--vera-border-width-default) solid var(--vera-color-border-soft); border-bottom: var(--vera-border-width-default) solid var(--vera-color-border-soft); }
+.atl-fixed { flex: none; width: clamp(150px, 40vw, 250px); border-right: var(--vera-border-width-default) solid var(--vera-color-border); }
+.atl-scroll { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+.atl-cal { display: grid; width: max-content; }
+.atl-lh { height: 20px; box-sizing: border-box; display: flex; align-items: center; padding: 0 var(--vera-space-md); font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-muted); }
+.atl-lh.atl-lh-split { justify-content: space-between; }
+.atl-rule { height: 1px; background: var(--vera-color-border); }
+.atl-rule.atl-now { background: var(--vera-color-brand); }
+.atl-lab { height: 40px; box-sizing: border-box; display: flex; align-items: center; gap: var(--vera-space-sm); padding: 0 var(--vera-space-md); min-width: 0; }
+.atl-name { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(to right, #000 75%, transparent); mask-image: linear-gradient(to right, #000 75%, transparent); font-size: var(--vera-font-size-sm); font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-brand); text-decoration: none; }
+.atl-total { flex: none; font-size: var(--vera-font-size-xs); font-weight: var(--vera-font-weight-semibold); color: var(--vera-color-text-2); }
+.atl-lab.atl-tot-lab { height: 32px; background: var(--vera-color-surface-alt); }
+.atl-tot-lab .atl-name { color: var(--vera-color-text); -webkit-mask-image: none; mask-image: none; }
+.atl-mo { height: 20px; box-sizing: border-box; display: flex; align-items: center; gap: var(--vera-space-xs); padding: 0 0 0 var(--vera-space-xs); overflow: hidden; font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-2); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.atl-mo + .atl-mo { border-left: var(--vera-border-width-default) solid var(--vera-color-neutral-300); }
+.atl-mt { height: 32px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: var(--vera-space-xs); padding: 0 var(--vera-space-xs); overflow: hidden; white-space: nowrap; background: var(--vera-color-surface-alt); font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-2); letter-spacing: 0.04em; text-transform: uppercase; }
+.atl-mt + .atl-mt { border-left: var(--vera-border-width-default) solid var(--vera-color-neutral-300); }
+.atl-mt-amount { color: var(--vera-color-text); text-transform: none; letter-spacing: normal; }
+.atl-tot-lab .atl-total { color: var(--vera-color-text); }
+.atl-mo-rule { flex: 1 1 auto; height: 1px; background: var(--vera-color-border); }
+.atl-hc { height: 20px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-muted); }
+.atl-wn { font-size: var(--vera-font-size-3xs); letter-spacing: 0.14em; }
+.atl-hc.atl-past { color: var(--vera-color-violet-600); }
+.atl-hc.atl-future { color: var(--vera-color-brand); }
+.atl-hc.atl-now { background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-weight: var(--vera-font-weight-semibold); }
+.atl-mstart { border-left: var(--vera-border-width-default) solid var(--vera-color-neutral-300); }
+.atl-slot { height: 40px; box-sizing: border-box; display: flex; align-items: center; padding: var(--vera-space-xs) 0; border-left: var(--vera-border-width-default) solid var(--vera-color-border-soft); }
+.atl-slot.atl-mstart { border-left-color: var(--vera-color-neutral-300); }
+.atl-slot.atl-after { border-left: 0; }
+.atl-slot.atl-now { background: var(--vera-color-brand-50); border-left: var(--vera-border-width-emphasis) solid var(--vera-color-brand); border-right: var(--vera-border-width-emphasis) solid var(--vera-color-brand); }
+.atl-wk { flex: 1 1 auto; height: 32px; display: flex; align-items: center; justify-content: center; font-family: var(--vera-font-mono); font-size: var(--vera-font-size-2xs); color: var(--vera-color-text); text-decoration: none; }
+.atl-wk.l1 { background: var(--vera-color-violet-100); }
+.atl-wk.l2 { background: var(--vera-color-violet-200); }
+.atl-wk.l3 { background: var(--vera-color-violet-400); color: var(--vera-color-on-brand); }
+.atl-wk.l4 { background: var(--vera-color-violet-600); color: var(--vera-color-on-brand); }
+.atl-wk.atl-plan { background: var(--vera-color-brand-200); }
+.atl-wk.atl-paid { background: var(--vera-color-success-700); color: var(--vera-color-on-brand); }
+.atl-wk.atl-overdue { background: var(--vera-color-danger); color: var(--vera-color-on-brand); }
+.atl-slot.atl-now.atl-end { border-bottom: var(--vera-border-width-emphasis) solid var(--vera-color-brand); }
+.atl-key { display: flex; flex-wrap: wrap; gap: var(--vera-space-xs); }
+.atl-wk.atl-bold { font-weight: var(--vera-font-weight-semibold); }
+.atl-wk.atl-first { border-top-left-radius: var(--vera-radius-md); border-bottom-left-radius: var(--vera-radius-md); }
+.atl-wk.atl-last { border-top-right-radius: var(--vera-radius-md); border-bottom-right-radius: var(--vera-radius-md); }
+.atl-tot { height: 32px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--vera-color-surface-alt); font-family: var(--vera-font-mono); font-size: var(--vera-font-size-2xs); color: var(--vera-color-text-2); }
+.atl-tot.atl-full { color: var(--vera-color-warning-text); font-weight: var(--vera-font-weight-semibold); }
+.atl-tot.atl-overcap { color: var(--vera-color-danger-text); background: var(--vera-color-danger-soft); font-weight: var(--vera-font-weight-semibold); }
+.atl-tot.atl-now { background: var(--vera-color-brand); color: var(--vera-color-on-brand); font-weight: var(--vera-font-weight-semibold); border: var(--vera-border-width-emphasis) solid var(--vera-color-brand); border-top: 0; }
+.atl-body { position: relative; }
+.atl-fixed, .atl-scroll { position: relative; }
+.atl-body.is-linked::before { content: ""; position: absolute; left: 0; right: 0; top: var(--atl-hl-top, 0); height: 40px; background: var(--vera-color-warning-50); pointer-events: none; }
+
+
+.inv-pill { display: inline-flex; align-items: center; padding: 0 var(--vera-space-sm); border-radius: var(--vera-radius-pill); font-size: var(--vera-font-size-2xs); font-weight: var(--vera-font-weight-semibold); line-height: 1.6; text-transform: uppercase; white-space: nowrap; }
+.inv-pill-drafted, .inv-pill-draft { background: var(--vera-color-brand-200); color: var(--vera-color-text); }
+.inv-pill-issued { background: var(--vera-color-brand-200); color: var(--vera-color-text); }
+.inv-pill-paid { background: var(--vera-color-success-700); color: var(--vera-color-on-brand); }
+.inv-pill-overdue { background: var(--vera-color-danger); color: var(--vera-color-on-brand); }
+.inv-pill-void { background: var(--vera-color-surface-alt); color: var(--vera-color-text-muted); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--vera-color-border); }
+.inv-paid-amount { color: var(--vera-color-success-700); }
+.inv-paid-none { color: var(--vera-color-text-muted); }
+
+
+.aging-draft, .inplay-seg-draft, .aging-pill-draft { --bucket-fill: var(--vera-color-brand-50); --bucket-text: var(--vera-color-brand-600); --bucket-border: var(--vera-color-brand-600); --bucket-empty: var(--vera-color-brand-200); --bucket-selected: var(--vera-color-brand-800); }
+.aging-current, .inplay-seg-current, .aging-pill-current { --bucket-fill: var(--vera-color-brand-100); --bucket-text: var(--vera-color-brand); --bucket-border: var(--vera-color-brand); --bucket-empty: var(--vera-color-brand); --bucket-selected: var(--vera-color-brand-900); }
+.aging-1-30, .inplay-seg-1-30, .aging-pill-1-30 { --bucket-fill: var(--vera-color-warning-100); --bucket-text: var(--vera-color-warning-800); --bucket-border: var(--vera-color-warning-800); --bucket-empty: var(--vera-color-warning-300); --bucket-selected: var(--vera-color-warning-900); }
+.aging-31-60, .inplay-seg-31-60, .aging-pill-31-60 { --bucket-fill: var(--vera-color-warning-300); --bucket-text: var(--vera-color-warning-900); --bucket-border: var(--vera-color-warning-900); --bucket-empty: var(--vera-color-warning-500); --bucket-selected: var(--vera-color-warning-950); }
+.aging-61-90, .inplay-seg-61-90, .aging-pill-61-90 { --bucket-fill: var(--vera-color-danger-200); --bucket-text: var(--vera-color-danger-800); --bucket-border: var(--vera-color-danger-800); --bucket-empty: var(--vera-color-danger-500); --bucket-selected: var(--vera-color-danger-900); }
+.aging-90plus, .inplay-seg-90plus, .aging-pill-90plus { --bucket-fill: var(--vera-color-danger-700); --bucket-text: var(--vera-color-on-brand); --bucket-border: var(--vera-color-danger-800); --bucket-empty: var(--vera-color-danger-700); --bucket-selected: var(--vera-color-text); }
+
+.inplay { display: grid; gap: var(--vera-space-sm); margin-bottom: var(--vera-space-md); }
+.inplay-bar { display: flex; height: var(--vera-space-md); border-radius: var(--vera-radius-sm); overflow: hidden; background: var(--vera-color-surface-alt); }
+.inplay-seg { display: block; flex-grow: 0; flex-shrink: 0; background: var(--bucket-empty); }
+.inplay-key { display: flex; flex-wrap: wrap; gap: var(--vera-space-xs) var(--vera-space-lg); list-style: none; margin: 0; padding: 0; font-size: var(--vera-font-size-sm); }
+.inplay-key li { display: inline-flex; align-items: center; gap: var(--vera-space-xs); }
+.inplay-sw { width: 10px; height: 10px; border-radius: var(--vera-radius-sm); display: inline-block; background: var(--bucket-empty); }
+
+.aging-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--vera-space-sm); }
+.aging-cell { display: block; text-decoration: none; border: 0; border-radius: var(--vera-radius-md); padding: 0.5rem 0.75rem; background: var(--bucket-fill); color: var(--bucket-text); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--bucket-border); }
+.aging-cell span, .aging-cell strong { color: inherit; }
+.aging-cell.is-empty { background: var(--vera-color-surface); color: var(--vera-color-text-muted); box-shadow: inset 0 0 0 var(--vera-border-width-emphasis) var(--bucket-empty); pointer-events: none; }
+.aging-cell.is-selected { box-shadow: inset 0 0 0 var(--vera-border-width-emphasis) var(--bucket-selected); }
+#invoice-filter { display: inline-flex; margin: 0.75rem 0; border: 1px solid var(--vera-color-brand); border-radius: 4px; overflow: hidden; }
+.inv-filter-select { display: none; width: 100%; margin: 0.75rem 0; }
+.inv-totals td { font-weight: var(--vera-font-weight-semibold); }
+@media (max-width: 767px) {
+  .aging-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #invoice-filter { display: none; }
+  .inv-filter-select { display: block; }
+}
+
+.aging-pill { display: inline-flex; align-items: center; padding: 0 var(--vera-space-sm); border-radius: var(--vera-radius-pill); font-size: var(--vera-font-size-2xs); font-weight: var(--vera-font-weight-semibold); line-height: 1.6; text-transform: uppercase; white-space: nowrap; background: var(--bucket-fill); color: var(--bucket-text); box-shadow: inset 0 0 0 var(--vera-border-width-default) var(--bucket-border); }
+.days-late { margin-left: var(--vera-space-xs); }
+
+</style>
+<script data-showcase-canceller>
+(function () {
+  function stop(e) { e.preventDefault(); e.stopImmediatePropagation() }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a') : null
+    if (a) stop(e)
+  }, true)
+  document.addEventListener('submit', stop, true)
+})()
+</script>
+<style data-showcase-no-nav>.nav-toggle,#console-nav{display:none!important}.console-content{margin:0.75rem!important}</style>
+</head>
+<body>
+<style>.showcase-card{max-width:72rem;margin:0 auto;padding:var(--vera-space-xl)}</style><main class="showcase-card"><section class="atl" aria-label="Priya Natarajan's allocations"><div class="atl-head"><div class="atl-title"><a href="#">Priya Natarajan</a>'s allocations<span class="atl-sub">Designer · 40h a week</span></div><div class="atl-summary">Last allocation ends <b>Feb 28</b></div></div><div class="atl-body"><div class="atl-fixed"><div class="atl-lh"></div><div class="atl-lh"></div><div class="atl-lh">5 allocations</div><div class="atl-rule"></div><div class="atl-lab" data-allocation="1"><a class="atl-name" href="#" title="Bellhaven Outdoors — Brand Refresh">Bellhaven Outdoors — Brand Refresh</a><span class="atl-total">114h</span></div><div class="atl-lab" data-allocation="2"><a class="atl-name" href="#" title="Solace Financial — Onboarding Audit">Solace Financial — Onboarding Audit</a><span class="atl-total">42h</span></div><div class="atl-lab" data-allocation="3"><a class="atl-name" href="#" title="Kestrel Robotics — Launch Site">Kestrel Robotics — Launch Site</a><span class="atl-total">124h</span></div><div class="atl-lab" data-allocation="4"><a class="atl-name" href="#" title="Solace Financial — Q3 Content Sprint">Solace Financial — Q3 Content Sprint</a><span class="atl-total">16h</span></div><div class="atl-lab" data-allocation="5"><a class="atl-name" href="#" title="Bellhaven Outdoors — Seasonal Lookbook">Bellhaven Outdoors — Seasonal Lookbook</a><span class="atl-total">124h</span></div><div class="atl-rule"></div><div class="atl-lab atl-tot-lab"><span class="atl-name">Planned for the week</span><span class="atl-total">of 40h</span></div></div><div class="atl-scroll"><div class="atl-cal" style="grid-template-columns:32px 32px 32px 32px 32px 32px 32px 35px 31px 32px 32px 32px 32px 32px 32px 32px 32px 32px 32px 32px 32px 32px"><div class="atl-mo" style="grid-column:1 / 2">Sep<span class="atl-mo-rule"></span></div><div class="atl-mo" style="grid-column:2 / 6">Oct<span class="atl-mo-rule"></span></div><div class="atl-mo" style="grid-column:6 / 11">Nov<span class="atl-mo-rule"></span></div><div class="atl-mo" style="grid-column:11 / 15">Dec<span class="atl-mo-rule"></span></div><div class="atl-mo" style="grid-column:15 / 19">Jan 2027<span class="atl-mo-rule"></span></div><div class="atl-mo" style="grid-column:19 / 23">Feb<span class="atl-mo-rule"></span></div><div class="atl-hc atl-wn">W40</div><div class="atl-hc atl-wn atl-mstart">W41</div><div class="atl-hc atl-wn">W42</div><div class="atl-hc atl-wn">W43</div><div class="atl-hc atl-wn">W44</div><div class="atl-hc atl-wn atl-mstart">W45</div><div class="atl-hc atl-wn">W46</div><div class="atl-hc atl-wn atl-now">W47</div><div class="atl-hc atl-wn">W48</div><div class="atl-hc atl-wn">W49</div><div class="atl-hc atl-wn atl-mstart">W50</div><div class="atl-hc atl-wn">W51</div><div class="atl-hc atl-wn">W52</div><div class="atl-hc atl-wn">W53</div><div class="atl-hc atl-wn atl-mstart">W1</div><div class="atl-hc atl-wn">W2</div><div class="atl-hc atl-wn">W3</div><div class="atl-hc atl-wn">W4</div><div class="atl-hc atl-wn atl-mstart">W5</div><div class="atl-hc atl-wn">W6</div><div class="atl-hc atl-wn">W7</div><div class="atl-hc atl-wn">W8</div><div class="atl-hc atl-past">28</div><div class="atl-hc atl-mstart atl-past">5</div><div class="atl-hc atl-past">12</div><div class="atl-hc atl-past">19</div><div class="atl-hc atl-past">26</div><div class="atl-hc atl-mstart atl-past">2</div><div class="atl-hc atl-past">9</div><div class="atl-hc atl-now">16</div><div class="atl-hc atl-future">23</div><div class="atl-hc atl-future">30</div><div class="atl-hc atl-mstart atl-future">7</div><div class="atl-hc atl-future">14</div><div class="atl-hc atl-future">21</div><div class="atl-hc atl-future">28</div><div class="atl-hc atl-mstart atl-future">4</div><div class="atl-hc atl-future">11</div><div class="atl-hc atl-future">18</div><div class="atl-hc atl-future">25</div><div class="atl-hc atl-mstart atl-future">1</div><div class="atl-hc atl-future">8</div><div class="atl-hc atl-future">15</div><div class="atl-hc atl-future">22</div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule atl-now"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-slot" data-allocation="1"><span class="atl-wk l3 atl-first" title="Bellhaven Outdoors — Brand Refresh, week of Sep 28: 6h recorded">6</span></div><div class="atl-slot atl-mstart" data-allocation="1"><span class="atl-wk l3" title="Bellhaven Outdoors — Brand Refresh, week of Oct 5: 7h recorded">7</span></div><div class="atl-slot" data-allocation="1"><span class="atl-wk l4" title="Bellhaven Outdoors — Brand Refresh, week of Oct 12: 10h recorded">10</span></div><div class="atl-slot" data-allocation="1"><span class="atl-wk l4" title="Bellhaven Outdoors — Brand Refresh, week of Oct 19: 11h recorded">11</span></div><div class="atl-slot" data-allocation="1"><span class="atl-wk l4" title="Bellhaven Outdoors — Brand Refresh, week of Oct 26: 9h recorded">9</span></div><div class="atl-slot atl-mstart" data-allocation="1"><span class="atl-wk l4" title="Bellhaven Outdoors — Brand Refresh, week of Nov 2: 10h recorded">10</span></div><div class="atl-slot" data-allocation="1"><span class="atl-wk l4" title="Bellhaven Outdoors — Brand Refresh, week of Nov 9: 8h recorded">8</span></div><div class="atl-slot atl-now" data-allocation="1"><a class="atl-wk atl-plan atl-bold" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Nov 16: 8h planned">8</a></div><div class="atl-slot atl-after" data-allocation="1"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Nov 23: 8h planned">8</a></div><div class="atl-slot" data-allocation="1"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Nov 30: 8h planned">8</a></div><div class="atl-slot atl-mstart" data-allocation="1"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Dec 7: 8h planned">8</a></div><div class="atl-slot" data-allocation="1"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Dec 14: 8h planned">8</a></div><div class="atl-slot" data-allocation="1"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Dec 21: 8h planned">8</a></div><div class="atl-slot" data-allocation="1"><a class="atl-wk atl-plan atl-last" href="#" title="Bellhaven Outdoors — Brand Refresh, week of Dec 28: 8h planned">8</a></div><div class="atl-slot atl-mstart" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot atl-mstart" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot" data-allocation="1"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot atl-mstart" data-allocation="2"></div><div class="atl-slot" data-allocation="2"><span class="atl-wk l2 atl-first" title="Solace Financial — Onboarding Audit, week of Oct 12: 4h recorded">4</span></div><div class="atl-slot" data-allocation="2"><span class="atl-wk l3" title="Solace Financial — Onboarding Audit, week of Oct 19: 6h recorded">6</span></div><div class="atl-slot" data-allocation="2"><span class="atl-wk l4" title="Solace Financial — Onboarding Audit, week of Oct 26: 10h recorded">10</span></div><div class="atl-slot atl-mstart" data-allocation="2"><span class="atl-wk l4" title="Solace Financial — Onboarding Audit, week of Nov 2: 8h recorded">8</span></div><div class="atl-slot" data-allocation="2"><span class="atl-wk l2" title="Solace Financial — Onboarding Audit, week of Nov 9: 4h recorded">4</span></div><div class="atl-slot atl-now" data-allocation="2"><a class="atl-wk atl-plan atl-bold" href="#" title="Solace Financial — Onboarding Audit, week of Nov 16: 6h planned">6</a></div><div class="atl-slot atl-after" data-allocation="2"><a class="atl-wk atl-plan atl-last" href="#" title="Solace Financial — Onboarding Audit, week of Nov 23: 6h planned">6</a></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot atl-mstart" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot atl-mstart" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot atl-mstart" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="2"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot atl-mstart" data-allocation="3"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot" data-allocation="3"><span class="atl-wk l3 atl-first" title="Kestrel Robotics — Launch Site, week of Oct 26: 7h recorded">7</span></div><div class="atl-slot atl-mstart" data-allocation="3"><span class="atl-wk l4" title="Kestrel Robotics — Launch Site, week of Nov 2: 10h recorded">10</span></div><div class="atl-slot" data-allocation="3"><span class="atl-wk l4" title="Kestrel Robotics — Launch Site, week of Nov 9: 13h recorded">13</span></div><div class="atl-slot atl-now" data-allocation="3"><a class="atl-wk atl-plan atl-bold" href="#" title="Kestrel Robotics — Launch Site, week of Nov 16: 10h planned">10</a></div><div class="atl-slot atl-after" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Nov 23: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Nov 30: 10h planned">10</a></div><div class="atl-slot atl-mstart" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Dec 7: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Dec 14: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Dec 21: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Dec 28: 10h planned">10</a></div><div class="atl-slot atl-mstart" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Jan 4: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan" href="#" title="Kestrel Robotics — Launch Site, week of Jan 11: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"><a class="atl-wk atl-plan atl-last" href="#" title="Kestrel Robotics — Launch Site, week of Jan 18: 10h planned">10</a></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot atl-mstart" data-allocation="3"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot" data-allocation="3"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot atl-mstart" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot atl-mstart" data-allocation="4"><span class="atl-wk l2 atl-first" title="Solace Financial — Q3 Content Sprint, week of Nov 2: 4h recorded">4</span></div><div class="atl-slot" data-allocation="4"><span class="atl-wk l2" title="Solace Financial — Q3 Content Sprint, week of Nov 9: 5h recorded">5</span></div><div class="atl-slot atl-now" data-allocation="4"><a class="atl-wk atl-plan atl-bold" href="#" title="Solace Financial — Q3 Content Sprint, week of Nov 16: 4h planned">4</a></div><div class="atl-slot atl-after" data-allocation="4"><a class="atl-wk atl-plan atl-last" href="#" title="Solace Financial — Q3 Content Sprint, week of Nov 23: 4h planned">4</a></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot atl-mstart" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot atl-mstart" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot atl-mstart" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="4"></div><div class="atl-slot" data-allocation="5"></div><div class="atl-slot atl-mstart" data-allocation="5"></div><div class="atl-slot" data-allocation="5"></div><div class="atl-slot" data-allocation="5"></div><div class="atl-slot" data-allocation="5"></div><div class="atl-slot atl-mstart" data-allocation="5"></div><div class="atl-slot" data-allocation="5"><span class="atl-wk l2 atl-first" title="Bellhaven Outdoors — Seasonal Lookbook, week of Nov 9: 4h recorded">4</span></div><div class="atl-slot atl-now" data-allocation="5"><a class="atl-wk atl-plan atl-bold" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Nov 16: 8h planned">8</a></div><div class="atl-slot atl-after" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Nov 23: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Nov 30: 8h planned">8</a></div><div class="atl-slot atl-mstart" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Dec 7: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Dec 14: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Dec 21: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Dec 28: 8h planned">8</a></div><div class="atl-slot atl-mstart" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Jan 4: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Jan 11: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Jan 18: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Jan 25: 8h planned">8</a></div><div class="atl-slot atl-mstart" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Feb 1: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Feb 8: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Feb 15: 8h planned">8</a></div><div class="atl-slot" data-allocation="5"><a class="atl-wk atl-plan atl-last" href="#" title="Bellhaven Outdoors — Seasonal Lookbook, week of Feb 22: 8h planned">8</a></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule atl-now"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-rule"></div><div class="atl-tot" title="Week of Sep 28: 8h planned of 40h">8</div><div class="atl-tot atl-mstart" title="Week of Oct 5: 8h planned of 40h">8</div><div class="atl-tot" title="Week of Oct 12: 14h planned of 40h">14</div><div class="atl-tot" title="Week of Oct 19: 14h planned of 40h">14</div><div class="atl-tot" title="Week of Oct 26: 24h planned of 40h">24</div><div class="atl-tot atl-mstart" title="Week of Nov 2: 28h planned of 40h">28</div><div class="atl-tot" title="Week of Nov 9: 36h planned of 40h">36</div><div class="atl-tot atl-now" title="Week of Nov 16: 36h planned of 40h">36</div><div class="atl-tot" title="Week of Nov 23: 36h planned of 40h">36</div><div class="atl-tot" title="Week of Nov 30: 26h planned of 40h">26</div><div class="atl-tot atl-mstart" title="Week of Dec 7: 26h planned of 40h">26</div><div class="atl-tot" title="Week of Dec 14: 26h planned of 40h">26</div><div class="atl-tot" title="Week of Dec 21: 26h planned of 40h">26</div><div class="atl-tot" title="Week of Dec 28: 26h planned of 40h">26</div><div class="atl-tot atl-mstart" title="Week of Jan 4: 18h planned of 40h">18</div><div class="atl-tot" title="Week of Jan 11: 18h planned of 40h">18</div><div class="atl-tot" title="Week of Jan 18: 18h planned of 40h">18</div><div class="atl-tot" title="Week of Jan 25: 8h planned of 40h">8</div><div class="atl-tot atl-mstart" title="Week of Feb 1: 8h planned of 40h">8</div><div class="atl-tot" title="Week of Feb 8: 8h planned of 40h">8</div><div class="atl-tot" title="Week of Feb 15: 8h planned of 40h">8</div><div class="atl-tot" title="Week of Feb 22: 8h planned of 40h">8</div></div></div></div></section><script>(function(){var s=document.currentScript.previousElementSibling.querySelector('.atl-scroll');if(!s)return;var c=s.querySelector('.atl-hc.atl-now');if(c)s.scrollLeft=Math.max(0,c.offsetLeft-(s.clientWidth-c.offsetWidth)/2)})()</script><script>(function(){if(window.__veraLinkedHover)return;window.__veraLinkedHover=1;
+function idOf(e){var el=e.target&&e.target.closest?e.target.closest('#this-week [data-allocation], .atl [data-allocation]'):null;return el?el.getAttribute('data-allocation'):null}
+function mark(id,on){if(!id)return;
+  document.querySelectorAll('#this-week li[data-allocation="'+id+'"]').forEach(function(li){li.classList.toggle('is-linked',on)});
+  document.querySelectorAll('.atl .atl-lab[data-allocation="'+id+'"]').forEach(function(lab){var body=lab.closest('.atl-body');if(!body)return;
+    if(on){body.style.setProperty('--atl-hl-top',lab.offsetTop+'px');body.classList.add('is-linked');body.setAttribute('data-linked',id)}
+    else if(body.getAttribute('data-linked')===id){body.classList.remove('is-linked');body.removeAttribute('data-linked')}})}
+document.addEventListener('mouseover',function(e){mark(idOf(e),true)});
+document.addEventListener('mouseout',function(e){mark(idOf(e),false)});
+document.addEventListener('focusin',function(e){mark(idOf(e),true)});
+document.addEventListener('focusout',function(e){mark(idOf(e),false)});})()</script></main>
+<script>
+(function () {
+  var t = document.querySelector('.banner-toast')
+  if (!t) return
+  setTimeout(function () {
+    if (!t || !t.parentNode) return
+    t.classList.add('toast-leaving')
+    setTimeout(function () { if (t && t.parentNode) t.parentNode.removeChild(t) }, 300)
+  }, 4000)
+})()
+</script>
+</body>
+</html>
